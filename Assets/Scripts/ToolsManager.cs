@@ -1,11 +1,26 @@
 using RootMotion.FinalIK;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Tool : MonoBehaviour
+public abstract class Tool : MonoBehaviour
 {
+    public ToolType Type { get; private set; }
+
+    public Tool(ToolType type)
+    {
+        Type = type;
+    }
+
+    public abstract void Hide();
+
+    public abstract void Show();
+}
+
+public enum ToolType
+{
+    FingerFollow,
+    FingerToNose
 }
 
 public class ToolsManager : MonoBehaviour
@@ -59,6 +74,21 @@ public class ToolsManager : MonoBehaviour
             foreach (FullBodyBipedEffector e in effectors)
             {
                 interactionSystem.StartInteraction(e, interactionObject, true);
+            }
+        }
+    }
+
+    public void SetTool(ToolType type)
+    {
+        foreach(var tool in tools)
+        {
+            if(tool.Type == type)
+            {
+                tool.Show();
+            } 
+            else
+            {
+                tool.Hide();
             }
         }
     }

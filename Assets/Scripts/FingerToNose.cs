@@ -6,6 +6,8 @@ public class FingerToNose : Tool
 {
     private FindRandomPoint randomPoint;
 
+    public FingerToNose() : base(ToolType.FingerToNose) { }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,15 @@ public class FingerToNose : Tool
             gameObject.transform.position = randomPoint.CalculateRandomPoint();
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
+    }
+
+    public override void Hide()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Show()
+    {
+        throw new System.NotImplementedException();
     }
 }
