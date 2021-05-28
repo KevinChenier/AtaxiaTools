@@ -14,7 +14,7 @@ public class FingerToNose : Tool
 
     void OnTriggerEnter(Collider other)
     {
-        if(ToolsManager.Instance.indexes_hand.Contains(other))
+        if (ToolsManager.Instance.indexes_hand.Contains(other))
         {
             ToolsManager.Instance.nose.GetComponent<MeshRenderer>().enabled = true;
             ToolsManager.Instance.nose.GetComponent<SphereCollider>().enabled = true;
