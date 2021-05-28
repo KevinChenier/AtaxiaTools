@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : Tool
 {
     public List<GameObject> gameObjects;
-    
+
     public void Spawn(int index)
     {
         GameObject spawned = Instantiate(gameObjects[index], transform.position, transform.rotation);

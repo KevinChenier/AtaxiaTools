@@ -13,8 +13,6 @@ public class FingerFollow : Tool
 
     private FindRandomPoint randomPoint;
 
-    public FingerFollow() : base (ToolType.FingerFollow) { }
-
     void Start()
     {
         randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
@@ -35,15 +33,5 @@ public class FingerFollow : Tool
             lerpValue += Time.deltaTime;
             gameObject.transform.position = Vector3.Lerp(startPos, endPos, lerpValue * speedModifier);
         }
-    }
-
-    public override void Hide()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Show()
-    {
-        throw new System.NotImplementedException();
     }
 }

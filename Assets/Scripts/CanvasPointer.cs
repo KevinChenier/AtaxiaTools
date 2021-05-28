@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class CanvasPointer : MonoBehaviour
 {
     public float defaultLenght = 3.0f;
+    public float defaultStartDistance = 0.15f;
 
     public EventSystem eventSystem;
     public StandaloneInputModule inputModule;
@@ -26,7 +27,7 @@ public class CanvasPointer : MonoBehaviour
 
     private void UpdateLength()
     {
-        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(0, GetStart());
         lineRenderer.SetPosition(1, GetEnd());
     }
 
@@ -39,6 +40,11 @@ public class CanvasPointer : MonoBehaviour
             endPosition = CalculateEnd(distance);
 
         return endPosition;
+    }
+
+    private Vector3 GetStart()
+    {
+        return CalculateEnd(defaultStartDistance);
     }
 
     private Vector3 CalculateEnd(float distance)
@@ -62,10 +68,5 @@ public class CanvasPointer : MonoBehaviour
     private RaycastResult? FindFirstRaycast(IEnumerable<RaycastResult> results)
     {
         return results.FirstOrDefault(r => r.gameObject != null);
-    }
-
-    private Vector3 DefaultEnd()
-    {
-        return transform.position + transform.forward * defaultLenght;
     }
 }

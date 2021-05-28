@@ -90,10 +90,12 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b785ac165d9520498ece667e6502a27, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +103,7 @@ LineRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -124,7 +127,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.14124298
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -132,8 +135,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0.5
+        time: 0.9949341
+        value: 0.05367279
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -189,7 +192,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4568458226975896195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09575946f7b2a6d4eb7862879ced2f7f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1f4ad4c8d136b145af0639544a92578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLength: 3
+  defaultLenght: 3
+  eventSystem: {fileID: 0}
+  inputModule: {fileID: 0}
