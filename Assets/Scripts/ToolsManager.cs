@@ -1,11 +1,33 @@
 using RootMotion.FinalIK;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Tool : MonoBehaviour
+public abstract class Tool : MonoBehaviour
 {
+    public GameObject pointer;
+    public GameObject[] sceneObjects;
+
+    public void Pause() 
+    {
+        Debug.Log("Hiding tool");
+        foreach (var o in sceneObjects)
+        {
+            Debug.Log("Hiding object" + o.name);
+            o.SetActive(false);
+        }
+        pointer.SetActive(true);
+    }
+
+    public void Show()
+    {
+        Debug.Log("Showing tool");
+        pointer.SetActive(false);
+        foreach (var o in sceneObjects)
+        {
+            o.SetActive(true);
+        }
+    }
 }
 
 public class ToolsManager : MonoBehaviour
@@ -47,7 +69,20 @@ public class ToolsManager : MonoBehaviour
         fingerPlane.GetComponent<MeshRenderer>().enabled = false;
         indicator.GetComponent<MeshRenderer>().enabled = false;
         nose.GetComponent<MeshRenderer>().enabled = false;
-        Invoke("StartFingerInteraction", 1);
+    }
+
+    private void Update()
+    {
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        {
+            fingerPlane.transform.position = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z * 0.9f);
+            
+            // Comments to show 90% extensibility
+            fingerPlane.GetComponent<MeshRenderer>().enabled = true;
+            fingerPlane.GetComponent<FindRandomPoint>().Recalculate();
+            Invoke("StartFingerInteraction", 1);
+        }
+
     }
 
     // TODO: Gérer les expériences a faire en faisant un menu pour faire le bon tool

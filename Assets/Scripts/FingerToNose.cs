@@ -11,14 +11,19 @@ public class FingerToNose : Tool
     {
         randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
     }
-
+    public void Recalculate()
+    {
+        randomPoint.Recalculate();
+    }
     void OnTriggerEnter(Collider other)
     {
-        if(ToolsManager.Instance.indexes_hand.Contains(other))
+        if (ToolsManager.Instance.indexes_hand.Contains(other))
         {
             ToolsManager.Instance.nose.GetComponent<MeshRenderer>().enabled = true;
             ToolsManager.Instance.nose.GetComponent<SphereCollider>().enabled = true;
+            Recalculate();
             gameObject.transform.position = randomPoint.CalculateRandomPoint();
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
     }
