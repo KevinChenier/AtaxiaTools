@@ -47,7 +47,20 @@ public class ToolsManager : MonoBehaviour
         fingerPlane.GetComponent<MeshRenderer>().enabled = false;
         indicator.GetComponent<MeshRenderer>().enabled = false;
         nose.GetComponent<MeshRenderer>().enabled = false;
-        Invoke("StartFingerInteraction", 1);
+    }
+
+    private void Update()
+    {
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        {
+            fingerPlane.transform.position = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z * 0.9f);
+            
+            // Comments to show 90% extensibility
+            fingerPlane.GetComponent<MeshRenderer>().enabled = true;
+            
+            Invoke("StartFingerInteraction", 1);
+        }
+
     }
 
     // TODO: Gérer les expériences a faire en faisant un menu pour faire le bon tool
