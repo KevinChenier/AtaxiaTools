@@ -14,6 +14,7 @@ public class FingerToNose : Tool
     public void Recalculate()
     {
         randomPoint.Recalculate();
+        gameObject.transform.position = randomPoint.CalculateRandomPoint();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -22,7 +23,6 @@ public class FingerToNose : Tool
             ToolsManager.Instance.nose.GetComponent<MeshRenderer>().enabled = true;
             ToolsManager.Instance.nose.GetComponent<SphereCollider>().enabled = true;
             Recalculate();
-            gameObject.transform.position = randomPoint.CalculateRandomPoint();
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
