@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4601105, g: 0.63887906, b: 0.6100965, a: 1}
+  m_IndirectSpecularColor: {r: 0.46010906, g: 0.63887864, b: 0.61009616, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 17697362}
   - component: {fileID: 17697361}
   - component: {fileID: 17697360}
+  - component: {fileID: 17697359}
   - component: {fileID: 17697364}
   - component: {fileID: 17697363}
   m_Layer: 0
@@ -164,6 +165,18 @@ Transform:
   m_Father: {fileID: 1127088700}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &17697359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17697357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41cb411b69881544af732985299ecd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &17697360
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -296,7 +309,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17697357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2afccc5f959f48f438ff052452a7ed16, type: 3}
   m_Name: 
@@ -3279,7 +3292,9 @@ MonoBehaviour:
   nose: {fileID: 1783104486}
   left_hand: {fileID: 826225301}
   right_hand: {fileID: 1468329518}
-  indexes_hand: []
+  indexes_hand:
+  - {fileID: 1468329518}
+  - {fileID: 826225301}
 --- !u!4 &1378917023
 Transform:
   m_ObjectHideFlags: 0
