@@ -19,6 +19,12 @@ public class FindRandomPoint : MonoBehaviour
         CalculateCornerPoints();
     }
 
+    public void Recalculate()
+    {
+        VerticeList = new List<Vector3>(GetComponent<MeshFilter>().sharedMesh.vertices); //get vertice points from the mesh of the object
+        CalculateCornerPoints();
+    }
+
     void CalculateEdgeVectors(int VectorCorner)
     {
         EdgeVectors.Clear();
