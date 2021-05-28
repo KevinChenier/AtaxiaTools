@@ -13,6 +13,7 @@ public class Nose : MonoBehaviour
     {
         if (ToolsManager.Instance.indexes_hand.Contains(other))
         {
+            ToolsManager.Instance.indicator.GetComponent<MeshRenderer>().enabled = true;
             ToolsManager.Instance.indicator.GetComponent<SphereCollider>().enabled = true;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;

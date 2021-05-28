@@ -79,7 +79,7 @@ public class ToolsManager : MonoBehaviour
             
             // Comments to show 90% extensibility
             fingerPlane.GetComponent<MeshRenderer>().enabled = true;
-            
+            fingerPlane.GetComponent<FindRandomPoint>().Recalculate();
             Invoke("StartFingerInteraction", 1);
         }
 
