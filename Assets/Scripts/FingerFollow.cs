@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FingerFollow : Tool
+public class FingerFollow : Tool<FingerFollowConfig>
 {
     Vector3 startPos;
     Vector3 endPos;
+
+    public FingerFollow() : base("fingerFollow") { }
 
     [Range(0.1f, 5.0f)]
     public float speedModifier = 0.5f;
@@ -33,6 +35,11 @@ public class FingerFollow : Tool
             lerpValue += Time.deltaTime;
             gameObject.transform.position = Vector3.Lerp(startPos, endPos, lerpValue * speedModifier);
         }
+    }
+
+    protected override void InitTool()
+    {
+        throw new System.NotImplementedException();
     }
 
     public override int score()
