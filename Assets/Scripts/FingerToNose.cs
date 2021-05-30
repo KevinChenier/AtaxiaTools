@@ -1,10 +1,13 @@
+using Assets.Scripts.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FingerToNose : Tool
+public class FingerToNose : Tool<SimpleToolConfig>
 {
     private FindRandomPoint randomPoint;
+
+    public FingerToNose() : base("fingerToNose") { }
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +29,10 @@ public class FingerToNose : Tool
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
+    }
+
+    protected override void InitTool()
+    {
+        throw new System.NotImplementedException();
     }
 }

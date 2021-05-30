@@ -1,14 +1,22 @@
+using Assets.Scripts.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemsInBox : Tool
+public class ItemsInBox : Tool<SimpleToolConfig>
 {
     public List<Collider> toolObjects;
     public TextMesh toolText;
 
     private int numberOfCurrentObjects = 0;
     private int numberOfObjects = 0;
+
+    public ItemsInBox(): base("itemsInBox") { }
+
+    protected override void InitTool()
+    {
+        throw new System.NotImplementedException();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

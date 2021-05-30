@@ -2,37 +2,10 @@ using RootMotion.FinalIK;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class Tool : MonoBehaviour
-{
-    public GameObject pointer;
-    public GameObject[] sceneObjects;
-
-    public void Pause() 
-    {
-        Debug.Log("Hiding tool");
-        foreach (var o in sceneObjects)
-        {
-            Debug.Log("Hiding object" + o.name);
-            o.SetActive(false);
-        }
-        pointer.SetActive(true);
-    }
-
-    public void Show()
-    {
-        Debug.Log("Showing tool");
-        pointer.SetActive(false);
-        foreach (var o in sceneObjects)
-        {
-            o.SetActive(true);
-        }
-    }
-}
-
+// TODO : BYEBYE THIS
 public class ToolsManager : MonoBehaviour
 {
-    public Tool[] tools;
+    public BaseTool[] tools;
 
     [Tooltip("The object to interact to")]
     public InteractionObject interactionObject;
