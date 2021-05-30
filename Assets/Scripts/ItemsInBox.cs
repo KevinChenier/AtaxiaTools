@@ -10,6 +10,11 @@ public class ItemsInBox : Tool
     private int numberOfCurrentObjects = 0;
     private int numberOfObjects = 0;
 
+    public override int score()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (toolObjects.Contains(other))

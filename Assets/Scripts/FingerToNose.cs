@@ -22,4 +22,9 @@ public class FingerToNose : Tool
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
     }
+
+    public override int score()
+    {
+        throw new System.NotImplementedException();
+    }
 }

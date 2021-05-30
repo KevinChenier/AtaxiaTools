@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 17697360}
   - component: {fileID: 17697364}
   - component: {fileID: 17697363}
+  - component: {fileID: 17697359}
   m_Layer: 0
   m_Name: Indicator
   m_TagString: Untagged
@@ -296,7 +297,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17697357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2afccc5f959f48f438ff052452a7ed16, type: 3}
   m_Name: 

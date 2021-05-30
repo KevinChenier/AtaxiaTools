@@ -34,4 +34,9 @@ public class FingerFollow : Tool
             gameObject.transform.position = Vector3.Lerp(startPos, endPos, lerpValue * speedModifier);
         }
     }
+
+    public override int score()
+    {
+        throw new System.NotImplementedException();
+    }
 }
