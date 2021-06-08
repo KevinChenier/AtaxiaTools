@@ -11,7 +11,9 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
     private void Start()
     {
         configs = ConfigManager.Instance.GetToolConfig<TConfig>(toolName);
-        InitTool();
+
+        // Some tools need a lateStart
+        Invoke("InitTool", 1);
     }
 
     /// <summary>

@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 17697362}
   - component: {fileID: 17697361}
   - component: {fileID: 17697360}
-  - component: {fileID: 17697359}
   - component: {fileID: 17697364}
   - component: {fileID: 17697363}
   m_Layer: 0
@@ -160,20 +159,6 @@ Transform:
   m_Father: {fileID: 1127088700}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &17697359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17697357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f41cb411b69881544af732985299ecd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  sceneObjects: []
 --- !u!135 &17697360
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -306,7 +291,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17697357}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2afccc5f959f48f438ff052452a7ed16, type: 3}
   m_Name: 
@@ -2668,12 +2653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f939dd5a3e6407547b1de10bd4203300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  sceneObjects: []
-  gameObjects:
-  - {fileID: 100000, guid: 9899b25d3ead930429b19eeabd7326c9, type: 3}
-  - {fileID: 100000, guid: ff3d5676cda6bd34db3e8d063df050e9, type: 3}
-  - {fileID: 100000, guid: f5dfa83705b67f241a59e665a9d37204, type: 3}
 --- !u!4 &1258438277
 Transform:
   m_ObjectHideFlags: 0
@@ -2869,8 +2848,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tools:
   - {fileID: 0}
-  - {fileID: 1258438276}
-  - {fileID: 1646376115}
+  - {fileID: 0}
+  - {fileID: 0}
   interactionObject: {fileID: 17697363}
   effectors: 06000000
   interactionSystem: {fileID: 215385346}
@@ -2879,9 +2858,7 @@ MonoBehaviour:
   nose: {fileID: 1783104486}
   left_hand: {fileID: 826225301}
   right_hand: {fileID: 1468329518}
-  indexes_hand:
-  - {fileID: 1468329518}
-  - {fileID: 826225301}
+  indexes_hand: []
 --- !u!4 &1378917023
 Transform:
   m_ObjectHideFlags: 0
@@ -3237,16 +3214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f4f82a560a91f4fbb46f12b50de310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  sceneObjects: []
-  toolObjects:
-  - {fileID: 40919616}
-  - {fileID: 958603360}
-  - {fileID: 1567549167}
-  - {fileID: 1666444674}
-  - {fileID: 1743146566}
-  - {fileID: 428914818}
-  toolText: {fileID: 1254107425}
 --- !u!1 &1666444671
 GameObject:
   m_ObjectHideFlags: 0
