@@ -28,7 +28,10 @@ public class HandTrackingGrabber : OVRGrabber
         bool isPinching = pinchStrength > pinchThreshold;
 
         if (!m_grabbedObj && isPinching && m_grabCandidates.Count > 0)
+        {
+            OVRInput.SetControllerVibration(0.4f, 0.4f, OVRInput.Controller.RTouch);
             GrabBegin();
+        }
         else if (m_grabbedObj && !isPinching)
             GrabEnd();
     }

@@ -4,6 +4,8 @@ public class PegboardTool : Tool<PegboardConfig>
 {
     public PegboardTool() : base("pegboard") { }
 
+
+
     public override int score()
     {
         throw new System.NotImplementedException();
