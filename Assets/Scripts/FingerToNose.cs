@@ -1,10 +1,13 @@
+using Assets.Scripts.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FingerToNose : Tool
+public class FingerToNose : Tool<SimpleToolConfig>
 {
     private FindRandomPoint randomPoint;
+
+    public FingerToNose() : base("fingerToNose") { }
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +17,7 @@ public class FingerToNose : Tool
     public void Recalculate()
     {
         randomPoint.Recalculate();
+        gameObject.transform.position = randomPoint.CalculateRandomPoint();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -22,9 +26,18 @@ public class FingerToNose : Tool
             ToolsManager.Instance.nose.GetComponent<MeshRenderer>().enabled = true;
             ToolsManager.Instance.nose.GetComponent<SphereCollider>().enabled = true;
             Recalculate();
-            gameObject.transform.position = randomPoint.CalculateRandomPoint();
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
+    }
+
+    protected override void InitTool()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override int score()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -1,5 +1,4 @@
 using RootMotion.FinalIK;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public class Tool : MonoBehaviour
 
 public class ToolsManager : MonoBehaviour
 {
-    public Tool[] tools;
+    public BaseTool[] tools;
 
     [Tooltip("The object to interact to")]
     public InteractionObject interactionObject;
@@ -51,13 +50,15 @@ public class ToolsManager : MonoBehaviour
 
     private void Update()
     {
-        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
         {
             fingerPlane.transform.position = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z * 0.9f);
             
             // Comments to show 90% extensibility
-            fingerPlane.GetComponent<MeshRenderer>().enabled = true;
+            //fingerPlane.GetComponent<MeshRenderer>().enabled = true;
+
             fingerPlane.GetComponent<FindRandomPoint>().Recalculate();
+            indicator.gameObject.transform.position = fingerPlane.GetComponent<FindRandomPoint>().CalculateRandomPoint();
             Invoke("StartFingerInteraction", 1);
         }
 
