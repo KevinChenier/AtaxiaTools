@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Model
+﻿using System;
+
+namespace Assets.Scripts.Model
 {
     [System.Serializable]
     public class FingerFollowConfig : IToolConfig
