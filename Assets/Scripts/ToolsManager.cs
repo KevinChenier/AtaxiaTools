@@ -15,6 +15,8 @@ public class ToolsManager : MonoBehaviour
     public FullBodyBipedEffector[] effectors;
     [Tooltip("The body that has the interaction system")]
     public InteractionSystem interactionSystem;
+    [Tooltip("The mesh of the avatar")]
+    public GameObject avatarMesh;
 
     public GameObject fingerPlane;
     public GameObject indicator;
@@ -25,6 +27,8 @@ public class ToolsManager : MonoBehaviour
     public List<Collider> indexes_hand = new List<Collider>();
 
     public static ToolsManager Instance { get; private set; }
+
+    private bool _showAvatar = false;
 
     void Awake()
     {
@@ -70,6 +74,17 @@ public class ToolsManager : MonoBehaviour
             {
                 interactionSystem.StartInteraction(e, interactionObject, true);
             }
+        }
+    }
+
+    public bool showAvatar
+    {
+        get { return _showAvatar; }
+        set
+        {
+            avatarMesh.SetActive(value);
+            indicator.GetComponent<MeshRenderer>().enabled = !value;
+            _showAvatar = value;
         }
     }
 }
