@@ -9,6 +9,8 @@ namespace Assets.Scripts.Model
 
         public FingerFollowConfig FingerFollowConfig;
 
+        public EverydayTaskConfig EverydayTaskConfig;
+
         public SimpleToolConfig SampleConfig;
 
         public SimpleToolConfig MenuConfig;
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Model
             {
                 PegboardConfig,
                 FingerFollowConfig,
+                EverydayTaskConfig,
                 SampleConfig,
                 MenuConfig
             };

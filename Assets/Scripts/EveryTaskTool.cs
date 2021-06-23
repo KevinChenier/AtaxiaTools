@@ -1,3 +1,4 @@
+using Assets.Scripts.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,10 @@ using UnityEngine.UI;
 
 public class EveryTaskTool : Tool<EverydayTaskConfig>
 {
-    public int nbSpheres = 100;
     public Text scoreText;
-
     public GameObject container;
+    public Object liquid;
     public float liquidSize;
-
 
     public EveryTaskTool() : base("everydayTask") { }
 
@@ -29,13 +28,10 @@ public class EveryTaskTool : Tool<EverydayTaskConfig>
     {
         var spawnPoint = container.transform.FindChildRecursive("SpawnLiquid");
 
-        for(int i = 0; i < nbSpheres; i++) 
+        for (int i = 0; i < base.configs.nbSpheres; i++) 
         {
-            
-            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            sphere.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
-            //GameObject sphere = Instantiate(magicPickup, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity) as GameObject;
-            sphere.transform.localScale = new Vector3(liquidSize, liquidSize, liquidSize);
+            GameObject sphere = Instantiate(liquid, new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z), Quaternion.identity) as GameObject;
+            sphere.transform.parent = GameObject.Find("LiquidParent").transform;
         }
     }
 
