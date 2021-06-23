@@ -7,6 +7,8 @@ namespace Assets.Scripts.Model
     {
         public PegboardConfig PegboardConfig;
 
+        public FingerFollowConfig FingerFollowConfig;
+
         public SimpleToolConfig SampleConfig;
 
         public SimpleToolConfig MenuConfig;
@@ -16,6 +18,7 @@ namespace Assets.Scripts.Model
             return new List<IToolConfig> 
             {
                 PegboardConfig,
+                FingerFollowConfig,
                 SampleConfig,
                 MenuConfig
             };
