@@ -36,7 +36,7 @@ public class ConfigManager : MonoBehaviour
 
     public T GetToolConfig<T>(string name) where T: IToolConfig
     {
-        var conf = Config.ToolConfigs.All().Where(tc => tc.Name == name);
+        var conf = Config.ToolConfigs.All().Where(tc => tc.Name == name).First();
         return (T)conf;
     }
 

@@ -6,24 +6,29 @@ using UnityEngine;
 public class PegboardCollider : MonoBehaviour
 {
 
-    public GameObject[] peggles;
-    private Vector3[] initialPos;
+    public List<GameObject> peggles;
+    private List<Vector3> InitialPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < peggles.Length; i++)
+
+        for (int i = 0; i < peggles.Count; i++)
         {
-            initialPos[i] = peggles[i].transform.position;
+            peggles[i] = new GameObject();
+            InitialPos[i] = peggles[i].transform.position;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        for (int i = 0; i < peggles.Length; i++)
+        for (int i = 0; i < peggles.Count; i++)
         {
             if (other == peggles[i])
-                peggles[i].transform.position = initialPos[i];
+            {
+                peggles[i].transform.position = InitialPos[i];
+                Debug.Log("" + peggles[i].transform.position);
+            }
         }
     }
 }

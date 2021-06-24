@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FingerToNose : Tool<SimpleToolConfig>
+public class FingerToNose : Tool<FingerNoseConfig>
 {
     private FindRandomPoint randomPoint;
 
