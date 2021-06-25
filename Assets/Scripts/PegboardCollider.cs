@@ -12,19 +12,21 @@ public class PegboardCollider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitialPos = new List<Vector3>();
 
         for (int i = 0; i < peggles.Count; i++)
         {
-            peggles[i] = new GameObject();
-            InitialPos[i] = peggles[i].transform.position;
+            Debug.Log("" + peggles[i].transform.position);
+            InitialPos.Add(peggles[i].transform.position);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+        Debug.Log("" + other.name);
         for (int i = 0; i < peggles.Count; i++)
         {
-            if (other == peggles[i])
+            if (other.gameObject == peggles[i])
             {
                 peggles[i].transform.position = InitialPos[i];
                 Debug.Log("" + peggles[i].transform.position);
