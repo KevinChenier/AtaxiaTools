@@ -16,12 +16,11 @@ public class PegboardCollider : MonoBehaviour
 
         for (int i = 0; i < peggles.Count; i++)
         {
-            Debug.Log("" + peggles[i].transform.position);
             InitialPos.Add(peggles[i].transform.position);
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         Debug.Log("" + other.name);
         for (int i = 0; i < peggles.Count; i++)
@@ -29,6 +28,7 @@ public class PegboardCollider : MonoBehaviour
             if (other.gameObject == peggles[i])
             {
                 peggles[i].transform.position = InitialPos[i];
+                peggles[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
                 Debug.Log("" + peggles[i].transform.position);
             }
         }
