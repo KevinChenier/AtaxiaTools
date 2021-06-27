@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using Assets.Scripts.Model;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,11 @@ public class ConfigManager : MonoBehaviour
         LoadConfigs();
         InitPossibleScenes();
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        var i = EventBus.Instance;
     }
 
     public T GetToolConfig<T>(string name) where T: IToolConfig
