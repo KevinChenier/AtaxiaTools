@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 6140434956579088181}
   - component: {fileID: 6140434956579088178}
   - component: {fileID: 6140434956579088183}
-  - component: {fileID: 6140434956579088182}
   m_Layer: 0
   m_Name: LiquidPrefab
-  m_TagString: Untagged
+  m_TagString: LiquidSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 326fc7ef1a6e4894bbcf58f6d051325f, type: 2}
+  - {fileID: 2100000, guid: 2d22ba2f510107a40a96bd98be978b81, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,15 +112,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6140434956579088182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8202799889624477563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a99f37b0f29ab447acab14d91e9645f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

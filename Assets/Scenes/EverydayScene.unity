@@ -246,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20863012}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.27120814, y: 1.826, z: -0.24164775}
+  m_LocalPosition: {x: -0.27120814, y: 1.55, z: -0.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -362,10 +362,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointer: {fileID: 1374533457}
   sceneObjects: []
-  scoreText: {fileID: 0}
   container: {fileID: 820270379}
   liquid: {fileID: 1731128425}
   liquidSize: 0.02
+  scoreText: {fileID: 111751131}
 --- !u!4 &204347601
 Transform:
   m_ObjectHideFlags: 0
@@ -1084,11 +1084,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820270379}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.019974265, y: 0.01999999, z: 0.02078746}
-  m_Center: {x: -0.00016906815, y: -5.502425e-18, z: 0.0003937307}
+  m_Size: {x: 0.019974265, y: 0.01999999, z: 0.004493318}
+  m_Center: {x: -0.00016906815, y: -6.0187766e-17, z: 0.00854084}
 --- !u!54 &820270385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1105,6 +1105,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &820270387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820270379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99f37b0f29ab447acab14d91e9645f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PourLine: {fileID: 20863012}
+  Container: {fileID: 820270379}
+  Recipient: {fileID: 0}
+  scoreText: {fileID: 111751131}
+  everydayTool: {fileID: 204347600}
 --- !u!1001 &910116265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1549,6 +1566,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 6bb2cdb5d8e48ad4eb59ec4a6b1a2167, type: 3}
+--- !u!65 &1640829832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640829829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.013418218, y: 0.01387765, z: 0.0000459548}
+  m_Center: {x: 0.00012367404, y: -0.00026517475, z: 0.0094}
 --- !u!136 &1640829835
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1558,11 +1588,28 @@ CapsuleCollider:
   m_GameObject: {fileID: 1640829829}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.008316468
   m_Height: 0.021541163
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.001}
+--- !u!114 &1640829836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640829829}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99f37b0f29ab447acab14d91e9645f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PourLine: {fileID: 20863012}
+  Container: {fileID: 820270379}
+  Recipient: {fileID: 0}
+  scoreText: {fileID: 111751131}
+  everydayTool: {fileID: 204347600}
 --- !u!1 &1731128425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8202799889624477563, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
@@ -1690,7 +1737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969010681811547401, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.139
+      value: 0.156
       objectReference: {fileID: 0}
     - target: {fileID: 5969010681811547401, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1729,9 +1776,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 20863012}
     - target: {fileID: 6140434956579088182, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 111751131}
+    - target: {fileID: 6140434956579088182, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
       propertyPath: PourHeight
       value: 
       objectReference: {fileID: 20863012}
+    - target: {fileID: 6140434956579088182, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
+      propertyPath: everydayTool
+      value: 
+      objectReference: {fileID: 204347600}
+    - target: {fileID: 6140434956579088183, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140434956579088183, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140434956579088183, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8202799889624477563, guid: c6be28ed193e97b41952027bf2d9b85f, type: 3}
       propertyPath: m_Name
       value: LiquidSphere

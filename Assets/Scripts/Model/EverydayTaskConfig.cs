@@ -3,7 +3,7 @@
     [System.Serializable]
     public class EverydayTaskConfig : IToolConfig
     {
-        public int nbSpheres = 100;
+        public int nbSpheres;
     }
 }
 
