@@ -45,9 +45,14 @@ public class ToolsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fingerPlane.GetComponent<MeshRenderer>().enabled = false;
-        indicator.GetComponent<MeshRenderer>().enabled = false;
-        nose.GetComponent<MeshRenderer>().enabled = false;
+        if (fingerPlane != null)
+            fingerPlane.GetComponent<MeshRenderer>().enabled = false;
+
+        if (indicator != null)
+            indicator.GetComponent<MeshRenderer>().enabled = false;
+
+        if (nose != null)
+            nose.GetComponent<MeshRenderer>().enabled = false;
 
         Invoke("StartFingerInteraction", 1);
     }

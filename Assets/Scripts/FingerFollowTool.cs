@@ -39,20 +39,20 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
             switch (FingerFollowMode)
             {
                 case Mode.Normal:
-                    HandleNormalFingerFollow(other);
+                    HandleNormalFingerFollow();
                     break;
                 case Mode.IncrementalSpeed:
-                    HandleIncrementalFingerFollow(other);
+                    HandleIncrementalFingerFollow();
                     break;
                 case Mode.Target:
-                    HandleTargetFingerFollow(other);
+                    HandleTargetFingerFollow();
                     break;
             }
             AdvanceIndicator();
         }
     }
 
-    void HandleNormalFingerFollow(Collider other)
+    void HandleNormalFingerFollow()
     {
         if (gameObject.transform.position == endPos)
         {
@@ -63,7 +63,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         }
     }
 
-    void HandleTargetFingerFollow(Collider other)
+    void HandleTargetFingerFollow()
     {
         if (gameObject.transform.position == endPos)
         {
@@ -75,7 +75,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         }
     }
 
-    void HandleIncrementalFingerFollow(Collider other)
+    void HandleIncrementalFingerFollow()
     {
         if (gameObject.transform.position == endPos)
         {

@@ -9,6 +9,12 @@ namespace Assets.Scripts.Model
 
         public FingerFollowConfig FingerFollowConfig;
 
+        public EyeTrackingFollowConfig EyeTrackingFollowConfig;
+
+        public EyeTrackingMultipleConfig EyeTrackingMultipleConfig;
+
+        public EyeTrackingFixationConfig EyeTrackingFixationConfig;
+
         public SimpleToolConfig SampleConfig;
 
         public SimpleToolConfig MenuConfig;
@@ -19,6 +25,9 @@ namespace Assets.Scripts.Model
             {
                 PegboardConfig,
                 FingerFollowConfig,
+                EyeTrackingFollowConfig,
+                EyeTrackingMultipleConfig,
+                EyeTrackingFixationConfig,
                 SampleConfig,
                 MenuConfig
             };
