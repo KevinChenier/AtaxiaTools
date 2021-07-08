@@ -3,21 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FingerToNose : Tool<FingerNoseConfig>
+public class FingerToNoseTool : Tool<FingerNoseConfig>
 {
     private FindRandomPoint randomPoint;
 
-    public FingerToNose() : base("fingerToNose") { }
+    public FingerToNoseTool() : base("fingerToNose") { }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
-    }
     public void Recalculate()
     {
-        randomPoint.Recalculate();
-        gameObject.transform.position = randomPoint.CalculateRandomPoint();
+        //randomPoint.Recalculate();
+        gameObject.transform.position = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>().CalculateRandomPoint();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -33,7 +28,7 @@ public class FingerToNose : Tool<FingerNoseConfig>
 
     protected override void InitTool()
     {
-        throw new System.NotImplementedException();
+        randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
     }
 
     public override int score()

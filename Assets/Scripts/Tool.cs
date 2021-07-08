@@ -1,6 +1,6 @@
 public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
 {
-    protected TConfig configs;
+    public TConfig configs { get; set; }
     private string toolName;
 
     public Tool(string name)
