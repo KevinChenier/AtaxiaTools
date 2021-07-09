@@ -5,14 +5,16 @@ using UnityEngine;
 public class PegboardVictory : MonoBehaviour
 {
 
-    public GameObject peggle;
+    public List<GameObject> peggle;
     public GameObject cube;
+
+    private 
     // Start is called before the first frame update
 
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == peggle)
+        if (peggle.Contains(other.gameObject))
         {
             cube.GetComponent<MeshRenderer>().enabled = true;
         }
@@ -20,9 +22,9 @@ public class PegboardVictory : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == peggle)
+        if (peggle.Contains(other.gameObject))
         {
-            cube.GetComponent<MeshRenderer>().enabled = true;
+            //cube.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 }
