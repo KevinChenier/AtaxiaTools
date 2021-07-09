@@ -32,6 +32,10 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
     List<GameObject> TrajectoryEndPoints = new List<GameObject>();
     int currentEndpoint = 1;
 
+    private bool lostFocus = false;
+    private float lostFocusTimeInstance = 0.0f;
+    private List<float> lostFocusTimeInstances = new List<float>();
+
     void OnTriggerStay(Collider other)
     {
         if (ToolsManager.Instance.indexes_hand.Contains(other))
@@ -49,6 +53,32 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
                     break;
             }
             AdvanceIndicator();
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        {
+            lostFocus = false;
+            lostFocusTimeInstances.Add(lostFocusTimeInstance);
+            lostFocusTimeInstance = 0;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        {
+            lostFocus = true;
+        }
+    }
+
+    void Update()
+    {
+        if (lostFocus)
+        {
+            lostFocusTimeInstance += Time.deltaTime;
         }
     }
 

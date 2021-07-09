@@ -747,7 +747,7 @@ MonoBehaviour:
   - 0.1
   - 0.2
   - 0.3
-  FingerFollowMode: 1
+  FingerFollowMode: 2
   Trajectory: {fileID: 1365818555}
 --- !u!135 &12757695
 SphereCollider:
