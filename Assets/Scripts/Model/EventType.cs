@@ -2,6 +2,7 @@
 {
     public enum EventType
     {
+        All,
         RightControllerPosition,
         LeftControllerPosition,
         Other

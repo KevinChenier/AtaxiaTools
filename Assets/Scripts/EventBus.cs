@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.Model;
-using System;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -8,8 +9,8 @@ namespace Assets.Scripts
     public class EventBus : MonoBehaviour
     {
         private static EventBus _instance;
-        private Queue<(Model.EventType, dynamic)> queue;
-        public Dictionary<Model.EventType, EventHandler<dynamic>> handlers;
+        private ConcurrentQueue<(Model.EventType type, dynamic value)> queue;
+        private Dictionary<Model.EventType, EventHandler<dynamic>> handlers;
 
         public static EventBus Instance
         {
@@ -26,17 +27,45 @@ namespace Assets.Scripts
             }
 
             _instance = this;
+            Init();
+            var bgw = new BackgroundWorker();
+            bgw.DoWork += Work;
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void Init()
+        {
+            handlers = new Dictionary<Model.EventType, EventHandler<dynamic>>();
         }
 
         public void On(Model.EventType type, EventHandler<dynamic> func)
         {
-            handlers[type] += func;
+            if (type == Model.EventType.All)
+            {
+                foreach (Model.EventType t in Enum.GetValues(typeof(Model.EventType)))
+                {
+                    handlers[t] += func;
+                }
+            } else
+            {
+                handlers[type] += func;
+            }
         }
 
-        public void Push(Model.EventType type, dynamic value)
+        public void Push(Model.EventType type, object value)
         {
             queue.Enqueue((type, value));
+        }
+
+        private void Work(object sender, DoWorkEventArgs e)
+        {
+            while(true)
+            {
+                if (queue.TryDequeue(out var value))
+                {
+                    handlers[value.type](sender, value.value);
+                }
+            }
         }
     }
 }
