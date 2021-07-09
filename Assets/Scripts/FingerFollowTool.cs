@@ -32,6 +32,10 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
     List<GameObject> TrajectoryEndPoints = new List<GameObject>();
     int currentEndpoint = 1;
 
+    private bool lostFocus = false;
+    private float lostFocusTimeInstance = 0.0f;
+    private List<float> lostFocusTimeInstances = new List<float>();
+
     void OnTriggerStay(Collider other)
     {
         if (ToolsManager.Instance.indexes_hand.Contains(other))
@@ -39,20 +43,46 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
             switch (FingerFollowMode)
             {
                 case Mode.Normal:
-                    HandleNormalFingerFollow(other);
+                    HandleNormalFingerFollow();
                     break;
                 case Mode.IncrementalSpeed:
-                    HandleIncrementalFingerFollow(other);
+                    HandleIncrementalFingerFollow();
                     break;
                 case Mode.Target:
-                    HandleTargetFingerFollow(other);
+                    HandleTargetFingerFollow();
                     break;
             }
             AdvanceIndicator();
         }
     }
 
-    void HandleNormalFingerFollow(Collider other)
+    void OnTriggerEnter(Collider other)
+    {
+        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        {
+            lostFocus = false;
+            lostFocusTimeInstances.Add(lostFocusTimeInstance);
+            lostFocusTimeInstance = 0;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        {
+            lostFocus = true;
+        }
+    }
+
+    void Update()
+    {
+        if (lostFocus)
+        {
+            lostFocusTimeInstance += Time.deltaTime;
+        }
+    }
+
+    void HandleNormalFingerFollow()
     {
         if (gameObject.transform.position == endPos)
         {
@@ -63,7 +93,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         }
     }
 
-    void HandleTargetFingerFollow(Collider other)
+    void HandleTargetFingerFollow()
     {
         if (gameObject.transform.position == endPos)
         {
@@ -75,7 +105,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         }
     }
 
-    void HandleIncrementalFingerFollow(Collider other)
+    void HandleIncrementalFingerFollow()
     {
         if (gameObject.transform.position == endPos)
         {
