@@ -2,6 +2,7 @@ using Assets.Scripts;
 using Assets.Scripts.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -11,8 +12,10 @@ public class ConfigManager : MonoBehaviour
 {
     private static ConfigManager _instance;
 
-    private Config Config;
+    public Config Config;
     private HashSet<string> _possibleSceneNames;
+    private EventBus bus;
+    private Stopwatch sw;
 
     public static ConfigManager Instance
     {
@@ -30,6 +33,7 @@ public class ConfigManager : MonoBehaviour
         }
 
         _instance = this;
+        sw = new Stopwatch();
         LoadConfigs();
         InitPossibleScenes();
         DontDestroyOnLoad(gameObject);
@@ -37,7 +41,28 @@ public class ConfigManager : MonoBehaviour
 
     private void Start()
     {
-        var i = EventBus.Instance;
+        bus = EventBus.Instance;
+        sw.Start();
+    }
+
+    private void Update()
+    {
+        var controllers = OVRInput.GetConnectedControllers().GetFlags();
+        if (controllers is null) return;
+        var time = sw.ElapsedTicks;
+        foreach(var controller in controllers)
+        {
+            if (controller == OVRInput.Controller.LTouch || controller == OVRInput.Controller.LHand)
+            {
+                var pos = OVRInput.GetLocalControllerPosition(controller);
+                bus.Push(Assets.Scripts.Model.EventType.LeftControllerPosition, new { Ticks = time, Type=Assets.Scripts.Model.EventType.LeftControllerPosition, Value = new { x = pos.x, y = pos.y, z = pos.z } });
+            } 
+            else if (controller == OVRInput.Controller.RTouch || controller == OVRInput.Controller.RHand)
+            {
+                var pos = OVRInput.GetLocalControllerPosition(controller);
+                bus.Push(Assets.Scripts.Model.EventType.RightControllerPosition, new { Ticks = time, Type=Assets.Scripts.Model.EventType.RightControllerPosition, Value = new { x = pos.x, y = pos.y, z = pos.z } });
+            }
+        }
     }
 
     public T GetToolConfig<T>(string name) where T: IToolConfig

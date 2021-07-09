@@ -17,7 +17,6 @@ namespace Assets.Scripts
             get { return _instance; }
         }
 
-
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -30,12 +29,23 @@ namespace Assets.Scripts
             Init();
             var bgw = new BackgroundWorker();
             bgw.DoWork += Work;
+            bgw.RunWorkerAsync();
             DontDestroyOnLoad(gameObject);
         }
 
         private void Init()
         {
             handlers = new Dictionary<Model.EventType, EventHandler<dynamic>>();
+            foreach (Model.EventType t in Enum.GetValues(typeof(Model.EventType)))
+            {
+                handlers.Add(t, Base);
+            }
+            queue = new ConcurrentQueue<(Model.EventType type, dynamic value)>();
+        }
+
+        private void Base(object sender, dynamic e)
+        {
+            //Debug.Log(e.ToString());
         }
 
         public void On(Model.EventType type, EventHandler<dynamic> func)
@@ -52,7 +62,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void Push(Model.EventType type, object value)
+        public void Push(Model.EventType type, dynamic value)
         {
             queue.Enqueue((type, value));
         }
