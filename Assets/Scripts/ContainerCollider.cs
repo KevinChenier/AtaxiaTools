@@ -13,13 +13,13 @@ public class ContainerCollider : MonoBehaviour
     public EveryTaskTool everydayTool;
 
     private bool isHeightOk;
-    private int nbSpheres;
     private int accuracy;
 
     private void Start()
     {
         accuracy = 0;
         isHeightOk = false;
+        PourLine.transform.position = new Vector3(PourLine.transform.position.x, everydayTool.configs.height, PourLine.transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +27,6 @@ public class ContainerCollider : MonoBehaviour
         if (other.gameObject.tag == "LiquidSphere" && isHeightOk )
         {
             accuracy++;
-            Debug.Log(accuracy);
             scoreText.text = "Score : " + accuracy + " / " + everydayTool.configs.nbSpheres;
         }  
     }

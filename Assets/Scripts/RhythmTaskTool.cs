@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.Model;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class RythmTool : MonoBehaviour
+public class RhythmTaskTool : Tool<RhythmTaskConfig>
 {
-
     bool active = false;
     GameObject note;
     public AudioClip strumming;
-    int score;
+    public Text scoreText;
+    int scoreValue;
 
-    // Start is called before the first frame update
-    void Start()
+    public RhythmTaskTool() : base("RhythmTask") { }
+
+    protected override void InitTool()
     {
-        score = 0;
+        scoreValue = 0;
+
+        scoreText.text = "Score : 0 / " + base.configs.nbNotes;
     }
 
     // Update is called once per frame
@@ -22,6 +25,7 @@ public class RythmTool : MonoBehaviour
         if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger) && active)
         {
             Destroy(note);
+            AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
             active = false;
             AddScore();
         }
@@ -31,8 +35,6 @@ public class RythmTool : MonoBehaviour
     {
         if (other.gameObject.tag == "Note") 
         {
-            Debug.Log("Note");
-            //AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
             active = true;
             note = other.gameObject; 
         }
@@ -46,7 +48,14 @@ public class RythmTool : MonoBehaviour
 
     void AddScore() 
     {
-        score++;
-        Debug.Log(score);
+        scoreValue++;
+
+        scoreText.text = "Score : " + scoreValue + " / " + base.configs.nbNotes;
+        Debug.Log(scoreValue);
+    }
+
+    public override int score()
+    {
+        throw new System.NotImplementedException();
     }
 }

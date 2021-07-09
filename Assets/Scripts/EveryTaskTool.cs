@@ -28,7 +28,6 @@ public class EveryTaskTool : Tool<EverydayTaskConfig>
         {
             GameObject sphere = Instantiate(liquid, new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z), Quaternion.identity) as GameObject;
             sphere.transform.parent = GameObject.Find("LiquidParent").transform;
-            Debug.Log(i);
         }
     }
 }
