@@ -58,8 +58,8 @@ public class ToolsManager : MonoBehaviour
         {
             fingerPlane.transform.position = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z * 0.9f);
             
-            // Comments to show 90% extensibility
             fingerPlane.GetComponent<FindRandomPoint>().Recalculate();
+
             indicator.gameObject.transform.position = fingerPlane.GetComponent<FindRandomPoint>().CalculateRandomPoint();
         }
     }
