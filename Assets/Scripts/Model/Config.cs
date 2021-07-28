@@ -12,5 +12,7 @@ namespace Assets.Scripts.Model
         public ScenarioConfig? ScenarioConfig;
 
         public bool AllowNavigation;
+
+        public bool UseMongo;
     }
 }
