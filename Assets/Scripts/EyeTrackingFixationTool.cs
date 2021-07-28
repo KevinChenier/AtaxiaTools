@@ -45,14 +45,17 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
     // Update is called once per frame
     void Update()
     {
-        //This lerp will fade the color of the object
-        if (_renderer.material.HasProperty(_baseColor)) // new rendering pipeline (lightweight, hd, universal...)
+        if (_renderer != null)
         {
-            _renderer.material.SetColor(_baseColor, Color.Lerp(_renderer.material.GetColor(_baseColor), _targetColor, Time.deltaTime * (1 / animationTime)));
-        }
-        else // old standard rendering pipline
-        {
-            _renderer.material.color = Color.Lerp(_renderer.material.color, _targetColor, Time.deltaTime * (1 / animationTime));
+            //This lerp will fade the color of the object
+            if (_renderer.material.HasProperty(_baseColor)) // new rendering pipeline (lightweight, hd, universal...)
+            {
+                _renderer.material.SetColor(_baseColor, Color.Lerp(_renderer.material.GetColor(_baseColor), _targetColor, Time.deltaTime * (1 / animationTime)));
+            }
+            else // old standard rendering pipline
+            {
+                _renderer.material.color = Color.Lerp(_renderer.material.color, _targetColor, Time.deltaTime * (1 / animationTime));
+            }
         }
     }
 }
