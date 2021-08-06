@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Assets.Scripts.Model
 {
     [System.Serializable]
-    public class EyeTrackingMultipleConfig : EyeTrackingConfig
+    public class EyeTrackingConfig : IToolConfig
     {
-        public int timer;
+        public double targetSize;
     }
 }

@@ -285,6 +285,8 @@ MonoBehaviour:
   sceneObjects: []
   strumming: {fileID: 8300000, guid: 76372058b59ce2c40a73aab06f622f92, type: 3}
   scoreText: {fileID: 1448105785}
+  highlightColor: {r: 0, g: 1, b: 0, a: 1}
+  animationTime: 0.01
 --- !u!65 &367559043
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -783,6 +785,7 @@ MonoBehaviour:
   interactionObject: {fileID: 0}
   effectors: 06000000
   interactionSystem: {fileID: 0}
+  avatarMesh: {fileID: 0}
   fingerPlane: {fileID: 0}
   indicator: {fileID: 0}
   nose: {fileID: 0}
@@ -1168,6 +1171,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7bd1e0e7d653e4891073d148e30bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Config:
+    Name: 
+    ToolConfigs:
+      PegboardConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+        OtherConfig: 
+      FingerFollowConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+      EverydayTaskConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+        nbSpheres: 0
+        height: 0
+      RhythmTaskConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+        nbNotes: 0
+        bpm: 0
+      FingerNoseConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+      EyeTrackingFollowConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+        targetSize: 0
+      EyeTrackingMultipleConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+        targetSize: 0
+        timer: 0
+      EyeTrackingFixationConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+        targetSize: 0
+      MenuConfig:
+        Name: 
+        MenuLabel: 
+        SceneName: 
+    AllowNavigation: 0
+    UseMongo: 0
 --- !u!4 &2136191868
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,6 +1259,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1013396756270119656, guid: 2c6553b15afdde042b9572862e1107de, type: 3}
+      propertyPath: m_Text
+      value: Pegboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013396756270119662, guid: 2c6553b15afdde042b9572862e1107de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1013396757962219906, guid: 2c6553b15afdde042b9572862e1107de, type: 3}
       propertyPath: m_Name
       value: Menu

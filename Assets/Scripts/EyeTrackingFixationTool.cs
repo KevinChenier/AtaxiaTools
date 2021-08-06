@@ -40,6 +40,7 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
         _targetColor = _originalColor;
+        transform.localScale *= (float) base.configs.targetSize;
     }
 
     // Update is called once per frame

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Tobii.G2OM;
+using UnityEngine.UI;
 
 public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
 {
@@ -12,6 +13,7 @@ public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
     public Renderer _renderer;
     public Color _originalColor;
     public Color _targetColor;
+    public Image _uiFill;
 
     public bool currentObjectToGazeAt = false;
     public EyeTrackingMultipleTool eyeTrackingMultipleTool;
@@ -27,6 +29,7 @@ public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
     private void ChangeObjectToGazeAt()
     {
         _targetColor = _originalColor;
+        _uiFill.fillAmount = 0;
         currentObjectToGazeAt = false;
         timer = 0;
 
@@ -42,6 +45,8 @@ public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
         _targetColor = _originalColor;
+        _uiFill = GetComponentInChildren<Image>();
+        _uiFill.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -60,6 +65,7 @@ public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
         if (hasFocus && currentObjectToGazeAt)
         {
             timer += Time.deltaTime;
+            _uiFill.fillAmount = (float)(timer / eyeTrackingMultipleTool.timer);
 
             if (timer > eyeTrackingMultipleTool.timer)
             {

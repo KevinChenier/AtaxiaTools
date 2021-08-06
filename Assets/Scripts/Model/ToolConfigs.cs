@@ -21,8 +21,6 @@ namespace Assets.Scripts.Model
 
         public EyeTrackingFixationConfig EyeTrackingFixationConfig;
 
-        public SimpleToolConfig SampleConfig;
-
         public SimpleToolConfig MenuConfig;
 
         public IEnumerable<IToolConfig> All()
@@ -37,7 +35,6 @@ namespace Assets.Scripts.Model
                 EyeTrackingFollowConfig,
                 EyeTrackingMultipleConfig,
                 EyeTrackingFixationConfig,
-                SampleConfig,
                 MenuConfig
             };
         }

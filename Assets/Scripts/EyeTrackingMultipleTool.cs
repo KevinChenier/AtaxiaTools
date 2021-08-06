@@ -12,6 +12,11 @@ public class EyeTrackingMultipleTool : Tool<EyeTrackingMultipleConfig>
 
     protected override void InitTool()
     {
+        foreach(GameObject eyeTrackingMultipleObject in eyeTrackingMultipleObjects)
+        {
+            eyeTrackingMultipleObject.transform.localScale *= (float)base.configs.targetSize;
+        }
+
         int randomObjectIndex = Random.Range(0, eyeTrackingMultipleObjects.Count - 1);
         GameObject randomObject = eyeTrackingMultipleObjects[randomObjectIndex];
         randomObject.GetComponent<EyeTrackingMultipleGazeAt>()._targetColor = randomObject.GetComponent<EyeTrackingMultipleGazeAt>().highlightColor;

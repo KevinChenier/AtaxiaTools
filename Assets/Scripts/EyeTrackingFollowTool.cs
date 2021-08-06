@@ -47,6 +47,7 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
         _targetColor = _originalColor;
+        gameObject.transform.parent.localScale *= (float)base.configs.targetSize;
 
         randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
         startPos = randomPoint.CalculateRandomPoint();

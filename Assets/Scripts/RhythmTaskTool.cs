@@ -9,6 +9,16 @@ public class RhythmTaskTool : Tool<RhythmTaskConfig>
     public AudioClip strumming;
     public Text scoreText;
     int scoreValue;
+    int clickValue;
+
+    private static readonly int _baseColor = Shader.PropertyToID("_BaseColor");
+
+    public Color highlightColor = Color.green;
+    public float animationTime = 0.01f;
+
+    private Renderer _renderer;
+    private Color _originalColor;
+    private Color _targetColor;
 
     public RhythmTaskTool() : base("RhythmTask") { }
 
@@ -17,17 +27,46 @@ public class RhythmTaskTool : Tool<RhythmTaskConfig>
         scoreValue = 0;
 
         scoreText.text = "Score : 0 / " + base.configs.nbNotes;
+
+        _renderer = GetComponent<Renderer>();
+        _originalColor = _renderer.material.color;
+        _targetColor = _originalColor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger) && active)
+        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
         {
-            Destroy(note);
-            AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
-            active = false;
-            AddScore();
+            clickValue++;
+            if (active)
+            {
+                Destroy(note);
+                _targetColor = highlightColor;
+                AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
+                active = false;
+                AddScore();
+            }
+        }
+            
+        //This lerp will fade the color of the object
+        if (_renderer.material.HasProperty(_baseColor)) // new rendering pipeline (lightweight, hd, universal...)
+        {
+            _renderer.material.SetColor(_baseColor, Color.Lerp(_renderer.material.GetColor(_baseColor), _targetColor, Time.deltaTime * (1 / animationTime)));
+
+            if(_renderer.material.GetColor(_baseColor) == highlightColor)
+            {
+                _targetColor = _originalColor;
+            }
+        }
+        else // old standard rendering pipline
+        {
+            _renderer.material.color = Color.Lerp(_renderer.material.color, _targetColor, Time.deltaTime * (1 / animationTime));
+
+            if (_renderer.material.color == highlightColor)
+            {
+                _targetColor = _originalColor;
+            }
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Model
 {
     [System.Serializable]
-    public class EyeTrackingFixationConfig : IToolConfig
+    public class EyeTrackingFixationConfig : EyeTrackingConfig
     {
     }
 }
