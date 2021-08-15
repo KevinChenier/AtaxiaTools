@@ -48,7 +48,7 @@ public class ConfigManager : MonoBehaviour
     private void Update()
     {
         var controllers = OVRInput.GetConnectedControllers().GetFlags();
-        if (controllers is null) return;
+        if (controllers is null || bus is null) return;
         var time = sw.ElapsedTicks;
         foreach(var controller in controllers)
         {

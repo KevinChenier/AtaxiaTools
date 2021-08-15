@@ -81,7 +81,7 @@ namespace OculusSampleFramework
 			_fingerTipPokeToolView.InteractableTool = this;
 
 			//** CUSTOM CODE **//
-			if (_fingerTipPokeToolView.InteractableTool.name == "FingerTipPokeToolIndex(Clone)")
+			if (_fingerTipPokeToolView.InteractableTool.name == "FingerTipPokeToolIndex(Clone)" && ToolsManager.Instance.indexes_hand != null)
             {
 				ToolsManager.Instance.indexes_hand.Add(_fingerTipPokeToolView.InteractableTool.GetComponent<Collider>());
 				Debug.Log("Index Finger Collisions added to ToolsManager!");
