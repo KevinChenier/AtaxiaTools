@@ -9,6 +9,6 @@ namespace Assets.Scripts.Model
     [System.Serializable]
     public class PegboardConfig : IToolConfig
     {
-        public string OtherConfig;
+
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EveryTaskTool : Tool<EverydayTaskConfig>
+public class EverydayTaskTool : Tool<EverydayTaskConfig>
 {
     public GameObject container;
     public Object liquid;
@@ -13,7 +13,7 @@ public class EveryTaskTool : Tool<EverydayTaskConfig>
 
     private Transform spawnPoint;
 
-    public EveryTaskTool() : base("EverydayTask") { }
+    public EverydayTaskTool() : base("EverydayTask") { }
 
     public override int score()
     {

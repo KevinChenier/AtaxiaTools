@@ -10,7 +10,7 @@ public class ContainerCollider : MonoBehaviour
     public GameObject Container;
     public GameObject Recipient;
     public Text scoreText;
-    public EveryTaskTool everydayTool;
+    public EverydayTaskTool everydayTool;
 
     private bool isHeightOk;
     private int accuracy;

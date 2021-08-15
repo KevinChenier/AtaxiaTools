@@ -2,11 +2,11 @@ using Assets.Scripts.Model;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : Tool<SimpleToolConfig>
+public class SpawnerTool : Tool<SimpleToolConfig>
 {
     public List<GameObject> gameObjects;
 
-    public Spawner() : base("spawner") { }
+    public SpawnerTool() : base("spawner") { }
 
 
     public override int score()
