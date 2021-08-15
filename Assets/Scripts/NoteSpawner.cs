@@ -22,7 +22,7 @@ public class NoteSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (noteCount < rhythmTool.configs.nbNotes) 
+        if (noteCount < rhythmTool.configs.nbNotes - 1) 
         {
             if (timer > beat)
             {
