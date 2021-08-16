@@ -740,8 +740,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afccc5f959f48f438ff052452a7ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 542307275}
-  sceneObjects: []
+  pointer: {fileID: 386809091}
+  sceneObjects:
+  - {fileID: 919132147545492411}
   speedModifier: 0.1
   incrementalSpeeds:
   - 0.1
@@ -1201,6 +1202,11 @@ Transform:
 --- !u!1 &386809090 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1783104486, guid: 5e98ad7887408da44bad395e71d88ac5, type: 3}
+  m_PrefabInstance: {fileID: 386809088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &386809091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4924624661920764598, guid: 5e98ad7887408da44bad395e71d88ac5, type: 3}
   m_PrefabInstance: {fileID: 386809088}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &453131225

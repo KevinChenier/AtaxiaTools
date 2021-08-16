@@ -281,8 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b9c29429abbd541aaef021f45c3f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  sceneObjects: []
+  pointer: {fileID: 386809092}
+  sceneObjects:
+  - {fileID: 398331234}
+  - {fileID: 157424081}
   strumming: {fileID: 8300000, guid: 76372058b59ce2c40a73aab06f622f92, type: 3}
   scoreText: {fileID: 1448105785}
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
@@ -461,6 +463,11 @@ SphereCollider:
 --- !u!135 &386809091 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 826225301, guid: 5e98ad7887408da44bad395e71d88ac5, type: 3}
+  m_PrefabInstance: {fileID: 386809088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &386809092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4924624661920764598, guid: 5e98ad7887408da44bad395e71d88ac5, type: 3}
   m_PrefabInstance: {fileID: 386809088}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &398331234

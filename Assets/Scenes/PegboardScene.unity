@@ -227,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 542307277}
     - target: {fileID: 4924624661920764598, guid: 5e98ad7887408da44bad395e71d88ac5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8877057230297083561, guid: 5e98ad7887408da44bad395e71d88ac5, type: 3}
       propertyPath: m_Name
@@ -496,7 +496,7 @@ MonoBehaviour:
   pointer: {fileID: 1259401409}
   sceneObjects:
   - {fileID: 1090275355}
-  - {fileID: 0}
+  - {fileID: 822847549}
   toolObjects: []
   toolText: {fileID: 0}
 --- !u!4 &525912709
@@ -595,6 +595,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &822847549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3869924784154366545, guid: 39fcf78b7c68da84aa6eb867f57597a4, type: 3}
+  m_PrefabInstance: {fileID: 1024118560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &999920252
 GameObject:
   m_ObjectHideFlags: 0

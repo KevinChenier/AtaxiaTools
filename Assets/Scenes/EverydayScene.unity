@@ -361,7 +361,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 1374533457}
-  sceneObjects: []
+  sceneObjects:
+  - {fileID: 1449633171}
+  - {fileID: 820270379}
+  - {fileID: 1640829829}
+  - {fileID: 20863012}
+  - {fileID: 652631645}
   container: {fileID: 820270379}
   liquid: {fileID: 1731128425}
   liquidSize: 0.02

@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System;
 using System.Diagnostics;
 using UnityEngine;
+using Valve.VR;
 
 public class ControllerInputEvent : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class ControllerInputEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.GetUp(OVRInput.Button.Start))
+        if(OVRInput.GetUp(OVRInput.Button.Start) || SteamVR_Input.GetStateDown("ActivateUI", SteamVR_Input_Sources.RightHand))
         {
             StartUpEvent(this, null);
         }

@@ -16,13 +16,9 @@ public class MenuManager : MonoBehaviour
     private Canvas canvas;
     private bool IsMenu = true;
 
-    private void Awake()
-    {
-        ControllerInputEvent.Instance.StartUpEvent += ToggleMenu;
-    }
-
     private void Start()
     {
+        ControllerInputEvent.Instance.StartUpEvent += ToggleMenu;
         ConfigManager = ConfigManager.Instance;
         sceneName = SceneManager.GetActiveScene().name;
        // ControllerInputEvent.Instance.StartUpEvent += ToggleMenu;

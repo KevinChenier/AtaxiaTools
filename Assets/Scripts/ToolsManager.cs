@@ -59,7 +59,7 @@ public class ToolsManager : MonoBehaviour
 
     private void Update()
     {
-        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
+        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger) && fingerPlane != null)
         {
             fingerPlane.transform.position = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z * 0.9f);
             
