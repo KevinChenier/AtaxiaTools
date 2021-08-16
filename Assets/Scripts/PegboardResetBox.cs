@@ -19,15 +19,14 @@ public class PegboardResetBox : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || isPressed)
         {
-            timeGrab += Time.deltaTime;
             isPressed = true;
         }
-        if (OVRInput.GetUp(OVRInput.RawButton.RHandTrigger))
+        if (isPressed)
         {
-            isPressed = false;
-            toolText.text = "" + timeGrab;
-            //timeGrab = 0;
+            timeGrab += Time.deltaTime;
         }
+
+        toolText.text = "" + Mathf.RoundToInt(timeGrab);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,20 +36,21 @@ public class PegboardResetBox : MonoBehaviour
             scoreBox = 0;
             for (int i = 0; i < lights.Count; i++)
             {
-                if (lights[i].GetComponent<MeshRenderer>().enabled) 
+                if (lights[i].GetComponent<MeshRenderer>().enabled)
                 {
                     scoreBox++;
                 }
             }
 
-            if(scoreBox == 9)
+            if (scoreBox == 9)
             {
                 colliders.Add(other);
             }
 
-            if(colliders.Count == 9) 
+            if (colliders.Count == 9)
             {
                 cube.GetComponent<MeshRenderer>().enabled = true;
+                isPressed = false;
             }
         }
     }
