@@ -16,6 +16,7 @@ public class ConfigManager : MonoBehaviour
     private HashSet<string> _possibleSceneNames;
     private EventBus bus;
     private Stopwatch sw;
+    private long last;
 
     public static ConfigManager Instance
     {
@@ -37,6 +38,7 @@ public class ConfigManager : MonoBehaviour
         LoadConfigs();
         InitPossibleScenes();
         DontDestroyOnLoad(gameObject);
+
     }
 
     private void Start()
@@ -47,10 +49,15 @@ public class ConfigManager : MonoBehaviour
 
     private void Update()
     {
+        var time = sw.ElapsedMilliseconds;
+        // use config ?
+        if (time - last < 10) return;
+        last = time;
         var controllers = OVRInput.GetConnectedControllers().GetFlags();
+
         if (controllers is null || bus is null) return;
-        var time = sw.ElapsedTicks;
-        foreach(var controller in controllers)
+        
+        foreach (var controller in controllers)
         {
             if (controller == OVRInput.Controller.LTouch || controller == OVRInput.Controller.LHand)
             {
