@@ -14,16 +14,19 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
     private Color _originalColor;
     private Color _targetColor;
 
-    [Range(0.1f, 1.0f)]
-    public float speedModifier = 0.1f;
+    [Range(1.0f, 5.0f)]
+    public float speedModifier = 1.0f;
 
-    Vector3 startPos;
-    Vector3 endPos;
+    private Vector3 startPos;
+    private Vector3 endPos;
 
-    float lerpValue = 0.0f;
+    public GameObject plane;
+    private float lerpValue = 0.0f;
     private FindRandomPoint randomPoint;
 
     private bool hasFocus;
+
+    private int repetitions = 1;
 
     public EyeTrackingFollowTool() : base("eyeTrackingFollow") { }
 
@@ -42,16 +45,24 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
         this.hasFocus = hasFocus;
     }
 
+    void OnEnable()
+    {
+        plane.GetComponent<MeshRenderer>().enabled = false;
+    }
+
     protected override void InitTool()
     {
+        base.InitTool();
+
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
         _targetColor = _originalColor;
         gameObject.transform.parent.localScale *= (float)base.configs.targetSize;
 
-        randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
+        randomPoint = plane.GetComponent<FindRandomPoint>();
         startPos = randomPoint.CalculateRandomPoint();
         endPos = randomPoint.CalculateRandomPoint();
+        speedModifier = (float)base.configs.speed;
     }
 
     // Update is called once per frame
@@ -70,14 +81,23 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
             }
         }
 
-        if (hasFocus)
+        if (hasFocus && randomPoint != null)
         {
             if (gameObject.transform.position == endPos)
             {
-                startPos = gameObject.transform.position;
-                endPos = randomPoint.CalculateRandomPoint();
+                repetitions++;
 
-                lerpValue = 0;
+                if (repetitions >= base.configs.repetitions)
+                {
+                    EndTool(5);
+                }
+                else
+                {
+                    startPos = gameObject.transform.position;
+                    endPos = randomPoint.CalculateRandomPoint();
+
+                    lerpValue = 0;
+                }
             }
             AdvanceCube();
         }
@@ -89,8 +109,24 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
         gameObject.transform.position = Vector3.Lerp(startPos, endPos, (lerpValue * speedModifier) / Vector3.Distance(startPos, endPos));
     }
 
-    public override int score()
+    public override void score()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void configsSave()
+    {
+        var time = sw.ElapsedMilliseconds;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig, new
+        {
+            Time = time,
+            Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig.ToString(),
+            
+            ToolEnded = toolEnded,
+            Repetitions = configs.repetitions,
+            TargetSpeed = configs.speed,
+            TargetSize = configs.targetSize
+        });
     }
 }

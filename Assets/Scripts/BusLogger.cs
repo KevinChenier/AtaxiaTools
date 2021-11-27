@@ -10,7 +10,6 @@ namespace Assets.Scripts
         private static BusLogger _instance;
         private IMongoCollection<EventLog> collection;
 
-
         public static BusLogger Instance
         {
             get { return _instance; }
@@ -33,7 +32,7 @@ namespace Assets.Scripts
         {
             if (ConfigManager.Instance.Config.UseMongo)
             {
-                EventBus.Instance.On(Model.EventType.All, LogToDb);
+                EventBus.Instance.On(Model.Types.EventType.All, LogToDb);
             }
         }
 

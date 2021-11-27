@@ -11,6 +11,10 @@ namespace Assets.Scripts.Model
 
         public ScenarioConfig? ScenarioConfig;
 
+        public bool ScenarioActive;
+
+        public bool ActivateTutorial;
+
         public bool AllowNavigation;
 
         public bool UseMongo;

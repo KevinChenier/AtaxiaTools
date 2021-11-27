@@ -1,17 +1,10 @@
 using Assets.Scripts.Model;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FingerFollowTool : Tool<FingerFollowConfig>
 {
-    public enum Mode
-    {
-        Normal,
-        IncrementalSpeed,
-        Target
-    }
-    
     Vector3 startPos;
     Vector3 endPos;
 
@@ -21,54 +14,70 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
     public float speedModifier = 0.1f;
 
     public List<float> incrementalSpeeds;
-    int currentSpeed = 0;
+    private int currentSpeed = 0;
 
-    public Mode FingerFollowMode = Mode.Normal;
+    public Assets.Scripts.Model.Types.Mode FingerFollowMode;
 
-    float lerpValue = 0.0f;
+    private float lerpValue = 0.0f;
     private FindRandomPoint randomPoint;
 
     public GameObject Trajectory;
-    List<GameObject> TrajectoryEndPoints = new List<GameObject>();
-    int currentEndpoint = 1;
+    private List<GameObject> TrajectoryEndPoints = new List<GameObject>();
+    private int currentEndpoint = 1;
 
     private bool lostFocus = false;
-    private float lostFocusTimeInstance = 0.0f;
-    private List<float> lostFocusTimeInstances = new List<float>();
+    private float lostFocusTimeInstance;
+
+    private int repetitions = 0;
 
     void OnTriggerStay(Collider other)
     {
-        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        if (AvatarManager.Instance.indexes_hand.Contains(other))
         {
-            switch (FingerFollowMode)
+            if (gameObject.transform.position == endPos)
             {
-                case Mode.Normal:
-                    HandleNormalFingerFollow();
-                    break;
-                case Mode.IncrementalSpeed:
-                    HandleIncrementalFingerFollow();
-                    break;
-                case Mode.Target:
-                    HandleTargetFingerFollow();
-                    break;
+                repetitions++;
+
+                if (repetitions >= base.configs.repetitions)
+                {
+                    EndTool(5);
+                }
+                else
+                {
+                    switch (FingerFollowMode)
+                    {
+                        case Assets.Scripts.Model.Types.Mode.Normal:
+                            HandleNormalFingerFollow();
+                            break;
+                        case Assets.Scripts.Model.Types.Mode.IncrementalSpeed:
+                            HandleIncrementalFingerFollow();
+                            break;
+                        case Assets.Scripts.Model.Types.Mode.Target:
+                            HandleTargetFingerFollow();
+                            break;
+                    }
+                }
             }
-            AdvanceIndicator();
+            else
+            {
+                AdvanceIndicator();
+            }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        if (AvatarManager.Instance.indexes_hand.Contains(other))
         {
+            score();
             lostFocus = false;
-            lostFocusTimeInstances.Add(lostFocusTimeInstance);
             lostFocusTimeInstance = 0;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (ToolsManager.Instance.indexes_hand.Contains(other))
+        if (AvatarManager.Instance.indexes_hand.Contains(other))
         {
             lostFocus = true;
         }
@@ -84,38 +93,27 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
 
     void HandleNormalFingerFollow()
     {
-        if (gameObject.transform.position == endPos)
-        {
-            startPos = gameObject.transform.position;
-            endPos = randomPoint.CalculateRandomPoint();
-
-            lerpValue = 0;
-        }
+        lerpValue = 0;
+        startPos = gameObject.transform.position;
+        endPos = randomPoint.CalculateRandomPoint();
     }
 
     void HandleTargetFingerFollow()
     {
-        if (gameObject.transform.position == endPos)
-        {
-            startPos = gameObject.transform.position;
-            currentEndpoint = currentEndpoint == TrajectoryEndPoints.Count - 1 ? 0 : currentEndpoint + 1;
-            endPos = TrajectoryEndPoints[currentEndpoint].transform.position;
-
-            lerpValue = 0;
-        }
+        lerpValue = 0;
+        startPos = gameObject.transform.position;
+        currentEndpoint = currentEndpoint == TrajectoryEndPoints.Count - 1 ? 0 : currentEndpoint + 1;
+        endPos = TrajectoryEndPoints[currentEndpoint].transform.position;
     }
 
     void HandleIncrementalFingerFollow()
     {
-        if (gameObject.transform.position == endPos)
-        {
-            startPos = gameObject.transform.position;
-            endPos = randomPoint.CalculateRandomPoint();
+        lerpValue = 0;
+        startPos = gameObject.transform.position;
+        endPos = randomPoint.CalculateRandomPoint();
 
-            lerpValue = 0;
-            currentSpeed = currentSpeed == incrementalSpeeds.Count - 1 ? 0 : currentSpeed + 1;
-            speedModifier = incrementalSpeeds[currentSpeed];
-        }
+        currentSpeed = currentSpeed == incrementalSpeeds.Count - 1 ? 0 : currentSpeed + 1;
+        speedModifier = incrementalSpeeds[currentSpeed];
     }
 
     void SetTargetEndPoints()
@@ -135,20 +133,24 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
 
     protected override void InitTool()
     {
-        randomPoint = ToolsManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
+        base.InitTool();
+
+        randomPoint = AvatarManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
+
+        FingerFollowMode = base.configs.mode;
 
         switch (FingerFollowMode)
         {
-            case Mode.IncrementalSpeed:
+            case Assets.Scripts.Model.Types.Mode.IncrementalSpeed:
                 speedModifier = incrementalSpeeds[0];
                 startPos = randomPoint.CalculateRandomPoint();
                 endPos = randomPoint.CalculateRandomPoint();
                 break;
-            case Mode.Normal:
+            case Assets.Scripts.Model.Types.Mode.Normal:
                 startPos = randomPoint.CalculateRandomPoint();
                 endPos = randomPoint.CalculateRandomPoint();
                 break;
-            case Mode.Target:
+            case Assets.Scripts.Model.Types.Mode.Target:
                 if (Trajectory)
                 {
                     Trajectory.SetActive(true);
@@ -162,8 +164,31 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         gameObject.transform.position = startPos;
     }
 
-    public override int score()
+    public override void score()
     {
-        throw new System.NotImplementedException();
+        var time = sw.ElapsedMilliseconds;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
+        {
+            Time = time,
+            Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
+            
+            LostFocusTime = lostFocusTimeInstance,
+            CurrentRepetition = repetitions
+        });
+    }
+
+    public override void configsSave()
+    {
+        var time = sw.ElapsedMilliseconds;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.FingerFollowConfig, new
+        {
+            Time = time,
+            Type = Assets.Scripts.Model.Types.EventType.FingerFollowConfig.ToString(),
+
+            ToolEnded = toolEnded,
+            Repetitions = configs.repetitions
+        });
     }
 }

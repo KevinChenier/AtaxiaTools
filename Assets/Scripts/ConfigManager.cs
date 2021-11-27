@@ -13,10 +13,8 @@ public class ConfigManager : MonoBehaviour
     private static ConfigManager _instance;
 
     public Config Config;
+    public ScenarioManager ScenarioManager;
     private HashSet<string> _possibleSceneNames;
-    private EventBus bus;
-    private Stopwatch sw;
-    private long last;
 
     public static ConfigManager Instance
     {
@@ -32,43 +30,18 @@ public class ConfigManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         _instance = this;
-        sw = new Stopwatch();
         LoadConfigs();
         InitPossibleScenes();
         DontDestroyOnLoad(gameObject);
-
     }
 
-    private void Start()
+    void Start()
     {
-        bus = EventBus.Instance;
-        sw.Start();
-    }
-
-    private void Update()
-    {
-        var time = sw.ElapsedMilliseconds;
-        // use config ?
-        if (time - last < 10) return;
-        last = time;
-        var controllers = OVRInput.GetConnectedControllers().GetFlags();
-
-        if (controllers is null || bus is null) return;
-        
-        foreach (var controller in controllers)
+        if (Config.ScenarioActive)
         {
-            if (controller == OVRInput.Controller.LTouch || controller == OVRInput.Controller.LHand)
-            {
-                var pos = OVRInput.GetLocalControllerPosition(controller);
-                bus.Push(Assets.Scripts.Model.EventType.LeftControllerPosition, new { Ticks = time, Type=Assets.Scripts.Model.EventType.LeftControllerPosition, Value = new { x = pos.x, y = pos.y, z = pos.z } });
-            } 
-            else if (controller == OVRInput.Controller.RTouch || controller == OVRInput.Controller.RHand)
-            {
-                var pos = OVRInput.GetLocalControllerPosition(controller);
-                bus.Push(Assets.Scripts.Model.EventType.RightControllerPosition, new { Ticks = time, Type=Assets.Scripts.Model.EventType.RightControllerPosition, Value = new { x = pos.x, y = pos.y, z = pos.z } });
-            }
+            ScenarioManager = new ScenarioManager(Config.ScenarioConfig.ToolsOrder);
+            ScenarioManager.InitScenario();
         }
     }
 

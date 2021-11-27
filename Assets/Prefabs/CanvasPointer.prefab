@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5011519539420936995}
   - component: {fileID: 5011519539420936998}
   - component: {fileID: 54116847444840008}
-  - component: {fileID: 8807580461181951606}
   m_Layer: 0
   m_Name: CanvasPointer
   m_TagString: Untagged
@@ -183,18 +182,3 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8807580461181951606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4568458226975896195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f4ad4c8d136b145af0639544a92578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultLenght: 3
-  eventSystem: {fileID: 0}
-  inputModule: {fileID: 0}

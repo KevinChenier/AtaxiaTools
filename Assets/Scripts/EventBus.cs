@@ -9,8 +9,8 @@ namespace Assets.Scripts
     public class EventBus : MonoBehaviour
     {
         private static EventBus _instance;
-        private ConcurrentQueue<(Model.EventType type, dynamic value)> queue;
-        private Dictionary<Model.EventType, EventHandler<dynamic>> handlers;
+        private ConcurrentQueue<(Model.Types.EventType type, dynamic value)> queue;
+        private Dictionary<Model.Types.EventType, EventHandler<dynamic>> handlers;
 
         public static EventBus Instance
         {
@@ -35,12 +35,12 @@ namespace Assets.Scripts
 
         private void Init()
         {
-            handlers = new Dictionary<Model.EventType, EventHandler<dynamic>>();
-            foreach (Model.EventType t in Enum.GetValues(typeof(Model.EventType)))
+            handlers = new Dictionary<Model.Types.EventType, EventHandler<dynamic>>();
+            foreach (Model.Types.EventType t in Enum.GetValues(typeof(Model.Types.EventType)))
             {
                 handlers.Add(t, Base);
             }
-            queue = new ConcurrentQueue<(Model.EventType type, dynamic value)>();
+            queue = new ConcurrentQueue<(Model.Types.EventType type, dynamic value)>();
         }
 
         private void Base(object sender, dynamic e)
@@ -48,11 +48,11 @@ namespace Assets.Scripts
             //Debug.Log(e.ToString());
         }
 
-        public void On(Model.EventType type, EventHandler<dynamic> func)
+        public void On(Model.Types.EventType type, EventHandler<dynamic> func)
         {
-            if (type == Model.EventType.All)
+            if (type == Model.Types.EventType.All)
             {
-                foreach (Model.EventType t in Enum.GetValues(typeof(Model.EventType)))
+                foreach (Model.Types.EventType t in Enum.GetValues(typeof(Model.Types.EventType)))
                 {
                     handlers[t] += func;
                 }
@@ -62,7 +62,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void Push(Model.EventType type, dynamic value)
+        public void Push(Model.Types.EventType type, dynamic value)
         {
             queue.Enqueue((type, value));
         }

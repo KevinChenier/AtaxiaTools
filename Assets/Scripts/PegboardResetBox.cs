@@ -7,7 +7,6 @@ public class PegboardResetBox : MonoBehaviour
 {
     private int scoreBox;
     private bool isPressed = false;
-    private float timeGrab = 0;
 
     public List<GameObject> lights;
     public List<GameObject> peggle;
@@ -15,18 +14,20 @@ public class PegboardResetBox : MonoBehaviour
     public TextMesh toolText;
     private HashSet<Collider> colliders = new HashSet<Collider>();
 
+    public PegboardTool pegboardTool;
+
     private void Update()
     {
-        if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || isPressed)
+        if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && !isPressed)
         {
             isPressed = true;
         }
-        if (isPressed)
+        if (isPressed && !pegboardTool.toolEnded)
         {
-            timeGrab += Time.deltaTime;
+            pegboardTool.timeGrab += Time.deltaTime;
         }
 
-        toolText.text = "" + Mathf.RoundToInt(timeGrab);
+        toolText.text = "" + Mathf.RoundToInt(pegboardTool.timeGrab);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +51,7 @@ public class PegboardResetBox : MonoBehaviour
             if (colliders.Count == 9)
             {
                 cube.GetComponent<MeshRenderer>().enabled = true;
-                isPressed = false;
+                pegboardTool.EndTool(5);
             }
         }
     }

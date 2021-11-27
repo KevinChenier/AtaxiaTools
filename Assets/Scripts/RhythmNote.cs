@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RhythmNote : MonoBehaviour
@@ -8,19 +6,9 @@ public class RhythmNote : MonoBehaviour
     public float speed;
 
     // Start is called before the first frame update
-    private void Awake()
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    void Start()
-    {
         rb.velocity = new Vector3(-speed, 0, 0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

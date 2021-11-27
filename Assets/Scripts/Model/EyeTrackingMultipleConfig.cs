@@ -7,6 +7,7 @@ namespace Assets.Scripts.Model
     [System.Serializable]
     public class EyeTrackingMultipleConfig : EyeTrackingConfig
     {
-        public int timer;
+        public double timer;
+        public int fieldOfView = 30;
     }
 }

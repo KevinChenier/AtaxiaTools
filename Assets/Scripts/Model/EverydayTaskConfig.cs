@@ -3,7 +3,6 @@
     [System.Serializable]
     public class EverydayTaskConfig : IToolConfig
     {
-        public int nbSpheres;
         public float height;
     }
 }

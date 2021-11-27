@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Management;
 
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
-
 namespace Tobii.XR
 {
     public enum ControllerButton
@@ -293,21 +289,13 @@ namespace Tobii.XR
         public bool AnyTriggerHeld()
         {
             if (GetButtonPress(ControllerButton.Trigger)) return true;
-#if ENABLE_INPUT_SYSTEM
-            return Keyboard.current.spaceKey.isPressed || (Joystick.current?.trigger.isPressed).GetValueOrDefault(false);
-#else
-            return Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.Space);
-#endif
+                return Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.Space);
         }
         
         public bool AnyTriggerPressed()
         {
             if (GetButtonPressDown(ControllerButton.Trigger)) return true;
-#if ENABLE_INPUT_SYSTEM
-            return Keyboard.current.spaceKey.wasPressedThisFrame || (Joystick.current?.trigger.wasPressedThisFrame).GetValueOrDefault(false);
-#else
-            return Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space);
-#endif
+                return Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space);
         }
     }
 }

@@ -1,33 +1,103 @@
 using Assets.Scripts.Model;
-using System.Collections;
-using System.Collections.Generic;
+using Obi;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EverydayTaskTool : Tool<EverydayTaskConfig>
 {
     public GameObject container;
-    public Object liquid;
-    public float liquidSize;
-    public Text scoreText;
+    public GameObject recipient;
+    public GameObject PourLine;
+    public ObiSolver solver;
+    public double accuracy { get; set; }
 
-    private Transform spawnPoint;
+    private float timer;
 
     public EverydayTaskTool() : base("EverydayTask") { }
 
-    public override int score()
+    public override void score()
     {
-        throw new System.NotImplementedException();
+        var time = sw.ElapsedMilliseconds;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.EverydayTaskData, new
+        {
+            Time = time,
+            Type = Assets.Scripts.Model.Types.EventType.EverydayTaskData.ToString(),
+
+            Score = accuracy * 100.0 + "%",
+            TimeTask = timer
+        });
+    }
+
+    public override void configsSave()
+    {
+        var time = sw.ElapsedMilliseconds;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.EverydayTaskConfig, new
+        {
+            Time = time,
+            Type = Assets.Scripts.Model.Types.EventType.EverydayTaskConfig.ToString(),
+
+            ToolEnded = toolEnded,
+            PourHeight = configs.height
+        });
     }
 
     protected override void InitTool()
     {
-        scoreText.text = "Score : 0 / " + base.configs.nbSpheres;
-        spawnPoint = container.transform.FindChildRecursive("SpawnLiquid");
-        for (int i = 0; i < base.configs.nbSpheres - 1; i++)
+        base.InitTool();
+
+        PourLine.transform.position = new Vector3(PourLine.transform.position.x, configs.height, PourLine.transform.position.z);
+    }
+
+    public override void EndTool(int timer)
+    {
+        score();
+        base.EndTool(timer);
+    }
+
+    private void Update()
+    {
+        if (container.GetComponent<ContainerCollider>().initialized && !toolEnded)
         {
-            GameObject sphere = Instantiate(liquid, new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z), Quaternion.identity) as GameObject;
-            sphere.transform.parent = GameObject.Find("LiquidParent").transform;
+            timer += Time.deltaTime;
+        }
+    }
+
+    void OnEnable()
+    {
+        solver.OnCollision += Solver_OnCollision;
+    }
+
+    void OnDisable()
+    {
+        solver.OnCollision -= Solver_OnCollision;
+    }
+
+    void Solver_OnCollision(object sender, ObiSolver.ObiCollisionEventArgs e)
+    {
+        var world = ObiColliderWorld.GetInstance();
+        int accuracy = 0;
+
+        // just iterate over all contacts in the current frame:
+        foreach (Oni.Contact contact in e.contacts)
+        {
+            // if this one is an actual collision:
+            if (contact.distance < 0.1)
+            {
+                ObiColliderBase col = world.colliderHandles[contact.bodyB].owner;
+
+                if (col != null && col.name == recipient.name)
+                    accuracy++;
+
+                if (col != null && col.name == container.name)
+                    // Still fluid in Container
+                    return;
+            }
+        }
+        if (container.GetComponent<ContainerCollider>().initialized && !toolEnded)
+        {
+            this.accuracy = (double) accuracy / e.contacts.Count;
+            EndTool(5);
         }
     }
 }

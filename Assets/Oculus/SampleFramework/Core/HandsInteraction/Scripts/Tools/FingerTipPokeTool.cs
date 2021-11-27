@@ -81,10 +81,10 @@ namespace OculusSampleFramework
 			_fingerTipPokeToolView.InteractableTool = this;
 
 			//** CUSTOM CODE **//
-			if (_fingerTipPokeToolView.InteractableTool.name == "FingerTipPokeToolIndex(Clone)" && ToolsManager.Instance.indexes_hand != null)
+			if (_fingerTipPokeToolView.InteractableTool.name == "FingerTipPokeToolIndex(Clone)" && AvatarManager.Instance.indexes_hand != null)
             {
-				ToolsManager.Instance.indexes_hand.Add(_fingerTipPokeToolView.InteractableTool.GetComponent<Collider>());
-				Debug.Log("Index Finger Collisions added to ToolsManager!");
+				AvatarManager.Instance.indexes_hand.Add(_fingerTipPokeToolView.InteractableTool.GetComponent<Collider>());
+				Debug.Log("Index Finger Collisions added to AvatarManager!");
 			}
 			//** CUSTOM CODE **//
 

@@ -19,17 +19,20 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         ControllerInputEvent.Instance.StartUpEvent += ToggleMenu;
-        ConfigManager = ConfigManager.Instance;
-        sceneName = SceneManager.GetActiveScene().name;
-       // ControllerInputEvent.Instance.StartUpEvent += ToggleMenu;
-        canvas = GetComponent<Canvas>();
         CreateOptionButtons();
+
         if (tool != null)
         {
             IsMenu = false;
-            tool.Show();
             HideCanvas();
         }
+    }
+
+    private void Awake()
+    {
+        canvas = GetComponent<Canvas>();
+        ConfigManager = ConfigManager.Instance;
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
     private void CreateOptionButtons()
@@ -52,7 +55,12 @@ public class MenuManager : MonoBehaviour
         Destroy(baseButton.gameObject);
     }
 
-    public void ToggleMenu(object source, EventArgs args)
+    private void ToggleMenu(object source, EventArgs args)
+    {
+        ToggleMenu();
+    }
+
+    private void ToggleMenu()
     {
         if (tool == null) return;
 

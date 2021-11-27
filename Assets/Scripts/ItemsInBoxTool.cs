@@ -13,10 +13,10 @@ public class ItemsInBox : Tool<SimpleToolConfig>
 
     protected override void InitTool()
     {
-        throw new System.NotImplementedException();
+        base.InitTool();
     }
 
-    public override int score()
+    public override void score()
     {
         throw new System.NotImplementedException();
     }
@@ -43,9 +43,8 @@ public class ItemsInBox : Tool<SimpleToolConfig>
         numberOfObjects = toolObjects.Count;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void configsSave()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

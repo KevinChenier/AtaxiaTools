@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class PegboardCollider : MonoBehaviour
 {
-
     public List<GameObject> peggles;
     private List<Vector3> InitialPos;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         InitialPos = new List<Vector3>();
 
@@ -22,14 +21,14 @@ public class PegboardCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("" + other.name);
+        Debug.Log(other.name);
         for (int i = 0; i < peggles.Count; i++)
         {
             if (other.gameObject == peggles[i])
             {
                 peggles[i].transform.position = InitialPos[i];
                 peggles[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-                Debug.Log("" + peggles[i].transform.position);
+                Debug.Log(peggles[i].transform.position);
             }
         }
     }

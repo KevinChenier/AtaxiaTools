@@ -11,7 +11,7 @@ namespace Assets.Scripts.Model
 
         public EverydayTaskConfig EverydayTaskConfig;
 
-        public RhythmTaskConfig RhythmTaskConfig; 
+        public RhythmConfig RhythmConfig; 
 
         public FingerNoseConfig FingerNoseConfig;
 
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Model
                 PegboardConfig,
                 FingerFollowConfig,
                 EverydayTaskConfig,
-                RhythmTaskConfig,
+                RhythmConfig,
                 FingerNoseConfig,
                 EyeTrackingFollowConfig,
                 EyeTrackingMultipleConfig,

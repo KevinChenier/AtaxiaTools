@@ -33,10 +33,10 @@ public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
         currentObjectToGazeAt = false;
         timer = 0;
 
-        int randomObjectIndex = Random.Range(0, eyeTrackingMultipleTool.eyeTrackingMultipleObjects.Count - 1);
-        GameObject randomObject = eyeTrackingMultipleTool.eyeTrackingMultipleObjects[randomObjectIndex];
-        randomObject.GetComponent<EyeTrackingMultipleGazeAt>()._targetColor = highlightColor;
-        randomObject.GetComponent<EyeTrackingMultipleGazeAt>().currentObjectToGazeAt = true;
+        eyeTrackingMultipleTool.currentObjectIndex++;
+        GameObject currentObject = eyeTrackingMultipleTool.eyeTrackingMultipleTargetsPattern[eyeTrackingMultipleTool.currentObjectIndex];
+        currentObject.GetComponent<EyeTrackingMultipleGazeAt>()._targetColor = highlightColor;
+        currentObject.GetComponent<EyeTrackingMultipleGazeAt>().currentObjectToGazeAt = true;
     }
 
     // Start is called before the first frame update
@@ -72,7 +72,14 @@ public class EyeTrackingMultipleGazeAt : MonoBehaviour, IGazeFocusable
 
             if (timer > eyeTrackingMultipleTool.timer)
             {
-                ChangeObjectToGazeAt();
+                if (eyeTrackingMultipleTool.currentObjectIndex >= eyeTrackingMultipleTool.eyeTrackingMultipleTargetsPattern.Count - 1)
+                {
+                    eyeTrackingMultipleTool.EndTool(5);
+                }
+                else
+                {
+                    ChangeObjectToGazeAt();
+                }
             }
         }
     }

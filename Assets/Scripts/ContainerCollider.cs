@@ -1,45 +1,62 @@
-using Assets.Scripts.Model;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Autohand;
 
 public class ContainerCollider : MonoBehaviour
 {
+    public EverydayTaskTool everydayTaskTool;
+    
     public GameObject PourLine;
-    public GameObject Container;
-    public GameObject Recipient;
-    public Text scoreText;
-    public EverydayTaskTool everydayTool;
+    public GameObject Cap;
+    public bool initialized { get; set; }
 
-    private bool isHeightOk;
-    private int accuracy;
-
-    private void Start()
+    void Start()
     {
-        accuracy = 0;
-        isHeightOk = false;
-        PourLine.transform.position = new Vector3(PourLine.transform.position.x, everydayTool.configs.height, PourLine.transform.position.z);
+        // Can't grab container when fluid is pouring
+        deactivateContainer();
+
+        // Let the time pass for fluid
+        Invoke("activateContainer", 4);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void openCap()
     {
-        if (other.gameObject.tag == "LiquidSphere" && isHeightOk )
-        {
-            accuracy++;
-            scoreText.text = "Score : " + accuracy + " / " + everydayTool.configs.nbSpheres;
-        }  
+        Cap.SetActive(false);
+    }
+
+    void closeCap()
+    {
+        Cap.SetActive(true);
+    }
+
+    void activateContainer()
+    {
+        GetComponent<OVRGrabbable>().enabled = true;
+        GetComponent<Grabbable>().enabled = true;
+        closeCap();
+        initialized = true;
+
+        Debug.Log("Container initialized!");
+    }
+
+    void deactivateContainer()
+    {
+        GetComponent<OVRGrabbable>().enabled = false;
+        GetComponent<Grabbable>().enabled = false;
+        openCap();
     }
 
     private void Update()
     {
-        if (Container.transform.position.y >= PourLine.transform.position.y)
+        if (initialized)
         {
-            isHeightOk = true;
-        }
-        else
-        {
-            isHeightOk = false;
+            if (transform.position.y >= PourLine.transform.position.y)
+            {
+                openCap();
+            }
+            else
+            {
+                closeCap();
+            }
         }
     }
 }

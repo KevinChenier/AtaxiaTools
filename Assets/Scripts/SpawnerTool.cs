@@ -8,8 +8,12 @@ public class SpawnerTool : Tool<SimpleToolConfig>
 
     public SpawnerTool() : base("spawner") { }
 
+    public override void configsSave()
+    {
+        throw new System.NotImplementedException();
+    }
 
-    public override int score()
+    public override void score()
     {
         throw new System.NotImplementedException();
     }
@@ -19,10 +23,10 @@ public class SpawnerTool : Tool<SimpleToolConfig>
         GameObject spawned = Instantiate(gameObjects[index], transform.position, transform.rotation);
         spawned.AddComponent<Rigidbody>().useGravity = true;
         spawned.AddComponent<MeshCollider>().convex = true;
-    }
+    } 
 
     protected override void InitTool()
     {
-        throw new System.NotImplementedException();
+        base.InitTool();
     }
 }

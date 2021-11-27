@@ -7,5 +7,7 @@ namespace Assets.Scripts.Model
     [System.Serializable]
     public class EyeTrackingFixationConfig : EyeTrackingConfig
     {
+        public double timeFixation = 7.0;
+        public double distance = 3;
     }
 }
