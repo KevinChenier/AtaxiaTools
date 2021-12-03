@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenarioManager
 {
-    private List<string> toolsOrder;
+    private List<string> toolsOrder = new List<string>();
     private HashSet<string> toolsDone = new HashSet<string>();
     public ScenarioManager(List<string> toolsOrder)
     {
