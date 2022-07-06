@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PegboardAlternativeScene_AutoHand.unity
     guid: 98fde4f3cc8c6cc4cbca562ed0e549cd
+  - enabled: 1
+    path: Assets/Scenes/PegboardAlternativeScene_HandTracking.unity
+    guid: a9812c6fb1a6b07478c6b48690ae872f
+  - enabled: 1
+    path: Assets/Scenes/VibrationScene.unity
+    guid: 9656b6560a7dc8c4a86548a7b4058218
+  - enabled: 1
+    path: Assets/Scenes/SpeechPerceptionScene.unity
+    guid: eb7623d09489925449e24b27e588777c
+  - enabled: 1
+    path: Assets/Scenes/EyeContrastScene.unity
+    guid: 3f08aacac0fbb4549928317e1c50469e
   - enabled: 0
     path: Assets/Scenes/EyeTrackingFixationScene.unity
     guid: eb7cfdf769c1b0642bd46a528e2d72c5
