@@ -16,7 +16,9 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
     public List<float> incrementalSpeeds;
     private int currentSpeed = 0;
 
-    public Assets.Scripts.Model.Types.Mode FingerFollowMode;
+    public Assets.Scripts.Model.Types.FingerFollowMode Mode;
+
+    public Light indicatorLight; 
 
     private float lerpValue = 0.0f;
     private FindRandomPoint randomPoint;
@@ -44,15 +46,15 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
                 }
                 else
                 {
-                    switch (FingerFollowMode)
+                    switch (Mode)
                     {
-                        case Assets.Scripts.Model.Types.Mode.Normal:
+                        case Assets.Scripts.Model.Types.FingerFollowMode.Normal:
                             HandleNormalFingerFollow();
                             break;
-                        case Assets.Scripts.Model.Types.Mode.IncrementalSpeed:
+                        case Assets.Scripts.Model.Types.FingerFollowMode.IncrementalSpeed:
                             HandleIncrementalFingerFollow();
                             break;
-                        case Assets.Scripts.Model.Types.Mode.Target:
+                        case Assets.Scripts.Model.Types.FingerFollowMode.Target:
                             HandleTargetFingerFollow();
                             break;
                     }
@@ -70,6 +72,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         if (AvatarManager.Instance.indexes_hand.Contains(other))
         {
             score();
+            indicatorLight.enabled = true;
             lostFocus = false;
             lostFocusTimeInstance = 0;
         }
@@ -80,6 +83,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         if (AvatarManager.Instance.indexes_hand.Contains(other))
         {
             lostFocus = true;
+            indicatorLight.enabled = false;
         }
     }
 
@@ -131,26 +135,26 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         gameObject.transform.position = Vector3.Lerp(startPos, endPos, (lerpValue * speedModifier) / Vector3.Distance(startPos, endPos));
     }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 
         randomPoint = AvatarManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
 
-        FingerFollowMode = base.configs.mode;
+        Mode = base.configs.mode;
 
-        switch (FingerFollowMode)
+        switch (Mode)
         {
-            case Assets.Scripts.Model.Types.Mode.IncrementalSpeed:
+            case Assets.Scripts.Model.Types.FingerFollowMode.IncrementalSpeed:
                 speedModifier = incrementalSpeeds[0];
                 startPos = randomPoint.CalculateRandomPoint();
                 endPos = randomPoint.CalculateRandomPoint();
                 break;
-            case Assets.Scripts.Model.Types.Mode.Normal:
+            case Assets.Scripts.Model.Types.FingerFollowMode.Normal:
                 startPos = randomPoint.CalculateRandomPoint();
                 endPos = randomPoint.CalculateRandomPoint();
                 break;
-            case Assets.Scripts.Model.Types.Mode.Target:
+            case Assets.Scripts.Model.Types.FingerFollowMode.Target:
                 if (Trajectory)
                 {
                     Trajectory.SetActive(true);
@@ -186,6 +190,8 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerFollowConfig.ToString(),
+
+            Mode = configs.mode.ToString(),
 
             ToolEnded = toolEnded,
             Repetitions = configs.repetitions

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tips Text_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 2471a8d47a8e4c949b2c7b30434fcfe6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 482033303552
+    m_Localized: "Coge los peque\xF1os objetos azules de la caja y col\xF3calos uno
+      por uno en los agujeros del tablero. Al final, vu\xE9lvalos a poner en la caja.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4174031650816
+    m_Localized: "\rSigue el dedo del avatar con uno de tus dedos \xEDndice."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5069507166208
+    m_Localized: "Espere a que el l\xEDquido se vierta en el vaso. Cuando est\xE9
+      listo, coge el vaso y vi\xE9rtelo en el otro recipiente. Tienes que estar por
+      encima de la l\xEDnea roja para verterlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601571405824
+    m_Localized: "Cuando la nota llegue al destino, presione el bot\xF3n de \xEDndice
+      en cualquiera de los controladores."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5735977877504
+    m_Localized: "Toca el dedo del avatar con uno de tus dedos \xEDndice. Cuando
+      lo toques, lleva tu \xEDndice a la esfera roja, que representa la nariz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5873341333504
+    m_Localized: "\rSigue el cubo rojo con tus ojos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6065641783296
+    m_Localized: "Mira el cubo rojo y espera a que termine el cron\xF3metro. Cuando
+      termine el cron\xF3metro, mira el otro cubo rojo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6194666962944
+    m_Localized: "Mant\xE9ngase fijo en el cubo rojo hasta que termine el temporizador."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8799094865920
+    m_Localized: "La actividad acaba de terminar! Pulse en Go para cambiar la actividad.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27560799666176
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28270569500475392
+    m_Localized: "Activaremos vibraciones en los mandos en todo momento. Cuando sienta
+      una vibraci\xF3n, presione el bot\xF3n de \xEDndice en uno de los controladores."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29064863584911360
+    m_Localized: "Aparecer\xE1 una letra espec\xEDfica frente a usted, cuando comience
+      a verla, seleccione la letra correcta en el men\xFA debajo de la letra."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30572984119623680
+    m_Localized: "Cuando escuche una letra, seleccione la letra correcta que acaba
+      de escuchar con el puntero en el men\xFA frente a usted."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

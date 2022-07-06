@@ -35,7 +35,7 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
         }
     }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 

@@ -8,27 +8,29 @@ public class RhythmTool : Tool<RhythmConfig>
     GameObject note;
     public AudioClip strumming;
     public AudioClip miss;
-    private int scoreValue = 0;
-    private int clickValue = 0;
     private int noteCount = 0;
 
     private static readonly int _baseColor = Shader.PropertyToID("_BaseColor");
+
 
     public Color highlightColor = Color.green;
     public Color missedColor = Color.red;
     private float animationTime = 0.01f;
 
+    private Assets.Scripts.Model.Types.RhythmNote noteType;
+
     private Renderer _renderer;
     private Color _originalColor;
     private Color _targetColor;
 
-    public RhythmTool() : base("Rhythm") { }
+    public RhythmTool() : base("rhythm") { }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 
-        animationTime = 60.0f / (base.configs.bpm * 16.0f);
+        animationTime = 0.02f;
+        //animationTime = 60.0f / (base.configs.bpm * 16.0f);
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
         _targetColor = _originalColor;
@@ -36,24 +38,45 @@ public class RhythmTool : Tool<RhythmConfig>
 
     public override void EndTool(int timer)
     {
-        score();
         base.EndTool(timer);
+    }
+
+    private void HandleEndTool()
+    {
+        switch (base.configs.mode)
+        {
+            case Assets.Scripts.Model.Types.RhythmMode.Normal:
+                if (noteCount >= base.configs.nbNotes)
+                    EndTool(5);
+                break;
+            case Assets.Scripts.Model.Types.RhythmMode.Clinical:
+                if (noteCount >= base.configs.repetitions * base.configs.nbNotesPerRepetitions)
+                    EndTool(5);
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) || OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
         {
-            clickValue++;
             if (active)
             {
                 Destroy(note);
                 _targetColor = highlightColor;
                 AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
                 active = false;
-                scoreValue++;
+
+                noteType = Assets.Scripts.Model.Types.RhythmNote.hit;
+
+                HandleEndTool();
             }
+            else
+            {
+                noteType = Assets.Scripts.Model.Types.RhythmNote.spam;
+            }
+            score();
         }
         if (_renderer != null)
         {
@@ -86,11 +109,6 @@ public class RhythmTool : Tool<RhythmConfig>
             active = true;
             note = other.gameObject;
             noteCount++;
-
-            if (noteCount >= base.configs.nbNotes)
-            {
-                EndTool(5);
-            }
         }
     }
 
@@ -103,6 +121,9 @@ public class RhythmTool : Tool<RhythmConfig>
             _targetColor = missedColor;
             active = false;
             Destroy(note);
+            noteType = Assets.Scripts.Model.Types.RhythmNote.missed;
+            score();
+            HandleEndTool();
         }
     }
 
@@ -113,10 +134,9 @@ public class RhythmTool : Tool<RhythmConfig>
         bus.Push(Assets.Scripts.Model.Types.EventType.RhythmData, new 
         {
             Time = time,
-            Type = Assets.Scripts.Model.Types.EventType.RhythmData.ToString(), 
+            Type = Assets.Scripts.Model.Types.EventType.RhythmData.ToString(),
 
-            Score = (double) scoreValue / base.configs.nbNotes * 100 + "%", 
-            Precision = (double) scoreValue / clickValue * 100 + "%"
+            NoteType = noteType.ToString()
         });
     }
 
@@ -129,9 +149,13 @@ public class RhythmTool : Tool<RhythmConfig>
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.RhythmConfig.ToString(),
 
+            mode = configs.mode.ToString(),
+                
             ToolEnded = toolEnded,
             BPM = configs.bpm,
-            NumberOfNotes = configs.nbNotes
+            NumberOfNotes = configs.nbNotes,
+            Repetitions = configs.repetitions,
+            NumberOfNotesPerRepetitions = configs.nbNotesPerRepetitions
         });
     }
 }

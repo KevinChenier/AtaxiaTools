@@ -58,7 +58,7 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
         });
     }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 
@@ -76,6 +76,9 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
     {
         transform.position = new Vector3(transform.position.x, Camera.main.transform.position.y, transform.position.z);
         Vector3 direction = transform.position - Camera.main.transform.position;
+
+        Debug.Log(Camera.main.transform.position);
+
         direction = direction.normalized;
         transform.position = Camera.main.transform.position;
         transform.Translate(direction * (float)base.configs.distance);
@@ -105,7 +108,7 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
 
         if (timeFixation >= (float)base.configs.timeFixation)
         {
-            EndTool(2);
+            EndTool(5);
             timeFixation = Mathf.NegativeInfinity;
         }
     }

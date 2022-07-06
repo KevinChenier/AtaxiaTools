@@ -1,24 +1,29 @@
-using TMPro;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Components;
+
 
 public class Tips : MonoBehaviour
 {
-    private TextMeshPro tipsText;
+    public GameObject background;
+    public LocalizeStringEvent Localization;
 
     // Start is called before the first frame update
     void Awake()
     {
-        tipsText = GetComponent<TextMeshPro>();
         deactivateTip();
     }
 
-    public void giveTip(string text)
+
+    public void giveTip(string tableEntryReference)
     {
-        tipsText.text = text;
+        Localization.StringReference.TableEntryReference = tableEntryReference;
+        background.SetActive(true);
     }
 
-    private void deactivateTip()
+    public void deactivateTip()
     {
-        tipsText.text = "";
+        Localization.StringReference.TableEntryReference = "Nothing";
+        background.SetActive(false);
     }
 }

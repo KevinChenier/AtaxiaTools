@@ -7,11 +7,25 @@ using UnityEngine.SceneManagement;
 
 public class GeneralDataExtractor : MonoBehaviour
 {
+    private static GeneralDataExtractor _instance;
+
     private EventBus bus;
     private Stopwatch sw;
 
+    public static GeneralDataExtractor Instance
+    {
+        get { return _instance; }
+    }
+
     private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+
         sw = new Stopwatch();
         sw.Start();
     }

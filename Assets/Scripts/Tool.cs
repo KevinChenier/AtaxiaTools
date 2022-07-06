@@ -10,7 +10,8 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
     protected EventBus bus;
     protected Stopwatch sw;
     private string toolName;
-
+    private ConfigManager ConfigManager;
+    private UserInterfaceManager UserInterfaceManager;
 
     public Tool(string name)
     {
@@ -20,41 +21,52 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
     void Awake()
     {
         bus = EventBus.Instance;
-        configs = ConfigManager.Instance.GetToolConfig<TConfig>(toolName);
+        UserInterfaceManager = UserInterfaceManager.Instance;
+        ConfigManager = ConfigManager.Instance;
+        configs = ConfigManager.GetToolConfig<TConfig>(toolName);
         baseConfigs = configs;
 
-        // Some tools need a lateStart
-        Invoke("InitTool", 1);
+        if(!ConfigManager.Config.ActivateTutorial)
+            Invoke("InitTool", 0.1f);
     }
 
     /// <summary>
     /// This is used to alter the tool with the configs that can be found inside this.configs
     /// </summary>
-    protected virtual void InitTool()
+    public override void InitTool()
     {
         toolBegan = true;
         UnityEngine.Debug.Log("Activity just began!");
         sw = new Stopwatch();
         sw.Start();
+        Show();
     }
 
-    public virtual void EndTool(int timer)
+    public override void EndTool(int timer)
     {
         if (!IsInvoking())
         {
             toolEnded = true;
+            Pause();
             configsSave();
             UnityEngine.Debug.Log("Activity just ended!");
+
+            UserInterfaceManager.tips.giveTip("Activity Ended");
+            UserInterfaceManager.GoButton.gameObject.SetActive(true);
+            UserInterfaceManager.GoButton.onClick.AddListener(() => ConfigManager.ScenarioManager.LoadNextScene());
+
+            /* Still a viable option that we can use. Need to know if we want it as an option
             tips.giveTip("Activity just ended! The activity will change in " + timer + " seconds.");
             Invoke("delayedEndTool", timer);
+            */
         }
     }
 
     private void delayedEndTool()
     {
-        if (ConfigManager.Instance.Config.ScenarioActive)
+        if (ConfigManager.Config.ScenarioActive)
         {
-            ConfigManager.Instance.ScenarioManager.LoadNextScene();
+            ConfigManager.ScenarioManager.LoadNextScene();
         }
     }
 

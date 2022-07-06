@@ -1,10 +1,23 @@
 namespace Assets.Scripts.Model.Types
 {
-    public enum Mode
+    public enum FingerFollowMode
     {
         Normal,
         IncrementalSpeed,
         Target
+    }
+
+    public enum RhythmMode
+    {
+        Normal,
+        Clinical
+    }
+
+    public enum RhythmNote
+    {
+        hit,
+        missed,
+        spam
     }
 
     public enum EventType
@@ -26,6 +39,12 @@ namespace Assets.Scripts.Model.Types
         EyeTrackingFollowConfig,
         EyeTrackingMultipleConfig,
         EyeData,
+        VibrationData,
+        VibrationConfig,
+        EyeContrastData,
+        EyeContrastConfig,
+        SpeechPerceptionData,
+        SpeechPerceptionConfig,
         Other
     }
 }

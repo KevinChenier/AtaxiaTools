@@ -73,6 +73,42 @@ for i=1:(height(T) - 1)
 end 
 % Left Eye Velocity Degrees
 
+% Left Eye Velocity Degrees x
+for i=1:(height(T) - 1)
+    LeftGazeDirectionDegrees_x1 = T{i, "Value_LeftEyeDirectionDegrees_x"};
+    LeftGazeDirectionDegrees_x2 = T{i + 1, "Value_LeftEyeDirectionDegrees_x"};
+
+    Time1 = T{i, "Value_Time"};
+    Time2 = T{i + 1, "Value_Time"};
+
+    if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
+        Velocity = 0;
+    else
+        Velocity = (LeftGazeDirectionDegrees_x2 - LeftGazeDirectionDegrees_x1) / (Time2 - Time1);
+    end
+
+    T{i + 1, "Value_LeftEyeVelocityDegrees_x"} = Velocity * 1000;
+end 
+% Left Eye Velocity Degrees x
+
+% Left Eye Velocity Degrees y
+for i=1:(height(T) - 1)
+    LeftGazeDirectionDegrees_y1 = T{i, "Value_LeftEyeDirectionDegrees_y"};
+    LeftGazeDirectionDegrees_y2 = T{i + 1, "Value_LeftEyeDirectionDegrees_y"};
+
+    Time1 = T{i, "Value_Time"};
+    Time2 = T{i + 1, "Value_Time"};
+
+    if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
+        Velocity = 0;
+    else
+        Velocity = (LeftGazeDirectionDegrees_y2 - LeftGazeDirectionDegrees_y1) / (Time2 - Time1);
+    end
+
+    T{i + 1, "Value_LeftEyeVelocityDegrees_y"} = Velocity * 1000;
+end 
+% Left Eye Velocity Degrees y
+
 % Right Eye Velocity Degrees
 for i=1:(height(T) - 1)
     RightGazeDirectionDegrees_x1 = T{i, "Value_RightEyeDirectionDegrees_x"};
@@ -95,19 +131,54 @@ for i=1:(height(T) - 1)
     end
 
     T{i + 1, "Value_RightEyeVelocityDegrees"} = Velocity * 1000;
-
 end 
 % Right Eye Velocity Degrees
 
+% Right Eye Velocity Degrees x
+for i=1:(height(T) - 1)
+    RightGazeDirectionDegrees_x1 = T{i, "Value_RightEyeDirectionDegrees_x"};
+    RightGazeDirectionDegrees_x2 = T{i + 1, "Value_RightEyeDirectionDegrees_x"};
+
+    Time1 = T{i, "Value_Time"};
+    Time2 = T{i + 1, "Value_Time"};
+
+    if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
+        Velocity = 0;
+    else
+        Velocity = (RightGazeDirectionDegrees_x2 - RightGazeDirectionDegrees_x1) / (Time2 - Time1);
+    end
+
+    T{i + 1, "Value_RightEyeVelocityDegrees_x"} = Velocity * 1000;
+end 
+% Right Eye Velocity Degrees x
+
+% Right Eye Velocity Degrees y
+for i=1:(height(T) - 1)
+    RightGazeDirectionDegrees_y1 = T{i, "Value_RightEyeDirectionDegrees_y"};
+    RightGazeDirectionDegrees_y2 = T{i + 1, "Value_RightEyeDirectionDegrees_y"};
+
+    Time1 = T{i, "Value_Time"};
+    Time2 = T{i + 1, "Value_Time"};
+
+    if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
+        Velocity = 0;
+    else
+        Velocity = (RightGazeDirectionDegrees_y2 - RightGazeDirectionDegrees_y1) / (Time2 - Time1);
+    end
+
+    T{i + 1, "Value_RightEyeVelocityDegrees_y"} = Velocity * 1000;
+end 
+% Right Eye Velocity Degrees y
+
 % Left Saccade
 for i=1:(height(T))
-    T{i, "Value_LeftSaccade"} = double((T{i, "Value_LeftEyeVelocityDegrees"} > 500));
+    T{i, "Value_LeftSaccade"} = double((T{i, "Value_LeftEyeVelocityDegrees"} > 400));
 end 
 % Left Saccade
 
 % Right Saccade
 for i=1:(height(T))
-    T{i, "Value_RightSaccade"} = double((T{i, "Value_RightEyeVelocityDegrees"} > 500));
+    T{i, "Value_RightSaccade"} = double((T{i, "Value_RightEyeVelocityDegrees"} > 400));
 end 
 % Right Saccade
 
@@ -123,11 +194,102 @@ for i=1:(height(T))
 end 
 % Right Fixation
 
+timeThreshold = 500;
+velocityThreshold = 400;
+
+% Left Eye Square Wave Jerk x
+for i=1:(height(T) - 1)
+    if (T{i, "Value_LeftEyeVelocityDegrees_x"} >= velocityThreshold)
+        initialTime = T{i, "Value_Time"};
+        initialPosition = T{i, "Value_LeftEyeDirectionDegrees_x"};
+        for j=i+1:(height(T) - 1)
+            currentPosition = T{j, "Value_LeftEyeDirectionDegrees_x"};
+            if (currentPosition <= (initialPosition + 0.5) && currentPosition >= (initialPosition - 0.5) && ~T{j, "Value_LostFocus"})
+                T{j, "Value_LeftEyeSquareWaveJerk_x"} = 1;
+                i=j;
+                break;
+            elseif ((T{j, "Value_Time"} - initialTime) > timeThreshold)
+                i=j;
+                break;
+            end
+        end
+    end
+end
+% Left Eye Square Wave Jerk x
+
+% Left Eye Square Wave Jerk y
+for i=1:(height(T) - 1)
+    if (T{i, "Value_LeftEyeVelocityDegrees_y"} >= velocityThreshold)
+        initialTime = T{i, "Value_Time"};
+        initialPosition = T{i, "Value_LeftEyeDirectionDegrees_y"};
+        for j=i+1:(height(T) - 1)
+            currentPosition = T{j, "Value_LeftEyeDirectionDegrees_y"};
+            if (currentPosition <= (initialPosition + 0.5) && currentPosition >= (initialPosition - 0.5) && ~T{j, "Value_LostFocus"})
+                T{j, "Value_LeftEyeSquareWaveJerk_y"} = 1;
+                i=j;
+                break;
+            elseif ((T{j, "Value_Time"} - initialTime) > timeThreshold)
+                i=j;
+                break;
+            end
+        end
+    end
+end
+% Left Eye Square Wave Jerk y
+
+% Right Eye Square Wave Jerk x
+for i=1:(height(T) - 1)
+    if (T{i, "Value_RightEyeVelocityDegrees_x"} >= velocityThreshold)
+        initialTime = T{i, "Value_Time"};
+        initialPosition = T{i, "Value_RightEyeDirectionDegrees_x"};
+        for j=i+1:(height(T) - 1)
+            currentPosition = T{j, "Value_RightEyeDirectionDegrees_x"};
+            if (currentPosition <= (initialPosition + 0.5) && currentPosition >= (initialPosition - 0.5) && ~T{j, "Value_LostFocus"})
+                T{j, "Value_RightEyeSquareWaveJerk_x"} = 1;
+                i=j;
+                break;
+            elseif ((T{j, "Value_Time"} - initialTime) > timeThreshold)
+                i=j;
+                break;
+            end
+        end
+    end
+end
+% Right Eye Square Wave Jerk x
+
+% Right Eye Square Wave Jerk y
+for i=1:(height(T) - 1)
+    if (T{i, "Value_RightEyeVelocityDegrees_y"} >= velocityThreshold)
+        initialTime = T{i, "Value_Time"};
+        initialPosition = T{i, "Value_RightEyeDirectionDegrees_y"};
+        for j=i+1:(height(T) - 1)
+            currentPosition = T{j, "Value_RightEyeDirectionDegrees_y"};
+            if (currentPosition <= (initialPosition + 0.5) && currentPosition >= (initialPosition - 0.5) && ~T{j, "Value_LostFocus"})
+                T{j, "Value_RightEyeSquareWaveJerk_y"} = 1;
+                i=j;
+                break;
+            elseif ((T{j, "Value_Time"} - initialTime) > timeThreshold)
+                i=j;
+                break;
+            end
+        end
+    end
+end
+% Right Eye Square Wave Jerk y
+
+% Square Wave Jerk
+for i=1: (height(T) - 1)
+    if(T{i, "Value_LeftEyeSquareWaveJerk_x"} && T{i, "Value_RightEyeSquareWaveJerk_x"} || T{i, "Value_LeftEyeSquareWaveJerk_y"} && T{i, "Value_RightEyeSquareWaveJerk_y"})
+        T{i, "Value_SquareWaveJerk"} = 1;
+    end
+end
+% Square Wave Jerk
+
 %% Graphs %%
 figure(1)
 set(gcf, 'Position', get(0, 'Screensize'));
 % Left Eye Pupil Diameter
-subplot(5, 4, 1);
+subplot(5, 5, 1);
     x1 = T{:, "Value_Time"};
     y1 = T{:, "Value_LeftEyePupilDiameter"};
     title('Left Eye Pupil Diameter');
@@ -138,7 +300,7 @@ subplot(5, 4, 1);
 % Left Eye Pupil Diameter
 
 % Right Eye Pupil Diameter
-subplot(5, 4, 2);
+subplot(5, 5, 2);
     x2 = T{:, "Value_Time"};
     y2 = T{:, "Value_RightEyePupilDiameter"};
     title('Right Eye Pupil Diameter');
@@ -149,7 +311,7 @@ subplot(5, 4, 2);
 % Right Eye Pupil Diameter
 
 % Left Eye Openness
-subplot(5, 4, 3);
+subplot(5, 5, 3);
     x3 = T{:, "Value_Time"};
     y3 = T{:, "Value_LeftEyeOpenness"};
     title('Left Eye Openness');
@@ -159,7 +321,7 @@ subplot(5, 4, 3);
 % Left Eye Openness
     
 % Right Eye Openness
-subplot(5, 4, 4);
+subplot(5, 5, 4);
     x4 = T{:, "Value_Time"};
     y4 = T{:, "Value_RightEyeOpenness"};
     title('Right Eye Openness');
@@ -169,7 +331,7 @@ subplot(5, 4, 4);
 % Right Eye Openness
     
 % Left Eye Velocity Degrees
-subplot(5, 4, 5);
+subplot(5, 5, 5);
     x5 = T{:, "Value_Time"};
     y5 = T{:, "Value_LeftEyeVelocityDegrees"};
     title('Left Eye Velocity');
@@ -179,7 +341,7 @@ subplot(5, 4, 5);
 % Left Eye Velocity Degrees
 
 % Right Eye Velocity Degrees
-subplot(5, 4, 6);
+subplot(5, 5, 6);
     x6 = T{:, "Value_Time"};
     y6 = T{:, "Value_RightEyeVelocityDegrees"};
     xlabel('Time (ms)');
@@ -189,7 +351,7 @@ subplot(5, 4, 6);
 % Right Eye Velocity Degrees
 
 % Left Saccade
-subplot(5, 4, 7);
+subplot(5, 5, 7);
     x7 = T{:, "Value_Time"};
     y7 = T{:, "Value_LeftSaccade"};
     title('Left Saccade');
@@ -199,7 +361,7 @@ subplot(5, 4, 7);
 % Left Saccade
 
 % Right Saccade
-subplot(5, 4, 8);
+subplot(5, 5, 8);
     x8 = T{:, "Value_Time"};
     y8 = T{:, "Value_RightSaccade"};
     title('Right Saccade');
@@ -209,7 +371,7 @@ subplot(5, 4, 8);
 % Right Saccade
 
 % Left Fixation
-subplot(5, 4, 9);
+subplot(5, 5, 9);
     x9 = T{:, "Value_Time"};
     y9 = T{:, "Value_LeftFixation"};
     title('Left Fixation');
@@ -219,7 +381,7 @@ subplot(5, 4, 9);
 % Left Fixation
 
 % Right Fixation
-subplot(5, 4, 10);
+subplot(5, 5, 10);
     x10 = T{:, "Value_Time"};
     y10 = T{:, "Value_RightFixation"};
     title('Right Fixation');
@@ -234,7 +396,7 @@ subplot(5, 4, 10);
     pts = linspace(0, 1, 70);
     N = histcounts2(y11(:), x11(:), pts, pts);
     
-subplot(5, 4, 11);
+subplot(5, 5, 11);
     imagesc(pts, pts, N);
     xlabel('x');
     ylabel('y');
@@ -242,7 +404,7 @@ subplot(5, 4, 11);
     axis equal;
     set(gca, 'XLim', pts([1 end]), 'YLim', pts([1 end]), 'YDir', 'normal');
 
-subplot(5, 4, 12);
+subplot(5, 5, 12);
     xlabel('x');
     ylabel('y');
     title('Left Eye Pupil Position In Sensor Area');
@@ -258,7 +420,7 @@ subplot(5, 4, 12);
     pts = linspace(0, 1, 70);
     N = histcounts2(y12(:), x12(:), pts, pts);
     
-subplot(5, 4, 13);
+subplot(5, 5, 13);
     imagesc(pts, pts, N);
     xlabel('x');
     ylabel('y');
@@ -266,7 +428,7 @@ subplot(5, 4, 13);
     axis equal;
     set(gca, 'XLim', pts([1 end]), 'YLim', pts([1 end]), 'YDir', 'normal');
 
-subplot(5, 4, 14);
+subplot(5, 5, 14);
     xlabel('x');
     ylabel('y');
     title('Right Eye Pupil Position In Sensor Area');
@@ -282,7 +444,7 @@ subplot(5, 4, 14);
     pts = linspace(-0.99, 1, 70);
     N = histcounts2(y13(:), x13(:), pts, pts);
     
-subplot(5, 4, 15);
+subplot(5, 5, 15);
     imagesc(pts, pts, N);
     xlabel('x');
     ylabel('y');
@@ -290,7 +452,7 @@ subplot(5, 4, 15);
     axis equal;
     set(gca, 'XLim', pts([1 end]), 'YLim', pts([1 end]), 'YDir', 'normal');
 
-subplot(5, 4, 16);
+subplot(5, 5, 16);
     xlabel('x');
     ylabel('y');
     title('Combined Eyes Gaze Direction');
@@ -301,44 +463,54 @@ subplot(5, 4, 16);
 % Combined Eyes Gaze Directions Normalized
 
 % Left Eye Direction Degrees x
-subplot(5, 4, 17);
+subplot(5, 5, 17);
     x14 = T{:, "Value_Time"};
     y14 = T{:, "Value_LeftEyeDirectionDegrees_x"};
-    title('Square Wave Jerk Left Eye X');
+    title('Left Eye Direction Degrees X');
     xlabel('Time (ms)');
     ylabel('Degrees');
     h14 = animatedline('Color', 'r');
 % Left Eye Direction Degrees x
 
 % Right Eye Direction Degrees x
-subplot(5, 4, 18);
+subplot(5, 5, 18);
     x15 = T{:, "Value_Time"};
     y15 = T{:, "Value_RightEyeDirectionDegrees_x"};
-    title('Square Wave Jerk Right Eye X');
+    title('Right Eye Direction Degrees X');
     xlabel('Time (ms)');
     ylabel('Degrees');
     h15 = animatedline('Color', 'g');
 % Right Eye Direction Degrees x
 
 % Left Eye Direction Degrees y
-subplot(5, 4, 19);
+subplot(5, 5, 19);
     x16 = T{:, "Value_Time"};
     y16 = T{:, "Value_LeftEyeDirectionDegrees_y"};
-    title('Square Wave Jerk Left Eye Y');
+    title('Left Eye Direction Degrees Y');
     xlabel('Time (ms)');
     ylabel('Degrees');
     h16 = animatedline('Color', 'r');
 % Left Eye Direction Degrees y
 
 % Right Eye Direction Degrees y
-subplot(5, 4, 20);
+subplot(5, 5, 20);
     x17 = T{:, "Value_Time"};
     y17 = T{:, "Value_RightEyeDirectionDegrees_y"};
-    title('Square Wave Jerk Right Eye Y');
+    title('Right Eye Direction Degrees Y');
     xlabel('Time (ms)');
     ylabel('Degrees');
     h17 = animatedline('Color', 'g');
 % Right Eye Direction Degrees y
+
+% Square Wave Jerk
+subplot(5, 5, 23);
+    x18 = T{:, "Value_Time"};
+    y18 = T{:, "Value_SquareWaveJerk"};
+    title('Square Wave Jerk');
+    xlabel('Time (ms)');
+    ylabel('SWJ');
+    h18 = animatedline('Color', 'b');
+% Square Wave Jerk
 
 %% Animation
 video = VideoWriter('Eye-TrackingAnalysis.avi', 'Uncompressed AVI');
@@ -378,7 +550,8 @@ for i = 1:length(x9)
     if (x17(i) ~= -1)
         addpoints(h17, x17(i), y17(i));
     end
-    
+    addpoints(h18, x18(i), y18(i));
+
     b = toc(a); % check timer
     if b > (1/200)
         F = getframe(gcf)

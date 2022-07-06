@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ScenarioManager
 {
+    public HashSet<string> toolsDone = new HashSet<string>();
     private List<string> toolsOrder = new List<string>();
-    private HashSet<string> toolsDone = new HashSet<string>();
+
     public ScenarioManager(List<string> toolsOrder)
     {
         this.toolsOrder = toolsOrder;

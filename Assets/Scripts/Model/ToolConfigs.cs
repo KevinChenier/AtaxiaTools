@@ -21,6 +21,12 @@ namespace Assets.Scripts.Model
 
         public EyeTrackingFixationConfig EyeTrackingFixationConfig;
 
+        public VibrationConfig VibrationConfig;
+
+        public EyeContrastConfig EyeContrastConfig;
+
+        public SpeechPerceptionConfig SpeechPerceptionConfig;
+
         public SimpleToolConfig MenuConfig;
 
         public IEnumerable<IToolConfig> All()
@@ -35,6 +41,9 @@ namespace Assets.Scripts.Model
                 EyeTrackingFollowConfig,
                 EyeTrackingMultipleConfig,
                 EyeTrackingFixationConfig,
+                VibrationConfig,
+                EyeContrastConfig,
+                SpeechPerceptionConfig,
                 MenuConfig
             };
         }

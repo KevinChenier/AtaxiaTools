@@ -1,14 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class TutorialManager : MonoBehaviour
 {
-    public Button GoButton;
+    private UserInterfaceManager UserInterfaceManager;
+
     public BaseTool tool;
     public GameObject Video;
-    public TextMeshPro tipsText;
 
     private static TutorialManager _instance;
 
@@ -25,6 +26,7 @@ public class TutorialManager : MonoBehaviour
             return;
         }
         _instance = this;
+        UserInterfaceManager = UserInterfaceManager.Instance;
     }
 
     // Start is called before the first frame update
@@ -34,10 +36,15 @@ public class TutorialManager : MonoBehaviour
         {
             Debug.Log("Tutorial!");
             tool.Pause();
-            GoButton.onClick.AddListener(() => BeginActivity());
+            UserInterfaceManager.GoButton.onClick.AddListener(() => BeginActivity());
             Video.GetComponent<RawImage>().enabled = true;
             Video.GetComponentInChildren<VideoPlayer>().enabled = true;
-            tool.tips.giveTip(tool.baseConfigs.TutorialTip);
+            Video.GetComponentInChildren<VideoPlayer>().loopPointReached += OnVideoEnded;
+            UserInterfaceManager.tips.giveTip(tool.baseConfigs.Name);
+            
+            // If the current tool was already done in the scenario, we 
+            if (ConfigManager.Instance.ScenarioManager != null && ConfigManager.Instance.ScenarioManager.toolsDone.Contains(SceneManager.GetActiveScene().name))
+                UserInterfaceManager.GoButton.gameObject.SetActive(true);
         }
         else
         {
@@ -47,9 +54,14 @@ public class TutorialManager : MonoBehaviour
 
     void BeginActivity()
     {
-        Debug.Log("Activity beginning!");
-        tool.Show();
+        tool.InitTool();
         gameObject.SetActive(false);
-        tipsText.text = "";
+        UserInterfaceManager.GoButton.gameObject.SetActive(false);
+        UserInterfaceManager.tips.deactivateTip();
+    }
+
+    void OnVideoEnded(VideoPlayer video)
+    {
+        UserInterfaceManager.GoButton.gameObject.SetActive(true);
     }
 }

@@ -57,7 +57,7 @@ public class PegboardTool : Tool<PegboardConfig>
         });
     }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 

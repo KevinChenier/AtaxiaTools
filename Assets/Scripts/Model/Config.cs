@@ -18,5 +18,7 @@ namespace Assets.Scripts.Model
         public bool AllowNavigation;
 
         public bool UseMongo;
+
+        public string Locale;
     }
 }

@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 35.53058, y: -31.982813, z: 3.8074317}
   m_LocalScale: {x: 109.9038, y: 81.50137, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314493278166253436}
   m_RootOrder: 0
@@ -97,6 +98,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.77}
   m_LocalScale: {x: 0.009098867, y: 0.012269732, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 949826304}
   m_Father: {fileID: 0}

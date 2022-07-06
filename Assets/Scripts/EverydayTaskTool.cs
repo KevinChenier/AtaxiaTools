@@ -12,7 +12,7 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
 
     private float timer;
 
-    public EverydayTaskTool() : base("EverydayTask") { }
+    public EverydayTaskTool() : base("everydayTask") { }
 
     public override void score()
     {
@@ -42,7 +42,7 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
         });
     }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 

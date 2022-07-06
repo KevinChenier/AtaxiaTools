@@ -13,7 +13,7 @@ public class EyeTrackingMultipleTool : Tool<EyeTrackingMultipleConfig>
 
     public EyeTrackingMultipleTool() : base("eyeTrackingMultiple") { }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 

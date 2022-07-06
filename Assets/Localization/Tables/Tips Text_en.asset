@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tips Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 2471a8d47a8e4c949b2c7b30434fcfe6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 482033303552
+    m_Localized: Grab the little blue objects in the box, and put them in the pegboard
+      holes one by one. At the end, put them back in the box.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4174031650816
+    m_Localized: Follow the avatar finger with one of your index fingers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5069507166208
+    m_Localized: Wait for the liquid to be poured in the glass. When it is ready,
+      grab the glass and pour it in the other container. You have to be above the
+      red line to pour it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601571405824
+    m_Localized: When the note hits the destination, press the index button on any
+      of the controllers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5735977877504
+    m_Localized: Touch the avatar finger with one of your index finger. When you
+      touch it, bring your index to the red sphere, that represents the nose.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5873341333504
+    m_Localized: Follow the red cube with your eyes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6065641783296
+    m_Localized: Look at the red cube and wait for the timer to finish. When the
+      timer is finished, look at the other red cube.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6194666962944
+    m_Localized: Stay fixated on the red cube until the timer finishes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8799094865920
+    m_Localized: Activity just ended! Press on Go to change the activity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27560799666176
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28270569500475392
+    m_Localized: We will trigger vibrations in the controllers at anytime. When you
+      feel a vibration, press the index button on any of the controllers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29064863584911360
+    m_Localized: A specific letter will appear in front of you, when you start to
+      see it, select the correct letter in the menu below the letter.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30572984119623680
+    m_Localized: When you hear a letter, select the correct letter that you just
+      heard with your pointer in the menu in front of you.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EverydayTaskScene.unity
     guid: 165279b8fde4257469aab5e022657433
+  - enabled: 1
+    path: Assets/Scenes/PegboardAlternativeScene_AutoHand.unity
+    guid: 98fde4f3cc8c6cc4cbca562ed0e549cd
   - enabled: 0
     path: Assets/Scenes/EyeTrackingFixationScene.unity
     guid: eb7cfdf769c1b0642bd46a528e2d72c5
@@ -35,5 +38,8 @@ EditorBuildSettings:
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b3a4389423b9f2f4b953193c5de072f4, type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 10c3e7ef045cf6a459aa13116d6e273e, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 06f0f32c3d355884a902cf442df83d18, type: 2}
+    com.unity.localization.addressable-group-rules: {fileID: 11400000, guid: fbaba6c5642b390438d5275db34088e9, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 55d67adcf07c1b24fa885b8f31022565, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 95036fee22974384e864df4be3f149dc, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 9a678e47216beac45b8b940b89705177, type: 2}

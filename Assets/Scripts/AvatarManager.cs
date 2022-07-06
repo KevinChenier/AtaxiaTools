@@ -1,3 +1,4 @@
+using OculusSampleFramework;
 using RootMotion.FinalIK;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,8 @@ public class AvatarManager : MonoBehaviour
     public GameObject fingerPlane;
     public GameObject indicator;
 
-    public Collider left_hand;
-    public Collider right_hand;
+    public GameObject left_hand;
+    public GameObject right_hand;
     public List<Collider> indexes_hand = new List<Collider>();
 
     public static AvatarManager Instance { get; private set; }

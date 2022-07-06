@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class ConfigManager : MonoBehaviour
 {
@@ -38,8 +40,11 @@ public class ConfigManager : MonoBehaviour
 
     void Start()
     {
+        // There seems to be a bug concerning the loading of locales, Invoke is necessary until fix.
+        Invoke("LoadLocale", 0.1f);
         if (Config.ScenarioActive)
         {
+            UnityEngine.Debug.Log("Starting scenario!");
             ScenarioManager = new ScenarioManager(Config.ScenarioConfig.ToolsOrder);
             ScenarioManager.InitScenario();
         }
@@ -62,6 +67,12 @@ public class ConfigManager : MonoBehaviour
         var json = JsonUtility.ToJson(Config);
         using var w = new StreamWriter("appsettings.json");
         w.Write(json);
+    }
+
+    public void LoadLocale()
+    {
+        LocaleIdentifier localeCode = new LocaleIdentifier(Config.Locale); // can be "en" "de" "ja" etc.
+        LocalizationSettings.SelectedLocale = LocalizationSettings.Instance.GetAvailableLocales().Locales.First(x => x.Identifier == localeCode);
     }
 
     public IEnumerable<(string, string)> GetMenuOptions()

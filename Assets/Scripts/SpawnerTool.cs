@@ -23,9 +23,9 @@ public class SpawnerTool : Tool<SimpleToolConfig>
         GameObject spawned = Instantiate(gameObjects[index], transform.position, transform.rotation);
         spawned.AddComponent<Rigidbody>().useGravity = true;
         spawned.AddComponent<MeshCollider>().convex = true;
-    } 
+    }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
     }

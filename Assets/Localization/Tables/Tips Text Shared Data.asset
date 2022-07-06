@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Tips Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Tips Text
+  m_TableCollectionNameGuidString: 2471a8d47a8e4c949b2c7b30434fcfe6
+  m_Entries:
+  - m_Id: 482033303552
+    m_Key: pegboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4174031650816
+    m_Key: fingerFollow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5069507166208
+    m_Key: everydayTask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601571405824
+    m_Key: rhythm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5735977877504
+    m_Key: fingerNose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5873341333504
+    m_Key: eyeTrackingFollow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6065641783296
+    m_Key: eyeTrackingMultiple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6194666962944
+    m_Key: eyeTrackingFixation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8799094865920
+    m_Key: Activity Ended
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27560799666176
+    m_Key: Nothing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28270569500475392
+    m_Key: vibration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29064863584911360
+    m_Key: eyeContrast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30572984119623680
+    m_Key: speechPerception
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1648488449613

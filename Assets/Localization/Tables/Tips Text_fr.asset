@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tips Text_fr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: 2471a8d47a8e4c949b2c7b30434fcfe6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 482033303552
+    m_Localized: "Prenez les petits objets bleus dans la bo\xEEte et placez-les un
+      par un dans les trous du panneau perfor\xE9. \xC0 la fin, remettez-les dans
+      la bo\xEEte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4174031650816
+    m_Localized: Suivez le doigt de l'avatar avec l'un de vos index.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5069507166208
+    m_Localized: "Attendez que le liquide soit vers\xE9 dans le verre. Lorsqu'il
+      est pr\xEAt, saisissez le verre et versez-le dans l'autre r\xE9cipient. Vous
+      devez \xEAtre au-dessus de la ligne rouge pour le verser."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601571405824
+    m_Localized: "Lorsque la note atteint la destination, appuyez sur le bouton d'index
+      sur l'un des contr\xF4leurs."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5735977877504
+    m_Localized: "Touchez le doigt de l'avatar avec l'un de vos index. Lorsque vous
+      le touchez, amenez votre index vers la sph\xE8re rouge, qui repr\xE9sente le
+      nez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5873341333504
+    m_Localized: Suivez le cube rouge avec vos yeux.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6065641783296
+    m_Localized: "Regardez le cube rouge et attendez que le chronom\xE8tre se termine.
+      Lorsque le chronom\xE8tre est termin\xE9, regardez l'autre cube rouge."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6194666962944
+    m_Localized: "Restez fix\xE9 sur le cube rouge jusqu'\xE0 la fin du chronom\xE8tre."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8799094865920
+    m_Localized: "L'activit\xE9 vient de se terminer ! Appuyez sur Go pour changer
+      d'activit\xE9.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27560799666176
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28270569500475392
+    m_Localized: "Nous d\xE9clencherons des vibrations dans les contr\xF4leurs \xE0
+      tout moment. Lorsque vous ressentez une vibration, appuyez sur le bouton d'index
+      de l'un des contr\xF4leurs."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29064863584911360
+    m_Localized: "Une lettre sp\xE9cifique appara\xEEtra devant vous, lorsque vous
+      commencez \xE0 la voir, s\xE9lectionnez la lettre correcte dans le menu sous
+      la lettre."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30572984119623680
+    m_Localized: "Lorsque vous entendez une lettre, s\xE9lectionnez la bonne lettre
+      que vous venez d'entendre avec votre pointeur dans le menu devant vous."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

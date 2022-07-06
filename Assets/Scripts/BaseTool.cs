@@ -7,8 +7,7 @@ public abstract class BaseTool : MonoBehaviour
     public GameObject pointer;
     public GameObject[] sceneObjects;
     public IToolConfig baseConfigs { get; set; }
-    public Tips tips;
-    
+
     public void Pause()
     {
         foreach (var o in sceneObjects)
@@ -27,5 +26,7 @@ public abstract class BaseTool : MonoBehaviour
         }
     }
 
-    
+    public abstract void InitTool();
+
+    public abstract void EndTool(int timer);
 }

@@ -50,7 +50,7 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
         plane.GetComponent<MeshRenderer>().enabled = false;
     }
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
 

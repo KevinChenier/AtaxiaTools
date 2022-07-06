@@ -11,7 +11,7 @@ public class ItemsInBox : Tool<SimpleToolConfig>
     private int numberOfCurrentObjects = 0;
     private int numberOfObjects = 0;
 
-    protected override void InitTool()
+    public override void InitTool()
     {
         base.InitTool();
     }

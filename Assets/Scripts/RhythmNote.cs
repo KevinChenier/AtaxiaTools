@@ -9,6 +9,6 @@ public class RhythmNote : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(-speed, 0, 0);
+        rb.velocity = new Vector3(0, -speed, 0);
     }
 }
