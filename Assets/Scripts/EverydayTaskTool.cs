@@ -36,6 +36,8 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.EverydayTaskConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             PourHeight = configs.height

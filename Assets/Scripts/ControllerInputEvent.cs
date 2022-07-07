@@ -34,5 +34,13 @@ public class ControllerInputEvent : MonoBehaviour
         {
             StartUpEvent(this, null);
         }
+
+        if (ConfigManager.Instance.Config.ScenarioActive)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ConfigManager.Instance.ScenarioManager.LoadNextScene();
+            }
+        }
     }
 }

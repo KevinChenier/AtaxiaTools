@@ -41,6 +41,8 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.SpeechPerceptionConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             Repetitions = configs.repetitionsPerVolume,

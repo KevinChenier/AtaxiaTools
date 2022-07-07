@@ -39,6 +39,7 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
         UnityEngine.Debug.Log("Activity just began!");
         sw = new Stopwatch();
         sw.Start();
+        configsSave();
         Show();
     }
 

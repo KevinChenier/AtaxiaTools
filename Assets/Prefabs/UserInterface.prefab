@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6967432817792959169}
   m_RootOrder: 0
@@ -108,6 +109,7 @@ RectTransform:
   m_LocalRotation: {x: 0.0014920539, y: -0, z: -0, w: 0.9999989}
   m_LocalPosition: {x: 0, y: 0, z: -5.422}
   m_LocalScale: {x: 0.3430972, y: 0.22752841, z: 0.58586}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2589217800176895406}
   m_Father: {fileID: 3707494622990180828}
@@ -239,6 +241,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3707494622990180828}
   - {fileID: 477066028996037061}
@@ -352,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 1490396577919883206, guid: c69f5537052b6a94296660358842fc25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651663700110173982, guid: c69f5537052b6a94296660358842fc25, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5379314467498473015, guid: c69f5537052b6a94296660358842fc25, type: 3}
       propertyPath: m_Name
@@ -520,11 +527,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c482a08849e51c4cba34a00b0b4837d, type: 3}
---- !u!224 &5664458488672702758 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8881765178608143656, guid: 5c482a08849e51c4cba34a00b0b4837d, type: 3}
-  m_PrefabInstance: {fileID: 3881659382871038990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5664458488646396357 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8881765178646066635, guid: 5c482a08849e51c4cba34a00b0b4837d, type: 3}
@@ -536,6 +538,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5664458488672702758 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8881765178608143656, guid: 5c482a08849e51c4cba34a00b0b4837d, type: 3}
+  m_PrefabInstance: {fileID: 3881659382871038990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4423630274158313538
 PrefabInstance:
   m_ObjectHideFlags: 0

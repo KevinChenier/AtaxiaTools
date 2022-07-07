@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PatientScene.unity
+    guid: bb38b94623e552246b5c96475124e744
+  - enabled: 0
     path: Assets/Scenes/MenuScene.unity
     guid: 712f750e29a644e47b544319ac055f5d
   - enabled: 1
     path: Assets/Scenes/RhythmScene.unity
     guid: 23d88ca8c05cafa448535e8e680d850c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PegboardScene.unity
     guid: eccafc26694677c4daa2da09dccb6e7c
   - enabled: 1
@@ -26,7 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PegboardAlternativeScene_AutoHand.unity
     guid: 98fde4f3cc8c6cc4cbca562ed0e549cd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PegboardAlternativeScene_HandTracking.unity
     guid: a9812c6fb1a6b07478c6b48690ae872f
   - enabled: 1

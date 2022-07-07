@@ -63,6 +63,8 @@ public class VibrationTool : Tool<VibrationConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.VibrationConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             Repetitions = configs.repetitions

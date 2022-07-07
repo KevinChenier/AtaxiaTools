@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class ScenarioManager
 {
     public HashSet<string> toolsDone = new HashSet<string>();
     private List<string> toolsOrder = new List<string>();
+    private int currentToolIndex = 0;
 
     public ScenarioManager(List<string> toolsOrder)
     {
@@ -15,26 +18,35 @@ public class ScenarioManager
 
     public void InitScenario()
     {
-        SceneManager.LoadScene(toolsOrder[0]);
+        if (PatientData.PatientID == null)
+        {
+            SceneManager.LoadScene("PatientScene");
+        }
+        else
+        {
+            PatientData.TrialID = System.Guid.NewGuid().ToString();
+            SceneManager.LoadScene(toolsOrder[0]);
+        }
     }
 
     public void LoadNextScene()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-        int index = toolsOrder.IndexOf(currentScene);
-        toolsDone.Add(currentScene);
-
-        if (index == toolsOrder.Count - 1)
+        if (PatientData.PatientID == null)
         {
+            Debug.LogError("Need to set Patient ID.");
             return;
         }
-        else if(index ==  -1)
+            
+        string currentScene = SceneManager.GetActiveScene().name;
+        toolsDone.Add(currentScene);
+        try
         {
-            SceneManager.LoadScene(toolsOrder[0]);
+            currentToolIndex++;
+            SceneManager.LoadScene(toolsOrder[currentToolIndex]);
         }
-        else
+        catch (ArgumentOutOfRangeException)
         {
-            SceneManager.LoadScene(toolsOrder[index + 1]);
+            Debug.Log("Finished Scenario!");
         }
     }
 }

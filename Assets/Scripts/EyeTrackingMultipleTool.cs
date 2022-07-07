@@ -66,6 +66,8 @@ public class EyeTrackingMultipleTool : Tool<EyeTrackingMultipleConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingMultipleConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             TargetSize = configs.targetSize,

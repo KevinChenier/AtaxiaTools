@@ -122,7 +122,9 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig.ToString(),
-            
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
+
             ToolEnded = toolEnded,
             Repetitions = configs.repetitions,
             TargetSpeed = configs.speed,

@@ -86,6 +86,8 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeContrastConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             Repetitions = configs.repetitions
         });

@@ -190,6 +190,8 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerFollowConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             Mode = configs.mode.ToString(),
 

@@ -148,8 +148,10 @@ public class RhythmTool : Tool<RhythmConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.RhythmConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
-            mode = configs.mode.ToString(),
+            Mode = configs.mode.ToString(),
                 
             ToolEnded = toolEnded,
             BPM = configs.bpm,

@@ -51,6 +51,8 @@ public class PegboardTool : Tool<PegboardConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.PegboardConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             TimerShowed = configs.isTimerShowed

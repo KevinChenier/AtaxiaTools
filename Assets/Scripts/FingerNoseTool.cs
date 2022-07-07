@@ -66,6 +66,8 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             Repetitions = configs.repetitions

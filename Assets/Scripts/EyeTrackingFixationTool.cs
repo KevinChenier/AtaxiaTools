@@ -50,6 +50,8 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFixConfig.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
 
             ToolEnded = toolEnded,
             TargetSize = configs.targetSize,
