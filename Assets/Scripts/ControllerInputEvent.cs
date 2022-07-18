@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using Valve.VR;
 
@@ -28,19 +29,22 @@ public class ControllerInputEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputDevices.GetDevicesAtXRNode(XRNode.LeftHand, devices);
-        if (OVRInput.GetUp(OVRInput.Button.Start) 
-        || SteamVR_Input.GetStateDown("ActivateUI", SteamVR_Input_Sources.RightHand))
+        if (!ConfigManager.Instance.Config.ScenarioActive)
         {
-            StartUpEvent(this, null);
-        }
-
-        if (ConfigManager.Instance.Config.ScenarioActive)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            InputDevices.GetDevicesAtXRNode(XRNode.LeftHand, devices);
+            if (OVRInput.GetUp(OVRInput.Button.Start)
+            || SteamVR_Input.GetStateDown("ActivateUI", SteamVR_Input_Sources.RightHand))
             {
-                ConfigManager.Instance.ScenarioManager.LoadNextScene();
+                StartUpEvent(this, null);
             }
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OVRManager.display.RecenterPose();
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

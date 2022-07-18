@@ -64,7 +64,8 @@ public class EyeTrackingMultipleTool : Tool<EyeTrackingMultipleConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingMultipleConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingMultipleConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

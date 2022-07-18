@@ -57,8 +57,9 @@ public class RhythmTool : Tool<RhythmConfig>
     }
 
     // Update is called once per frame
-    void Update()
+   protected override void Update()
     {
+        base.Update();
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) || OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
         {
             if (active)
@@ -133,7 +134,8 @@ public class RhythmTool : Tool<RhythmConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.RhythmData, new 
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.RhythmData.ToString(),
 
             NoteType = noteType.ToString()
@@ -146,7 +148,8 @@ public class RhythmTool : Tool<RhythmConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.RhythmConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.RhythmConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

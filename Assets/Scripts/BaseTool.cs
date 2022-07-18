@@ -7,6 +7,9 @@ public abstract class BaseTool : MonoBehaviour
     public GameObject pointer;
     public GameObject[] sceneObjects;
     public IToolConfig baseConfigs { get; set; }
+    public bool toolBegan { get; set; }
+    public bool toolEnded { get; set; }
+
 
     public void Pause()
     {

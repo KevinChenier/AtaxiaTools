@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,7 +205,6 @@ MonoBehaviour:
   pointer: {fileID: 1878376858}
   sceneObjects:
   - {fileID: 157424081}
-  - {fileID: 367559041}
   strumming: {fileID: 8300000, guid: 76372058b59ce2c40a73aab06f622f92, type: 3}
   miss: {fileID: 8300000, guid: 522f2fbbe4b03884eb75a8835ea4a312, type: 3}
   highlightColor: {r: 0, g: 1, b: 0, a: 1}

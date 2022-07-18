@@ -36,7 +36,8 @@ public class PegboardTool : Tool<PegboardConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.PegboardData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.PegboardData.ToString(),
 
             TimeTask = timeGrab
@@ -49,7 +50,8 @@ public class PegboardTool : Tool<PegboardConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.PegboardConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.PegboardConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

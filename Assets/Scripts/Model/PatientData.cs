@@ -5,6 +5,6 @@ using UnityEngine;
 
 public static class PatientData
 {
-    public static string PatientID { get; set; }
-    public static string TrialID { get; set; }
+    public static string PatientID { get; set; } = "Default";
+    public static string TrialID { get; set; } = "Default";
 }

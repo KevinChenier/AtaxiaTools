@@ -5,8 +5,7 @@ using UnityEngine;
 public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
 {
     public TConfig configs { get; set; }
-    public bool toolBegan { get; set; }
-    public bool toolEnded { get; set; }
+
     protected EventBus bus;
     protected Stopwatch sw;
     private string toolName;
@@ -28,6 +27,22 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
 
         if(!ConfigManager.Config.ActivateTutorial)
             Invoke("InitTool", 0.1f);
+    }
+
+    protected virtual void Update()
+    {
+        if (!ConfigManager.Instance.Config.ScenarioActive)
+            return;   
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            if (!toolBegan && ConfigManager.Instance.Config.ActivateTutorial)
+                TutorialManager.Instance.BeginActivity();
+            else
+            {
+                configsSave();
+                ConfigManager.Instance.ScenarioManager.LoadNextScene();
+            }
+        }
     }
 
     /// <summary>

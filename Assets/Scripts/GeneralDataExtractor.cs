@@ -34,6 +34,8 @@ public class GeneralDataExtractor : MonoBehaviour
     {
         bus = EventBus.Instance;
 
+        OnApplicationStart();
+
         // 12 HZ (83 ms) pour quantifier le tremblement
         InvokeRepeating("SaveOculusControllersData", 0.0f, 0.083f);
 
@@ -93,7 +95,7 @@ public class GeneralDataExtractor : MonoBehaviour
         {
             Time = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeData.ToString(),
-            
+
             LeftEyeOpenness = data.left.eye_openness,
             LeftEyePupilDiameter = data.left.pupil_diameter_mm,
             LeftEyePupilPositionInSensorArea = data.left.pupil_position_in_sensor_area,
@@ -141,4 +143,35 @@ public class GeneralDataExtractor : MonoBehaviour
             GazeAOI = -1.0
         });
     }
+
+    private void OnApplicationStart()
+    {
+        var time = sw.ElapsedTicks;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.ApplicationStart, new
+        {
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
+
+            Type = Assets.Scripts.Model.Types.EventType.ApplicationStart.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
+        });
+    }
+
+    private void OnApplicationQuit()
+    {
+        var time = sw.ElapsedTicks;
+
+        bus.Push(Assets.Scripts.Model.Types.EventType.ApplicationQuit, new
+        {
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
+
+            Type = Assets.Scripts.Model.Types.EventType.ApplicationQuit.ToString(),
+            PatientID = PatientData.PatientID,
+            TrialID = PatientData.TrialID,
+        });
+    }
+
 }

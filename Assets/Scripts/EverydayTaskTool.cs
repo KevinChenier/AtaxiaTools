@@ -20,7 +20,8 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EverydayTaskData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EverydayTaskData.ToString(),
 
             Score = accuracy * 100.0 + "%",
@@ -34,7 +35,8 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EverydayTaskConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EverydayTaskConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
@@ -57,8 +59,9 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
         base.EndTool(timer);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (container.GetComponent<ContainerCollider>().initialized && !toolEnded)
         {
             timer += Time.deltaTime;

@@ -18,25 +18,29 @@ public class ScenarioManager
 
     public void InitScenario()
     {
-        if (PatientData.PatientID == null)
+        // Commented until a new solution is working
+        /*if (PatientData.PatientID == "Default")
         {
             SceneManager.LoadScene("PatientScene");
         }
         else
         {
-            PatientData.TrialID = System.Guid.NewGuid().ToString();
+            PatientData.TrialID = Guid.NewGuid().ToString();
             SceneManager.LoadScene(toolsOrder[0]);
-        }
+        }*/
+        PatientData.TrialID = Guid.NewGuid().ToString();
+        SceneManager.LoadScene(toolsOrder[0]);
     }
 
     public void LoadNextScene()
     {
-        if (PatientData.PatientID == null)
+        // Commented until a new solution is working
+        /*if (PatientData.PatientID == "Default")
         {
             Debug.LogError("Need to set Patient ID.");
             return;
-        }
-            
+        }*/
+
         string currentScene = SceneManager.GetActiveScene().name;
         toolsDone.Add(currentScene);
         try

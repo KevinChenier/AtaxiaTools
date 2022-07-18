@@ -41,10 +41,11 @@ public class TutorialManager : MonoBehaviour
             Video.GetComponentInChildren<VideoPlayer>().enabled = true;
             Video.GetComponentInChildren<VideoPlayer>().loopPointReached += OnVideoEnded;
             UserInterfaceManager.tips.giveTip(tool.baseConfigs.Name);
-            
-            // If the current tool was already done in the scenario, we 
-            if (ConfigManager.Instance.ScenarioManager != null && ConfigManager.Instance.ScenarioManager.toolsDone.Contains(SceneManager.GetActiveScene().name))
-                UserInterfaceManager.GoButton.gameObject.SetActive(true);
+
+            // If the current tool was already done in the scenario, we show him he go button
+            if (ConfigManager.Instance.ScenarioManager != null)
+                if (ConfigManager.Instance.ScenarioManager.toolsDone.Contains(SceneManager.GetActiveScene().name))
+                    UserInterfaceManager.GoButton.gameObject.SetActive(true);
         }
         else
         {
@@ -52,7 +53,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    void BeginActivity()
+    public void BeginActivity()
     {
         tool.InitTool();
         gameObject.SetActive(false);

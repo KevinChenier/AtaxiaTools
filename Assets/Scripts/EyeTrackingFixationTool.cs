@@ -48,7 +48,8 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingFixConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFixConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

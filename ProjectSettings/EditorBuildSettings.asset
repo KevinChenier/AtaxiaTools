@@ -5,49 +5,49 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PatientScene.unity
     guid: bb38b94623e552246b5c96475124e744
   - enabled: 0
     path: Assets/Scenes/MenuScene.unity
     guid: 712f750e29a644e47b544319ac055f5d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RhythmScene.unity
     guid: 23d88ca8c05cafa448535e8e680d850c
   - enabled: 0
     path: Assets/Scenes/PegboardScene.unity
     guid: eccafc26694677c4daa2da09dccb6e7c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FingerNoseScene.unity
     guid: c1a90ebad5bc1604086d39d44d1ba216
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FingerFollowScene.unity
     guid: 841e630cb58a02c4480230b7e081acf8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EverydayTaskScene.unity
     guid: 165279b8fde4257469aab5e022657433
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PegboardAlternativeScene_AutoHand.unity
     guid: 98fde4f3cc8c6cc4cbca562ed0e549cd
   - enabled: 0
     path: Assets/Scenes/PegboardAlternativeScene_HandTracking.unity
     guid: a9812c6fb1a6b07478c6b48690ae872f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VibrationScene.unity
     guid: 9656b6560a7dc8c4a86548a7b4058218
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SpeechPerceptionScene.unity
     guid: eb7623d09489925449e24b27e588777c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EyeContrastScene.unity
     guid: 3f08aacac0fbb4549928317e1c50469e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EyeTrackingFixationScene.unity
     guid: eb7cfdf769c1b0642bd46a528e2d72c5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EyeTrackingFollowScene.unity
     guid: 495895f7fb1fcc14eabbb3f0d33c081d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EyeTrackingMultipleScene.unity
     guid: 0ffd6c892cb17594fbc251c455c5e680
   m_configObjects:

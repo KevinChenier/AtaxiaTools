@@ -39,7 +39,8 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.SpeechPerceptionConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.SpeechPerceptionConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
@@ -56,7 +57,8 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.SpeechPerceptionData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.SpeechPerceptionData.ToString(),
 
             Success = success,

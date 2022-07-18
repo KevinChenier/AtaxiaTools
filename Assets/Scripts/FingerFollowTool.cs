@@ -1,5 +1,4 @@
 using Assets.Scripts.Model;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -87,8 +86,9 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         }
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (lostFocus)
         {
             lostFocusTimeInstance += Time.deltaTime;
@@ -174,7 +174,8 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
             
             LostFocusTime = lostFocusTimeInstance,
@@ -188,7 +189,8 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerFollowConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerFollowConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

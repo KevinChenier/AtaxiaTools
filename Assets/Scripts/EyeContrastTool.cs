@@ -84,7 +84,8 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeContrastConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeContrastConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
@@ -99,7 +100,8 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
 
             Contrast = contrast,

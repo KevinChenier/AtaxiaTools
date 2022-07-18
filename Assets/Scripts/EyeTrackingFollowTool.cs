@@ -120,7 +120,8 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

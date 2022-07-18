@@ -23,6 +23,8 @@ namespace Assets.Scripts.Model.Types
     public enum EventType
     {
         All,
+        ApplicationStart,
+        ApplicationQuit,
         RightControllerPosition,
         LeftControllerPosition,
         RhythmData,

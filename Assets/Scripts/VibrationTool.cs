@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class VibrationTool : Tool<VibrationConfig>
 {
-    private const float MINIMUM_STR = 0.060f; // Minimum for haptic activation is 0.063
+    private const float MINIMUM_STR = 0.0f; // Minimum for haptic activation is 0.0
 
     [Range(MINIMUM_STR, 1)]
     public float strength;
@@ -61,7 +61,8 @@ public class VibrationTool : Tool<VibrationConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.VibrationConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.VibrationConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
@@ -77,7 +78,8 @@ public class VibrationTool : Tool<VibrationConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.VibrationData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.VibrationData.ToString(),
 
             VibrationStrength = strength

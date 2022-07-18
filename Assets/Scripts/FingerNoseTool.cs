@@ -48,7 +48,8 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
 
             Delay = time - lastTime,
@@ -64,7 +65,8 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseConfig, new
         {
-            Time = time,
+            Time = System.DateTime.Now,
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,

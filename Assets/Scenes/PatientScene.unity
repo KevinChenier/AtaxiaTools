@@ -235,6 +235,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPatient
       objectReference: {fileID: 0}
+    - target: {fileID: 8063706697022577547, guid: efa3be7000fad2842ac4a6cb02a39027, type: 3}
+      propertyPath: m_ClearFlags
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063706697022577547, guid: efa3be7000fad2842ac4a6cb02a39027, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063706697022577547, guid: efa3be7000fad2842ac4a6cb02a39027, type: 3}
+      propertyPath: field of view
+      value: 26.991467
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063706697022577547, guid: efa3be7000fad2842ac4a6cb02a39027, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063706697022577547, guid: efa3be7000fad2842ac4a6cb02a39027, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efa3be7000fad2842ac4a6cb02a39027, type: 3}
 --- !u!1 &683371736
