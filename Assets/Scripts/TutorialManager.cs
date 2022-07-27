@@ -42,8 +42,8 @@ public class TutorialManager : MonoBehaviour
             Video.GetComponentInChildren<VideoPlayer>().loopPointReached += OnVideoEnded;
             UserInterfaceManager.tips.giveTip(tool.baseConfigs.Name);
 
-            // If the current tool was already done in the scenario, we show him he go button
-            if (ConfigManager.Instance.ScenarioManager != null)
+            // If the current tool was already done in the scenario, we show him the go button
+            if (ConfigManager.Instance.ScenarioManager.toolsOrder.Count != 0)
                 if (ConfigManager.Instance.ScenarioManager.toolsDone.Contains(SceneManager.GetActiveScene().name))
                     UserInterfaceManager.GoButton.gameObject.SetActive(true);
         }

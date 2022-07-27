@@ -1,6 +1,8 @@
 using Assets.Scripts;
+using System;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
 {
@@ -24,25 +26,11 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
         ConfigManager = ConfigManager.Instance;
         configs = ConfigManager.GetToolConfig<TConfig>(toolName);
         baseConfigs = configs;
+        SceneManager.sceneUnloaded += OnToolChanged;
+        ControllerInputEvent.Instance.SkipEvent += HandleSkip;
 
-        if(!ConfigManager.Config.ActivateTutorial)
+        if (!ConfigManager.Config.ActivateTutorial)
             Invoke("InitTool", 0.1f);
-    }
-
-    protected virtual void Update()
-    {
-        if (!ConfigManager.Instance.Config.ScenarioActive)
-            return;   
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            if (!toolBegan && ConfigManager.Instance.Config.ActivateTutorial)
-                TutorialManager.Instance.BeginActivity();
-            else
-            {
-                configsSave();
-                ConfigManager.Instance.ScenarioManager.LoadNextScene();
-            }
-        }
     }
 
     /// <summary>
@@ -56,6 +44,21 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
         sw.Start();
         configsSave();
         Show();
+    }
+
+    private void HandleSkip(object source, EventArgs args)
+    {
+        if (!ConfigManager.Instance.Config.ScenarioActive)
+            return;
+
+        if (!toolBegan && ConfigManager.Instance.Config.ActivateTutorial)
+            TutorialManager.Instance.BeginActivity();
+        else
+        {
+            configsSave();
+            ConfigManager.Instance.ScenarioManager.LoadNextScene();
+        }
+
     }
 
     public override void EndTool(int timer)
@@ -84,6 +87,12 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
         {
             ConfigManager.ScenarioManager.LoadNextScene();
         }
+    }
+
+    protected virtual void OnToolChanged(Scene current) 
+    {
+        ControllerInputEvent.Instance.SkipEvent -= HandleSkip;
+        SceneManager.sceneUnloaded -= OnToolChanged;
     }
 
     public abstract void score();

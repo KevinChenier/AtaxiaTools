@@ -1,5 +1,7 @@
 using Assets.Scripts.Model;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RhythmTool : Tool<RhythmConfig>
@@ -29,11 +31,40 @@ public class RhythmTool : Tool<RhythmConfig>
     {
         base.InitTool();
 
+        ControllerInputEvent.Instance.TriggerEvent += HandleNoteHit;
+
         animationTime = 0.02f;
         //animationTime = 60.0f / (base.configs.bpm * 16.0f);
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
         _targetColor = _originalColor;
+    }
+
+    private void HandleNoteHit(object source, EventArgs args)
+    {
+        if (active)
+        {
+            Destroy(note);
+            _targetColor = highlightColor;
+            AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
+            active = false;
+
+            noteType = Assets.Scripts.Model.Types.RhythmNote.hit;
+
+            HandleEndTool();
+        }
+        else
+        {
+            noteType = Assets.Scripts.Model.Types.RhythmNote.spam;
+        }
+        score();
+    }
+
+    protected override void OnToolChanged(Scene current)
+    {
+        base.OnToolChanged(current);
+
+        ControllerInputEvent.Instance.TriggerEvent -= HandleNoteHit;
     }
 
     public override void EndTool(int timer)
@@ -57,28 +88,8 @@ public class RhythmTool : Tool<RhythmConfig>
     }
 
     // Update is called once per frame
-   protected override void Update()
-    {
-        base.Update();
-        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) || OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
-        {
-            if (active)
-            {
-                Destroy(note);
-                _targetColor = highlightColor;
-                AudioSource.PlayClipAtPoint(strumming, transform.position, 1);
-                active = false;
-
-                noteType = Assets.Scripts.Model.Types.RhythmNote.hit;
-
-                HandleEndTool();
-            }
-            else
-            {
-                noteType = Assets.Scripts.Model.Types.RhythmNote.spam;
-            }
-            score();
-        }
+   void Update()
+    {        
         if (_renderer != null)
         {
             //This lerp will fade the color of the object

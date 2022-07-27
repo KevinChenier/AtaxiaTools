@@ -1,7 +1,9 @@
 using Assets.Scripts.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VibrationTool : Tool<VibrationConfig>
 {
@@ -28,26 +30,35 @@ public class VibrationTool : Tool<VibrationConfig>
                 timer = 0;
             }
             timer += Time.deltaTime;
+        }
+    }
 
-            if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) || OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
-            {
-                score();
-                Debug.Log(strength);
-                strength = MINIMUM_STR;
+    protected override void OnToolChanged(Scene current)
+    {
+        base.OnToolChanged(current);
 
-                repetition++;
+        ControllerInputEvent.Instance.TriggerEvent -= HandleVibrationCheck;
+    }
 
-                if (repetition >= configs.repetitions)
-                {
-                    EndTool(5);
-                }
-            }
+    private void HandleVibrationCheck(object source, EventArgs args)
+    {
+        score();
+        Debug.Log(strength);
+        strength = MINIMUM_STR;
+
+        repetition++;
+
+        if (repetition >= configs.repetitions)
+        {
+            EndTool(5);
         }
     }
 
     public override void InitTool()
     {
         base.InitTool();
+
+        ControllerInputEvent.Instance.TriggerEvent += HandleVibrationCheck;
     }
 
     public override void EndTool(int timer)

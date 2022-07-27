@@ -358,7 +358,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &663094114
+--- !u!20 &1129874791 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2418980987864941921, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
+  m_PrefabInstance: {fileID: 7214076230731610913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1129874792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6592109393332653252, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
+  m_PrefabInstance: {fileID: 7214076230731610913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!43 &1238065854
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,16 +532,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!20 &1129874791 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2418980987864941921, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
-  m_PrefabInstance: {fileID: 7214076230731610913}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1129874792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6592109393332653252, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
-  m_PrefabInstance: {fileID: 7214076230731610913}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1344727636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -589,43 +589,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06ba4dd1368621746b0403d897c9cdbb, type: 3}
---- !u!21 &1469243727
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1919282593
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +766,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999601698}
   m_CullTransparentMesh: 1
+--- !u!21 &2129887567
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &7214076230731610913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -821,11 +821,11 @@ PrefabInstance:
     - target: {fileID: 7214076230126210982, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1469243727}
+      objectReference: {fileID: 2129887567}
     - target: {fileID: 7214076230127275554, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 663094114}
+      objectReference: {fileID: 1238065854}
     - target: {fileID: 7214076230128297216, guid: ecb5a0b158c70d1439cbd10b46372a82, type: 3}
       propertyPath: m_Name
       value: '[CameraRig]'

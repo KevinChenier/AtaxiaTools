@@ -59,9 +59,8 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
         base.EndTool(timer);
     }
 
-    protected override void Update()
+    private void FixedUpdate()
     {
-        base.Update();
         if (container.GetComponent<ContainerCollider>().initialized && !toolEnded)
         {
             timer += Time.deltaTime;

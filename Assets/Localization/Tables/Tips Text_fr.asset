@@ -64,7 +64,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27560799666176
-    m_Localized: ...
+    m_Localized: ' '
     m_Metadata:
       m_Items: []
   - m_Id: 28270569500475392
@@ -85,4 +85,5 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   references:
-    version: 1
+    version: 2
+    RefIds: []

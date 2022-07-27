@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ScenarioManager
 {
     public HashSet<string> toolsDone = new HashSet<string>();
-    private List<string> toolsOrder = new List<string>();
+    public List<string> toolsOrder = new List<string>();
     private int currentToolIndex = 0;
 
     public ScenarioManager(List<string> toolsOrder)

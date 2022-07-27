@@ -86,9 +86,8 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         }
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
         if (lostFocus)
         {
             lostFocusTimeInstance += Time.deltaTime;
