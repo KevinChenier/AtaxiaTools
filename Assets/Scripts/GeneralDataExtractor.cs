@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GeneralDataExtractor : MonoBehaviour
 {
     private static GeneralDataExtractor _instance;
+    private string toolType;
 
     private EventBus bus;
     private Stopwatch sw;
@@ -25,9 +26,6 @@ public class GeneralDataExtractor : MonoBehaviour
             return;
         }
         _instance = this;
-
-        sw = new Stopwatch();
-        sw.Start();
     }
 
     private void Start()
@@ -35,12 +33,37 @@ public class GeneralDataExtractor : MonoBehaviour
         bus = EventBus.Instance;
 
         OnApplicationStart();
+    }
 
+    public void StartSaveOculusControllersData(string toolType)
+    {
+        this.toolType = toolType;
         // 12 HZ (83 ms) pour quantifier le tremblement
         InvokeRepeating("SaveOculusControllersData", 0.0f, 0.083f);
+        sw = new Stopwatch();
+        sw.Start();
+        
+    }
 
+    public void CancelSaveOculusControllersData()
+    {
+        CancelInvoke("SaveOculusControllersData");
+        sw.Stop();
+    }
+
+    public void StartSaveEyesData(string toolType)
+    {
+        this.toolType = toolType;
         // Capped to 120 HZ because of HTC VIVE Pro Eye refresh rate
         InvokeRepeating("SaveEyesData", 0.0f, 0.0083f);
+        sw = new Stopwatch();
+        sw.Start();
+    }
+
+    public void CancelSaveEyesData()
+    {
+        CancelInvoke("SaveEyesData");
+        sw.Stop();
     }
 
     private void SaveOculusControllersData()
@@ -59,8 +82,10 @@ public class GeneralDataExtractor : MonoBehaviour
 
                 bus.Push(Assets.Scripts.Model.Types.EventType.LeftControllerPosition, new
                 {
-                    Time = time,
+                    Time = System.DateTime.Now.ToString(),
+                    ElapsedTime = time,
                     Type = Assets.Scripts.Model.Types.EventType.LeftControllerPosition.ToString(),
+                    ToolData = toolType,
 
                     x = pos.x,
                     y = pos.y,
@@ -73,14 +98,17 @@ public class GeneralDataExtractor : MonoBehaviour
 
                 bus.Push(Assets.Scripts.Model.Types.EventType.RightControllerPosition, new
                 {
-                    Time = time,
+                    Time = System.DateTime.Now.ToString(),
+                    ElapsedTime = time,
                     Type = Assets.Scripts.Model.Types.EventType.RightControllerPosition.ToString(),
+                    ToolData = toolType,
 
                     x = pos.x,
                     y = pos.y,
                     z = pos.z
                 });
             }
+            UnityEngine.Debug.Log("Saved Oculus controller data");
         }
     }
 
@@ -93,26 +121,43 @@ public class GeneralDataExtractor : MonoBehaviour
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeData, new
         {
-            Time = time,
+            Time = System.DateTime.Now.ToString(),
+            ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeData.ToString(),
+            ToolData = toolType,
 
             LeftEyeOpenness = data.left.eye_openness,
             LeftEyePupilDiameter = data.left.pupil_diameter_mm,
-            LeftEyePupilPositionInSensorArea = data.left.pupil_position_in_sensor_area,
-            LeftEyeGazeDirectionNormalized = data.left.gaze_direction_normalized,
-            LeftEyeGazeOrigin = data.left.gaze_origin_mm,
+            LeftEyePupilPositionInSensorArea_x = data.left.pupil_position_in_sensor_area.x,
+            LeftEyePupilPositionInSensorArea_y = data.left.pupil_position_in_sensor_area.y,
+            LeftEyeGazeDirectionNormalized_x = data.left.gaze_direction_normalized.x,
+            LeftEyeGazeDirectionNormalized_y = data.left.gaze_direction_normalized.y,
+            LeftEyeGazeDirectionNormalized_z = data.left.gaze_direction_normalized.z,
+            LeftEyeGazeOrigin_x = data.left.gaze_origin_mm.x,
+            LeftEyeGazeOrigin_y = data.left.gaze_origin_mm.y,
+            LeftEyeGazeOrigin_z = data.left.gaze_origin_mm.z,
 
             RightEyeOpenness = data.right.eye_openness,
             RightEyePupilDiameter = data.right.pupil_diameter_mm,
-            RightEyePupilPositionInSensorArea = data.right.pupil_position_in_sensor_area,
-            RightEyeGazeDirectionNormalized = data.right.gaze_direction_normalized,
-            RightEyeGazeOrigin = data.right.gaze_origin_mm,
+            RightEyePupilPositionInSensorArea_x = data.right.pupil_position_in_sensor_area.x,
+            RightEyePupilPositionInSensorArea_y = data.right.pupil_position_in_sensor_area.y,
+            RightEyeGazeDirectionNormalized_x = data.right.gaze_direction_normalized.x,
+            RightEyeGazeDirectionNormalized_y = data.right.gaze_direction_normalized.y,
+            RightEyeGazeDirectionNormalized_z = data.right.gaze_direction_normalized.z,
+            RightEyeGazeOrigin_x = data.right.gaze_origin_mm.x,
+            RightEyeGazeOrigin_y = data.right.gaze_origin_mm.y,
+            RightEyeGazeOrigin_z = data.right.gaze_origin_mm.z,
 
             CombinedEyesOpenness = data.combined.eye_data.eye_openness,
             CombinedEyesPupilDiameter = data.combined.eye_data.pupil_diameter_mm,
-            CombinedEyesPupilPositionInSensorArea = data.combined.eye_data.pupil_position_in_sensor_area,
-            CombinedEyesGazeDirectionNormalized = data.combined.eye_data.gaze_direction_normalized,
-            CombinedEyesGazeOrigin = data.combined.eye_data.gaze_origin_mm,
+            CombinedEyesPupilPositionInSensorArea_x = data.combined.eye_data.pupil_position_in_sensor_area.x,
+            CombinedEyesPupilPositionInSensorArea_y = data.combined.eye_data.pupil_position_in_sensor_area.y,
+            CombinedEyesGazeDirectionNormalized_x = data.combined.eye_data.gaze_direction_normalized.x,
+            CombinedEyesGazeDirectionNormalized_y = data.combined.eye_data.gaze_direction_normalized.y,
+            CombinedEyesGazeDirectionNormalized_z = data.combined.eye_data.gaze_direction_normalized.z,
+            CombinedEyesGazeOrigin_x = data.combined.eye_data.gaze_origin_mm.x,
+            CombinedEyesGazeOrigin_y = data.combined.eye_data.gaze_origin_mm.y,
+            CombinedEyesGazeOrigin_z = data.combined.eye_data.gaze_origin_mm.z,
 
             CombinedEyesConvergenceDistance = data.combined.convergence_distance_mm,
             CombinedEyesConvergenceDistanceValidity = data.combined.convergence_distance_validity
@@ -128,7 +173,8 @@ public class GeneralDataExtractor : MonoBehaviour
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeData, new
         {
-            Timestamp = time,
+            Time = System.DateTime.Now.ToString(),
+            ElapsedTime = time,
             StimulusName = SceneManager.GetActiveScene().name,
             EventSource = "ET",
             GazeLeftx = data.left.gaze_direction_normalized.x + 1.0f,
@@ -146,31 +192,27 @@ public class GeneralDataExtractor : MonoBehaviour
 
     private void OnApplicationStart()
     {
-        var time = sw.ElapsedTicks;
-
         bus.Push(Assets.Scripts.Model.Types.EventType.ApplicationStart, new
         {
-            Time = System.DateTime.Now,
-            ElapsedTime = time,
+            Time = System.DateTime.Now.ToString(),
 
             Type = Assets.Scripts.Model.Types.EventType.ApplicationStart.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
+            Scenario = ConfigManager.Instance.ScenarioManager.toolsOrder
         });
     }
 
     private void OnApplicationQuit()
     {
-        var time = sw.ElapsedTicks;
-
         bus.Push(Assets.Scripts.Model.Types.EventType.ApplicationQuit, new
         {
-            Time = System.DateTime.Now,
-            ElapsedTime = time,
+            Time = System.DateTime.Now.ToString(),
 
             Type = Assets.Scripts.Model.Types.EventType.ApplicationQuit.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
+            Scenario = ConfigManager.Instance.ScenarioManager.toolsOrder
         });
     }
 

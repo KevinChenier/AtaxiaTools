@@ -20,7 +20,7 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EverydayTaskData, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EverydayTaskData.ToString(),
 
@@ -35,7 +35,7 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EverydayTaskConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EverydayTaskConfig.ToString(),
             PatientID = PatientData.PatientID,
@@ -49,13 +49,14 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
     public override void InitTool()
     {
         base.InitTool();
-
         PourLine.transform.position = new Vector3(PourLine.transform.position.x, configs.height, PourLine.transform.position.z);
+        GeneralDataExtractor.Instance.StartSaveOculusControllersData(Assets.Scripts.Model.Types.EventType.EverydayTaskData.ToString());
     }
 
     public override void EndTool(int timer)
     {
         score();
+        GeneralDataExtractor.Instance.CancelSaveOculusControllersData();
         base.EndTool(timer);
     }
 

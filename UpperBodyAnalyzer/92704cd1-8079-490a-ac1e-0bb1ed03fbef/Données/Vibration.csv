@@ -1,0 +1,16 @@
+Value.ElapsedTime,Value.PatientID,Value.Repetitions,Value.Time,Value.ToolEnded,Value.TrialID,Value.Type,Value.VibrationStrength
+0,Default,5,7/29/2022 15:57,FALSE,92704cd1-8079-490a-ac1e-0bb1ed03fbef,VibrationConfig,
+2282,,,7/29/2022 15:57,,,VibrationData,0.069000006
+18683,,,7/29/2022 15:57,,,VibrationData,0.064999953
+35948,,,7/29/2022 15:57,,,VibrationData,0.068999961
+53392,,,7/29/2022 15:58,,,VibrationData,0.069999963
+70783,,,7/29/2022 15:58,,,VibrationData,0.069999963
+70784,Default,5,7/29/2022 15:58,TRUE,92704cd1-8079-490a-ac1e-0bb1ed03fbef,VibrationConfig,
+0,Default,5,7/29/2022 16:00,FALSE,92704cd1-8079-490a-ac1e-0bb1ed03fbef,VibrationConfig,
+2271,,,7/29/2022 16:00,,,VibrationData,0.069000006
+19604,,,7/29/2022 16:00,,,VibrationData,0.068999961
+36783,,,7/29/2022 16:00,,,VibrationData,0.068999961
+54131,,,7/29/2022 16:00,,,VibrationData,0.068999961
+71747,,,7/29/2022 16:01,,,VibrationData,0.069999963
+71747,Default,5,7/29/2022 16:01,TRUE,92704cd1-8079-490a-ac1e-0bb1ed03fbef,VibrationConfig,
+,Default,,7/29/2022 16:03,,92704cd1-8079-490a-ac1e-0bb1ed03fbef,ApplicationQuit,

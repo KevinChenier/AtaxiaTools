@@ -29,6 +29,14 @@ public class EyeTrackingMultipleTool : Tool<EyeTrackingMultipleConfig>
         currentObject.GetComponent<EyeTrackingMultipleGazeAt>().currentObjectToGazeAt = true;
 
         timer = base.configs.timer;
+
+        GeneralDataExtractor.Instance.StartSaveEyesData(Assets.Scripts.Model.Types.EventType.EyeTrackingMultipleData.ToString());
+    }
+
+    public override void EndTool(int timer)
+    {
+        GeneralDataExtractor.Instance.CancelSaveEyesData();
+        base.EndTool(timer);
     }
 
     private void calibrateTargets()
@@ -64,7 +72,7 @@ public class EyeTrackingMultipleTool : Tool<EyeTrackingMultipleConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingMultipleConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingMultipleConfig.ToString(),
             PatientID = PatientData.PatientID,

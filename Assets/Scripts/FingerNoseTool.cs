@@ -38,8 +38,14 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
     public override void InitTool()
     {
         base.InitTool();
-
         nose.GetComponent<MeshRenderer>().enabled = false;
+        GeneralDataExtractor.Instance.StartSaveOculusControllersData(Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString());
+    }
+
+    public override void EndTool(int timer)
+    {
+        GeneralDataExtractor.Instance.CancelSaveOculusControllersData();
+        base.EndTool(timer);
     }
 
     public override void score()
@@ -48,7 +54,7 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
 
@@ -65,7 +71,7 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerNoseConfig.ToString(),
             PatientID = PatientData.PatientID,

@@ -1160,6 +1160,7 @@ MonoBehaviour:
   pointer: {fileID: 639162094}
   sceneObjects:
   - {fileID: 1071520879}
+  - {fileID: 1437923633}
   nose: {fileID: 1437923633}
 --- !u!135 &580678576
 SphereCollider:
@@ -2840,7 +2841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1483835238, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 226762532020543083, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
       propertyPath: m_RootOrder

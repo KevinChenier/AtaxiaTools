@@ -1,0 +1,14 @@
+Value.BackgroundVolume,Value.ElapsedTime,Value.Letter,Value.PatientID,Value.Repetitions,Value.Success,Value.Time,Value.ToolEnded,Value.TrialID,Value.Type,Value.VolumeIncreases
+,0,,Default,2,,7/29/2022 15:59,FALSE,92704cd1-8079-490a-ac1e-0bb1ed03fbef,SpeechPerceptionConfig,5
+0.100000001,2700,F,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.100000001,5051,A,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.324999988,7641,F,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.324999988,10315,F,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.549999952,13184,X,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.549999952,15925,F,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.774999976,18223,A,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+0.774999976,21174,X,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+1,24141,H,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+1,26592,A,,,TRUE,7/29/2022 15:59,,,SpeechPerceptionData,
+,26592,,Default,2,,7/29/2022 15:59,TRUE,92704cd1-8079-490a-ac1e-0bb1ed03fbef,SpeechPerceptionConfig,5
+,,,Default,,,7/29/2022 16:03,,92704cd1-8079-490a-ac1e-0bb1ed03fbef,ApplicationQuit,

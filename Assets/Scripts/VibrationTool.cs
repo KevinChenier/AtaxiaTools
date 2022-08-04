@@ -33,13 +33,6 @@ public class VibrationTool : Tool<VibrationConfig>
         }
     }
 
-    protected override void OnToolChanged(Scene current)
-    {
-        base.OnToolChanged(current);
-
-        ControllerInputEvent.Instance.TriggerEvent -= HandleVibrationCheck;
-    }
-
     private void HandleVibrationCheck(object source, EventArgs args)
     {
         score();
@@ -64,6 +57,8 @@ public class VibrationTool : Tool<VibrationConfig>
     public override void EndTool(int timer)
     {
         base.EndTool(timer);
+
+        ControllerInputEvent.Instance.TriggerEvent -= HandleVibrationCheck;
     }
 
     public override void configsSave()
@@ -72,7 +67,7 @@ public class VibrationTool : Tool<VibrationConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.VibrationConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.VibrationConfig.ToString(),
             PatientID = PatientData.PatientID,
@@ -89,7 +84,7 @@ public class VibrationTool : Tool<VibrationConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.VibrationData, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.VibrationData.ToString(),
 

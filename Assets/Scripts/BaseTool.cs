@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -29,7 +30,15 @@ public abstract class BaseTool : MonoBehaviour
         }
     }
 
-    public abstract void InitTool();
+    public virtual void InitTool()
+    {
+        if (toolBegan)
+            throw new InvalidOperationException("Tool can only start once.");
+    }
 
-    public abstract void EndTool(int timer);
+    public virtual void EndTool(int timer) 
+    {
+        if (toolEnded)
+            throw new InvalidOperationException("Tool can only end once.");
+    }
 }

@@ -1,0 +1,23 @@
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" }, {"Value.Type": "FingerFollowData" }, { "Value.Type" : "FingerFollowConfig"}, { "Value.ToolData" : "FingerFollowData"}  ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "VibrationData" }, { "Value.Type" : "VibrationConfig"} ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "RhythmData" }, { "Value.Type" : "RhythmConfig"} ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "EverydayTaskData" }, { "Value.Type" : "EverydayTaskConfig"}, { "Value.ToolData" : "EverydayTaskData"} ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "EyeContrastData" }, { "Value.Type" : "EyeContrastConfig"} ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "FingerNoseData" }, { "Value.Type" : "FingerNoseConfig"}, { "Value.ToolData" : "FingerNoseData"}  ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "PegboardData" }, { "Value.Type" : "PegboardConfig"}, { "Value.ToolData" : "PegboardData"}  ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{"Value.Type": "SpeechPerceptionData" }, { "Value.Type" : "SpeechPerceptionConfig"} ] }
+
+
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{ "Value.Type" : "EyeTrackingMultipleConfig"}, { "Value.ToolData" : "EyeTrackingMultipleData"} ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{ "Value.Type" : "EyeTrackingFollowConfig"}, { "Value.ToolData" : "EyeTrackingFollowData"} ] }
+
+{ $or: [ {"Value.Type": "ApplicationStart" }, {"Value.Type": "ApplicationQuit" },{ "Value.Type" : "EyeTrackingFixConfig"}, { "Value.ToolData" : "EyeTrackingFixData"} ] }

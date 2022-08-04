@@ -40,7 +40,7 @@ namespace Assets.Scripts
         {
             var client = new MongoClient("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false");
             var db = client.GetDatabase("AtaxieTools");
-            collection = db.GetCollection<EventLog>("events");
+            collection = db.GetCollection<EventLog>("Trial: " + PatientData.TrialID + " Date: " + System.DateTime.Now);
         }
 
         private void LogToDb(object sender, dynamic e)

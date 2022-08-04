@@ -84,12 +84,13 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeContrastConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeContrastConfig.ToString(),
             PatientID = PatientData.PatientID,
             TrialID = PatientData.TrialID,
 
+            ToolEnded = toolEnded,
             Repetitions = configs.repetitions
         });
     }
@@ -98,11 +99,11 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
     {
         var time = sw.ElapsedMilliseconds;
 
-        bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
+        bus.Push(Assets.Scripts.Model.Types.EventType.EyeContrastData, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
-            Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
+            Type = Assets.Scripts.Model.Types.EventType.EyeContrastData.ToString(),
 
             Contrast = contrast,
             Letter = chosenLetter.name,

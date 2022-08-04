@@ -14,7 +14,7 @@ public class ControllerInputEvent : MonoBehaviour
     public event EventHandler StartUpEvent;
     public event EventHandler TriggerEvent;
     public event EventHandler SkipEvent;
-    private List<InputDevice> devices = new List<InputDevice>();
+    public event EventHandler RestartEvent;
     public static ControllerInputEvent Instance => _instance;
     // Start is called before the first frame update
     void Awake()
@@ -36,12 +36,14 @@ public class ControllerInputEvent : MonoBehaviour
             if (OVRInput.GetUp(OVRInput.Button.Start)
             || SteamVR_Input.GetStateDown("ActivateUI", SteamVR_Input_Sources.RightHand))
             {
-                StartUpEvent(this, null);
+                if(StartUpEvent != null)
+                    StartUpEvent(this, null);
             }
         }
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) || OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
         {
-            TriggerEvent(this, null);
+            if(TriggerEvent != null)
+                TriggerEvent(this, null);
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -50,11 +52,13 @@ public class ControllerInputEvent : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (RestartEvent != null)
+                RestartEvent(this, null);
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            SkipEvent(this, null);
+            if(SkipEvent != null)
+                SkipEvent(this, null);
         }
     }
 }

@@ -59,6 +59,7 @@ public class TutorialManager : MonoBehaviour
         gameObject.SetActive(false);
         UserInterfaceManager.GoButton.gameObject.SetActive(false);
         UserInterfaceManager.tips.deactivateTip();
+        UserInterfaceManager.GoButton.onClick.RemoveAllListeners();
     }
 
     void OnVideoEnded(VideoPlayer video)

@@ -40,6 +40,13 @@ public class RhythmTool : Tool<RhythmConfig>
         _targetColor = _originalColor;
     }
 
+    public override void EndTool(int timer)
+    {
+        base.EndTool(timer);
+
+        ControllerInputEvent.Instance.TriggerEvent -= HandleNoteHit;
+    }
+
     private void HandleNoteHit(object source, EventArgs args)
     {
         if (active)
@@ -58,18 +65,6 @@ public class RhythmTool : Tool<RhythmConfig>
             noteType = Assets.Scripts.Model.Types.RhythmNote.spam;
         }
         score();
-    }
-
-    protected override void OnToolChanged(Scene current)
-    {
-        base.OnToolChanged(current);
-
-        ControllerInputEvent.Instance.TriggerEvent -= HandleNoteHit;
-    }
-
-    public override void EndTool(int timer)
-    {
-        base.EndTool(timer);
     }
 
     private void HandleEndTool()
@@ -145,7 +140,7 @@ public class RhythmTool : Tool<RhythmConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.RhythmData, new 
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.RhythmData.ToString(),
 
@@ -159,7 +154,7 @@ public class RhythmTool : Tool<RhythmConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.RhythmConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.RhythmConfig.ToString(),
             PatientID = PatientData.PatientID,

@@ -16,20 +16,6 @@ public class PegboardResetBox : MonoBehaviour
 
     public PegboardTool pegboardTool;
 
-    private void Update()
-    {
-        if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && !isPressed)
-        {
-            isPressed = true;
-        }
-        if (isPressed && !pegboardTool.toolEnded)
-        {
-            pegboardTool.timeGrab += Time.deltaTime;
-        }
-
-        toolText.text = "" + Mathf.RoundToInt(pegboardTool.timeGrab);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (peggle.Contains(other.gameObject))

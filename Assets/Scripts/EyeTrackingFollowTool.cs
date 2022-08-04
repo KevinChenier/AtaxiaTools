@@ -63,6 +63,14 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
         startPos = randomPoint.CalculateRandomPoint();
         endPos = randomPoint.CalculateRandomPoint();
         speedModifier = (float)base.configs.speed;
+
+        GeneralDataExtractor.Instance.StartSaveEyesData(Assets.Scripts.Model.Types.EventType.EyeTrackingFollowData.ToString());
+    }
+
+    public override void EndTool(int timer)
+    {
+        GeneralDataExtractor.Instance.CancelSaveEyesData();
+        base.EndTool(timer);
     }
 
     // Update is called once per frame
@@ -120,7 +128,7 @@ public class EyeTrackingFollowTool : Tool<EyeTrackingFollowConfig>, IGazeFocusab
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFollowConfig.ToString(),
             PatientID = PatientData.PatientID,

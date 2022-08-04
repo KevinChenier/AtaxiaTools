@@ -28,7 +28,6 @@ public class ScenarioManager
             PatientData.TrialID = Guid.NewGuid().ToString();
             SceneManager.LoadScene(toolsOrder[0]);
         }*/
-        PatientData.TrialID = Guid.NewGuid().ToString();
         SceneManager.LoadScene(toolsOrder[0]);
     }
 
@@ -51,6 +50,7 @@ public class ScenarioManager
         catch (ArgumentOutOfRangeException)
         {
             Debug.Log("Finished Scenario!");
+            Application.Quit();
         }
     }
 }

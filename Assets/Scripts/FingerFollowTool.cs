@@ -137,6 +137,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
     public override void InitTool()
     {
         base.InitTool();
+        GeneralDataExtractor.Instance.StartSaveOculusControllersData(Assets.Scripts.Model.Types.EventType.FingerFollowData.ToString());
 
         randomPoint = AvatarManager.Instance.fingerPlane.GetComponent<FindRandomPoint>();
 
@@ -167,15 +168,21 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
         gameObject.transform.position = startPos;
     }
 
+    public override void EndTool(int timer)
+    {
+        GeneralDataExtractor.Instance.CancelSaveOculusControllersData();
+        base.EndTool(timer);
+    }
+
     public override void score()
     {
         var time = sw.ElapsedMilliseconds;
 
-        bus.Push(Assets.Scripts.Model.Types.EventType.FingerNoseData, new
+        bus.Push(Assets.Scripts.Model.Types.EventType.FingerFollowData, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
-            Type = Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString(),
+            Type = Assets.Scripts.Model.Types.EventType.FingerFollowData.ToString(),
             
             LostFocusTime = lostFocusTimeInstance,
             CurrentRepetition = repetitions
@@ -188,7 +195,7 @@ public class FingerFollowTool : Tool<FingerFollowConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.FingerFollowConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.FingerFollowConfig.ToString(),
             PatientID = PatientData.PatientID,

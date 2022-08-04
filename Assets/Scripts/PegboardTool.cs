@@ -7,7 +7,6 @@ public class PegboardTool : Tool<PegboardConfig>
 {
     public List<Collider> toolObjects;
     public TextMesh toolText;
-    public float timeGrab { get; set; }
 
     private int numberOfCurrentObjects = 0;
     private int numberOfObjects = 0;
@@ -32,16 +31,7 @@ public class PegboardTool : Tool<PegboardConfig>
 
     public override void score()
     {
-        var time = sw.ElapsedMilliseconds;
-
-        bus.Push(Assets.Scripts.Model.Types.EventType.PegboardData, new
-        {
-            Time = System.DateTime.Now,
-            ElapsedTime = time,
-            Type = Assets.Scripts.Model.Types.EventType.PegboardData.ToString(),
-
-            TimeTask = timeGrab
-        });
+        throw new System.NotImplementedException();
     }
 
     public override void configsSave()
@@ -50,7 +40,7 @@ public class PegboardTool : Tool<PegboardConfig>
 
         bus.Push(Assets.Scripts.Model.Types.EventType.PegboardConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.PegboardConfig.ToString(),
             PatientID = PatientData.PatientID,
@@ -64,15 +54,15 @@ public class PegboardTool : Tool<PegboardConfig>
     public override void InitTool()
     {
         base.InitTool();
-
         toolText.text = "0";
         toolText.GetComponent<MeshRenderer>().enabled = base.configs.isTimerShowed;
         numberOfObjects = toolObjects.Count;
+        GeneralDataExtractor.Instance.StartSaveOculusControllersData(Assets.Scripts.Model.Types.EventType.PegboardData.ToString());
     }
 
     public override void EndTool(int timer)
     {
-        score();
+        GeneralDataExtractor.Instance.CancelSaveOculusControllersData();
         base.EndTool(timer);
     }
 }

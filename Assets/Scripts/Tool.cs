@@ -28,6 +28,7 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
         baseConfigs = configs;
         SceneManager.sceneUnloaded += OnToolChanged;
         ControllerInputEvent.Instance.SkipEvent += HandleSkip;
+        ControllerInputEvent.Instance.RestartEvent += HandleRestart;
 
         if (!ConfigManager.Config.ActivateTutorial)
             Invoke("InitTool", 0.1f);
@@ -38,6 +39,7 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
     /// </summary>
     public override void InitTool()
     {
+        base.InitTool();
         toolBegan = true;
         UnityEngine.Debug.Log("Activity just began!");
         sw = new Stopwatch();
@@ -61,8 +63,16 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
 
     }
 
+    private void HandleRestart(object source, EventArgs args)
+    {
+        configsSave();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public override void EndTool(int timer)
     {
+        base.EndTool(timer);
+
         if (!IsInvoking())
         {
             toolEnded = true;
@@ -92,6 +102,7 @@ public abstract class Tool<TConfig> : BaseTool where TConfig : IToolConfig
     protected virtual void OnToolChanged(Scene current) 
     {
         ControllerInputEvent.Instance.SkipEvent -= HandleSkip;
+        ControllerInputEvent.Instance.RestartEvent -= HandleRestart;
         SceneManager.sceneUnloaded -= OnToolChanged;
     }
 

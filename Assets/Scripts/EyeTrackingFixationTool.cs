@@ -48,7 +48,7 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
 
         bus.Push(Assets.Scripts.Model.Types.EventType.EyeTrackingFixConfig, new
         {
-            Time = System.DateTime.Now,
+            Time = System.DateTime.Now.ToString(),
             ElapsedTime = time,
             Type = Assets.Scripts.Model.Types.EventType.EyeTrackingFixConfig.ToString(),
             PatientID = PatientData.PatientID,
@@ -73,6 +73,14 @@ public class EyeTrackingFixationTool : Tool<EyeTrackingFixationConfig>, IGazeFoc
         transform.localScale *= (float) base.configs.targetSize;
         _uiFill = GetComponentInChildren<Image>();
         _uiFill.fillAmount = 0;
+
+        GeneralDataExtractor.Instance.StartSaveEyesData(Assets.Scripts.Model.Types.EventType.EyeTrackingFixData.ToString());
+    }
+
+    public override void EndTool(int timer)
+    {
+        GeneralDataExtractor.Instance.CancelSaveEyesData();
+        base.EndTool(timer);
     }
 
     private void calibrateTarget()

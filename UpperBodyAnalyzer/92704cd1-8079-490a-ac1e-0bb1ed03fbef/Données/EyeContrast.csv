@@ -1,0 +1,12 @@
+Value.Contrast,Value.ElapsedTime,Value.Letter,Value.PatientID,Value.Repetitions,Value.Success,Value.Time,Value.ToolEnded,Value.TrialID,Value.Type
+,0,,Default,3,,7/29/2022 3:58:33 PM,false,92704cd1-8079-490a-ac1e-0bb1ed03fbef,EyeContrastConfig
+0.9835972785949707,10956,A,,,true,7/29/2022 3:58:44 PM,,,EyeContrastData
+0.9868978261947632,19702,V,,,true,7/29/2022 3:58:52 PM,,,EyeContrastData
+0.9842973947525024,30141,H,,,true,7/29/2022 3:59:03 PM,,,EyeContrastData
+,30142,,Default,3,,7/29/2022 3:59:03 PM,true,92704cd1-8079-490a-ac1e-0bb1ed03fbef,EyeContrastConfig
+,0,,Default,3,,7/29/2022 4:02:10 PM,false,92704cd1-8079-490a-ac1e-0bb1ed03fbef,EyeContrastConfig
+0.9850975275039673,9941,H,,,true,7/29/2022 4:02:20 PM,,,EyeContrastData
+0.9858976602554321,19352,F,,,true,7/29/2022 4:02:29 PM,,,EyeContrastData
+0.9868978261947632,28109,V,,,true,7/29/2022 4:02:38 PM,,,EyeContrastData
+,28110,,Default,3,,7/29/2022 4:02:38 PM,true,92704cd1-8079-490a-ac1e-0bb1ed03fbef,EyeContrastConfig
+,,,Default,,,7/29/2022 4:03:02 PM,,92704cd1-8079-490a-ac1e-0bb1ed03fbef,ApplicationQuit
