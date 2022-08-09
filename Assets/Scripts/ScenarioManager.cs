@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ViveSR.anipal.Eye;
 
 [System.Serializable]
 public class ScenarioManager
@@ -28,6 +29,9 @@ public class ScenarioManager
             PatientData.TrialID = Guid.NewGuid().ToString();
             SceneManager.LoadScene(toolsOrder[0]);
         }*/
+        if (SRanipal_Eye_API.IsViveProEye())
+            SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero);
+
         SceneManager.LoadScene(toolsOrder[0]);
     }
 
