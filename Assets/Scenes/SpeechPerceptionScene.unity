@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -504,11 +504,11 @@ MonoBehaviour:
   sceneObjects:
   - {fileID: 294876342}
   letters:
-  - {fileID: 8300000, guid: f2392e9ce48384d46ac30aeb3b9b5b62, type: 3}
-  - {fileID: 8300000, guid: e33884f2b04df16499916475823cffc6, type: 3}
-  - {fileID: 8300000, guid: ea9900b845a619d45a681040631f63b7, type: 3}
-  - {fileID: 8300000, guid: db1646cee70e7ce4287ad4c3ff105ae5, type: 3}
-  - {fileID: 8300000, guid: 1eafd5f7a48c9914b823fdfc41432f8b, type: 3}
+  - {fileID: 8300000, guid: a1a0329ba94cbf140bf7fce7f12bedf1, type: 3}
+  - {fileID: 8300000, guid: ac7266cf77330194abb894bad03d9abc, type: 3}
+  - {fileID: 8300000, guid: afc52d55041ef7246819204288831582, type: 3}
+  - {fileID: 8300000, guid: 2f7fab5938e2cfb4caed8180e9da9395, type: 3}
+  - {fileID: 8300000, guid: f6fb87e641f95764f97ce7cac63171e3, type: 3}
 --- !u!4 &1061687468
 Transform:
   m_ObjectHideFlags: 0

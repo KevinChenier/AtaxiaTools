@@ -97,7 +97,7 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
 
         if (repetition >= configs.repetitionsPerVolume)
         {
-            volume = GetComponent<AudioSource>().volume += (0.9f / (configs.nbVolumeIncreases - 1));
+            volume = GetComponent<AudioSource>().volume += (1.5f / (configs.nbVolumeIncreases - 1));
             repetition = 0;
             volumeIncrease++;
         }

@@ -21,7 +21,7 @@
             "MenuLabel": "Everyday Task",
             "SceneName": "EverydayTaskScene",
 
-			"height" : 1.5
+			"height" : 1.29
 		},
 		"RhythmConfig": {
 			"Name": "rhythm",
@@ -100,19 +100,30 @@
     },
 	"ScenarioConfig": {
 		"ToolsOrder": [
+			"EverydayTaskScene",
+			"FingerFollowScene",
+			"PegboardAlternativeScene_AutoHand",
 			"SpeechPerceptionScene",
-			"RhythmScene",
 			"EyeContrastScene",
+			"FingerNoseScene",
+			"RhythmScene",
+			"VibrationScene",
 			"FingerFollowScene",
 			"FingerNoseScene",
+			"RhythmScene",
+			"EyeContrastScene",
 			"PegboardAlternativeScene_AutoHand",
 			"VibrationScene",
-			"EverydayTaskScene"
+			"EverydayTaskScene",
+			"RhythmScene",
+			"SpeechPerceptionScene""EyeTrackingFixationScene",
+			"EyeTrackingFollowScene",
+			"EyeTrackingMultipleScene"
 		]
 	},
-	"ScenarioActive": false,
-	"ActivateTutorial": false,
+	"ScenarioActive": true,
+	"ActivateTutorial": true,
     "AllowNavigation": true,
-	"UseMongo": true,
+	"UseMongo": false,
 	"Locale": "fr"
 }
