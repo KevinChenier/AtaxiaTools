@@ -47,12 +47,12 @@ public class AvatarManager : MonoBehaviour
             indicator.GetComponent<MeshRenderer>().enabled = false;
     }
 
-    private void Update()
+    void CalibrateArm ()
     {
-        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger) && fingerPlane != null)
+        if (fingerPlane != null)
         {
             fingerPlane.transform.position = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z * 0.9f);
-            
+
             fingerPlane.GetComponent<FindRandomPoint>().Recalculate();
 
             indicator.gameObject.transform.position = fingerPlane.GetComponent<FindRandomPoint>().CalculateRandomPoint();
@@ -75,6 +75,11 @@ public class AvatarManager : MonoBehaviour
     private void OnEnable()
     {
         Invoke("StartFingerInteraction", 0.5f);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
     public bool showAvatar
