@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.77, y: 1.29, z: 3.3}
   m_LocalScale: {x: 0.08271429, y: 0.08271429, z: 0.08271429}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 21
@@ -43,6 +44,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -123,6 +125,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.591, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307393972451507}
   m_RootOrder: 0
@@ -146,6 +149,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -191,7 +195,7 @@ GameObject:
   - component: {fileID: 348307393180563071}
   - component: {fileID: 3335913396016034131}
   - component: {fileID: 6743477760716133998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (5)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -208,6 +212,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 4.8, y: 0.049999952, z: -0.40000007}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 6
@@ -231,6 +236,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -413,6 +419,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.03, y: -0.06700083, z: -1.17}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307394302501443}
   m_Father: {fileID: 1627217003161684412}
@@ -469,7 +476,7 @@ GameObject:
   - component: {fileID: 348307393298266279}
   - component: {fileID: 8316048425349423466}
   - component: {fileID: 2149575476106629896}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (6)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -486,6 +493,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6.009479, y: 0.049999952, z: -0.40000007}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 7
@@ -509,6 +517,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -691,6 +700,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307393855079520}
   m_RootOrder: 0
@@ -714,6 +724,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -772,6 +783,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.15, y: -0.06700083, z: 1.05}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307394413428133}
   m_Father: {fileID: 1627217003161684412}
@@ -841,6 +853,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.8, y: -0.26, z: -0.08}
   m_LocalScale: {x: 3, y: 0.85714287, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307394399089800}
   m_Father: {fileID: 1627217003161684412}
@@ -922,6 +935,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.9857142, y: -12.385714, z: -0.6}
   m_LocalScale: {x: 171.42859, y: 8.571428, z: 171.42859}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 10
@@ -989,6 +1003,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.1, y: -0.06700077, z: 1.13}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307394207790782}
   m_Father: {fileID: 1627217003161684412}
@@ -1058,6 +1073,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307394519185296}
   m_RootOrder: 0
@@ -1081,6 +1097,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1126,7 +1143,7 @@ GameObject:
   - component: {fileID: 348307393780885026}
   - component: {fileID: 3009136451843454519}
   - component: {fileID: 2802553683179334895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -1143,6 +1160,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 4.8200006, y: 0.049999952, z: 0.6600002}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 2
@@ -1166,6 +1184,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1348,6 +1367,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.03, y: -0.06700083, z: -0.03}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307393338817825}
   m_Father: {fileID: 1627217003161684412}
@@ -1404,7 +1424,7 @@ GameObject:
   - component: {fileID: 348307393885637026}
   - component: {fileID: 4618446543169917100}
   - component: {fileID: 593760669004857260}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (4)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -1421,6 +1441,7 @@ Transform:
   m_LocalRotation: {x: -0.7068619, y: 0.018608216, z: 0.018608216, w: 0.7068619}
   m_LocalPosition: {x: 3.53, y: 0.049999785, z: -1.59}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 5
@@ -1444,6 +1465,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1626,6 +1648,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307394389361721}
   m_RootOrder: 0
@@ -1649,6 +1672,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1707,6 +1731,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.01, y: -0.067, z: 1.08}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307393145606136}
   m_Father: {fileID: 1627217003161684412}
@@ -1763,7 +1788,7 @@ GameObject:
   - component: {fileID: 348307394006648314}
   - component: {fileID: 362913214739461091}
   - component: {fileID: 3644892977784197556}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (2)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -1780,6 +1805,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6.059479, y: 0.049999952, z: 0.66}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 3
@@ -1803,6 +1829,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1985,6 +2012,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307393739600466}
   m_RootOrder: 0
@@ -2008,6 +2036,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2053,7 +2082,7 @@ GameObject:
   - component: {fileID: 348307394251080786}
   - component: {fileID: 2151210607986221290}
   - component: {fileID: 1305561526587258226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (3)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -2070,6 +2099,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 3.5404353, y: 0.049999952, z: -0.4}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 4
@@ -2093,6 +2123,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2275,6 +2306,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307393265979677}
   m_RootOrder: 0
@@ -2298,6 +2330,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2328,20 +2361,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &348307394346851400
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348307394346752746}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 77307d199890d27438a3b53a4231fb85, type: 3}
 --- !u!1 &348307394361484602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,6 +2389,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307394759572044}
   m_RootOrder: 0
@@ -2393,6 +2413,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2451,6 +2472,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.1, y: -0.11099927, z: -1.17}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307393957297069}
   m_Father: {fileID: 1627217003161684412}
@@ -2521,6 +2543,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.051, y: -0.58, z: -0.874}
   m_LocalScale: {x: 0.2, y: 1, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307393461081263}
   m_RootOrder: 0
@@ -2544,6 +2567,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2615,6 +2639,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307393367691578}
   m_RootOrder: 0
@@ -2638,6 +2663,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2683,7 +2709,7 @@ GameObject:
   - component: {fileID: 348307394497145164}
   - component: {fileID: 4457809299971631803}
   - component: {fileID: 6914507954017923567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (7)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -2700,6 +2726,7 @@ Transform:
   m_LocalRotation: {x: -0.7068619, y: 0.018608216, z: 0.018608216, w: 0.7068619}
   m_LocalPosition: {x: 6, y: 0.049999785, z: -1.6137396}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 8
@@ -2723,6 +2750,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2905,6 +2933,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.1, y: -0.06700083, z: -0.05}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307393739821189}
   m_Father: {fileID: 1627217003161684412}
@@ -2961,7 +2990,7 @@ GameObject:
   - component: {fileID: 348307394622102721}
   - component: {fileID: 3260244512303715355}
   - component: {fileID: 4623628702200595600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (8)
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -2978,6 +3007,7 @@ Transform:
   m_LocalRotation: {x: -0.7068619, y: 0.018608216, z: 0.018608216, w: 0.7068619}
   m_LocalPosition: {x: 4.821574, y: 0.049999785, z: -1.5737525}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 9
@@ -3001,6 +3031,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3183,6 +3214,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.387, y: 0.5910004, z: 0.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348307394823705751}
   m_RootOrder: 0
@@ -3206,6 +3238,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3264,6 +3297,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.12, y: -0.06700083, z: -0.05}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307394361484606}
   m_Father: {fileID: 1627217003161684412}
@@ -3333,6 +3367,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.14, y: -0.06700083, z: -1.17}
   m_LocalScale: {x: 0.85714287, y: 0.85714287, z: 0.85714287}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348307394731042876}
   m_Father: {fileID: 1627217003161684412}
@@ -3386,7 +3421,7 @@ GameObject:
   - component: {fileID: 5679920685717988210}
   - component: {fileID: 4311400797909909421}
   - component: {fileID: 348307394813503847}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3403,6 +3438,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 220, y: 220, z: 40}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 0
@@ -3426,6 +3462,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3496,6 +3533,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.129, y: 1.009, z: -0.018}
   m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3976239034035885548}
   - {fileID: 6408580698349187923}
@@ -3538,7 +3576,7 @@ GameObject:
   - component: {fileID: 348307394813503844}
   - component: {fileID: 480582653236840827}
   - component: {fileID: 7545486690411712491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: CylinderPeg
   m_Icon: {fileID: 0}
@@ -3555,6 +3593,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 3.5304353, y: 0.05, z: 0.6600002}
   m_LocalScale: {x: 11.48, y: 11.48, z: 56.02103}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1627217003161684412}
   m_RootOrder: 1
@@ -3578,6 +3617,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3805,13 +3845,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77307d199890d27438a3b53a4231fb85, type: 3}
---- !u!1 &348307394346752746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 77307d199890d27438a3b53a4231fb85, type: 3}
-  m_PrefabInstance: {fileID: 348307394346851402}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &348307394346452682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 77307d199890d27438a3b53a4231fb85, type: 3}
   m_PrefabInstance: {fileID: 348307394346851402}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &348307394346752746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 77307d199890d27438a3b53a4231fb85, type: 3}
+  m_PrefabInstance: {fileID: 348307394346851402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &348307394346851400
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348307394346752746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 77307d199890d27438a3b53a4231fb85, type: 3}

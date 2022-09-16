@@ -348,6 +348,10 @@ PrefabInstance:
       propertyPath: pegboardTool
       value: 
       objectReference: {fileID: 525912708}
+    - target: {fileID: 1105928613473164038, guid: 39fcf78b7c68da84aa6eb867f57597a4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1627217003161684412, guid: 39fcf78b7c68da84aa6eb867f57597a4, type: 3}
       propertyPath: m_RootOrder
       value: 0
