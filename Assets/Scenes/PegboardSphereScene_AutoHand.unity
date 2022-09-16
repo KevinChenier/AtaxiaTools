@@ -497,6 +497,22 @@ PrefabInstance:
       propertyPath: peggle.Array.data[8]
       value: 
       objectReference: {fileID: 1387440484}
+    - target: {fileID: 448570531831819552, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 655385702825404614, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722855461245910158, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370761969605429410, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1627217003161684412, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -541,9 +557,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1810163236180533745, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1976339552033037715, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832922705692996179, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3869924784154366545, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_Name
@@ -552,6 +576,18 @@ PrefabInstance:
     - target: {fileID: 5263218457613094217, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387100112880234242, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456049497853543150, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852011518463342239, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 656f04817b3c51041920795163bef153, type: 3}

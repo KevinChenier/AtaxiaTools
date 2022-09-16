@@ -598,8 +598,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 44126296283954359, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 44126296316571677, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 226762530910107128, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
       propertyPath: EnableHands
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 226762530936135243, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 226762532020543083, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
@@ -649,6 +661,18 @@ PrefabInstance:
     - target: {fileID: 226762532020568651, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
       propertyPath: m_Name
       value: MyOVRCameraRig Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 226762532620589278, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110544962811684780, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110544963043482515, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6655841468831246566, guid: def329761fc295f4390e0d2b94c5d271, type: 3}
       propertyPath: m_IsActive

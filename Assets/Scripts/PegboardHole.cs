@@ -7,11 +7,12 @@ public class PegboardHole : MonoBehaviour
     public Light lightHole; 
 
     // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "CylinderPeg")
         {
             lightHole.enabled = true;
+            CancelInvoke("CloseLight");
         }
     }
 
@@ -19,7 +20,12 @@ public class PegboardHole : MonoBehaviour
     {
         if (other.gameObject.tag == "CylinderPeg")
         {
-            lightHole.enabled = false;
+            Invoke("CloseLight", 0.4f);
         }
+    }
+
+    void CloseLight()
+    {
+        lightHole.enabled = false;
     }
 }
