@@ -19,28 +19,34 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 482033303552
-    m_Localized: "Coge los peque\xF1os objetos azules de la caja y col\xF3calos uno
-      por uno en los agujeros del tablero. Al final, vu\xE9lvalos a poner en la caja.\r"
+    m_Localized: "Tome los peque\xF1os objetos azules en la caja con su mano dominante
+      y col\xF3quelos en los agujeros del tablero uno por uno. Al final, vu\xE9lvalos
+      a poner en la caja."
     m_Metadata:
       m_Items: []
   - m_Id: 4174031650816
-    m_Localized: "\rSigue el dedo del avatar con uno de tus dedos \xEDndice."
+    m_Localized: "Si desea calibrar el avatar, extienda su brazo y presione uno de
+      los botones de \xEDndice.Siga el dedo del avatar con el dedo \xEDndice de su
+      mano dominante."
     m_Metadata:
       m_Items: []
   - m_Id: 5069507166208
     m_Localized: "Espere a que el l\xEDquido se vierta en el vaso. Cuando est\xE9
-      listo, coge el vaso y vi\xE9rtelo en el otro recipiente. Tienes que estar por
-      encima de la l\xEDnea roja para verterlo."
+      listo, toma el vaso con tu mano dominante y vi\xE9rtelo en el otro recipiente.
+      Tienes que estar por encima de la l\xEDnea roja para verterlo."
     m_Metadata:
       m_Items: []
   - m_Id: 5601571405824
     m_Localized: "Cuando la nota llegue al destino, presione el bot\xF3n de \xEDndice
-      en cualquiera de los controladores."
+      en cualquiera de los controladores. Las notas comenzar\xE1n a desaparecer,
+      contin\xFAe replicando el ritmo hasta que la herramienta est\xE9 terminada."
     m_Metadata:
       m_Items: []
   - m_Id: 5735977877504
-    m_Localized: "Toca el dedo del avatar con uno de tus dedos \xEDndice. Cuando
-      lo toques, lleva tu \xEDndice a la esfera roja, que representa la nariz."
+    m_Localized: "Si desea calibrar el avatar, extienda su brazo y presione uno de
+      los botones de \xEDndice. Toca el dedo del avatar con el dedo \xEDndice de
+      tu mano dominante. Cuando lo toques, lleva tu \xEDndice a la esfera roja, que
+      representa la nariz."
     m_Metadata:
       m_Items: []
   - m_Id: 5873341333504
@@ -71,12 +77,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 29064863584911360
     m_Localized: "Aparecer\xE1 una letra espec\xEDfica frente a usted, cuando comience
-      a verla, seleccione la letra correcta en el men\xFA debajo de la letra."
+      a verla, presione el bot\xF3n de \xEDndice y luego seleccione la letra correcta
+      en el men\xFA debajo de la letra."
     m_Metadata:
       m_Items: []
   - m_Id: 30572984119623680
     m_Localized: "Cuando escuche una letra, seleccione la letra correcta que acaba
-      de escuchar con el puntero en el men\xFA frente a usted."
+      de escuchar con el puntero en el men\xFA frente a usted. Tendr\xE1s que hacer
+      una elecci\xF3n despu\xE9s de un tiempo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63055218197954560
+    m_Localized: "Por favor, haga una elecci\xF3n."
     m_Metadata:
       m_Items: []
   references:

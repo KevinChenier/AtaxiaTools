@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 567965271257603731, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
     - target: {fileID: 655385702825404614, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
@@ -508,6 +512,10 @@ PrefabInstance:
     - target: {fileID: 722855461245910158, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 783732165055713959, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1370761969605429410, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
@@ -565,6 +573,26 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1976339552033037715, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079961676113970354, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
+    - target: {fileID: 2212356099683252176, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590754431630159818, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
+    - target: {fileID: 3200947764347347970, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
     - target: {fileID: 3832922705692996179, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
@@ -573,14 +601,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pegboard_6
       objectReference: {fileID: 0}
+    - target: {fileID: 4044231892484934444, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
+    - target: {fileID: 4158885669966433060, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
+    - target: {fileID: 4978364512610931016, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
     - target: {fileID: 5263218457613094217, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263218457613094217, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5387100112880234242, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5471615869009256932, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634594060652412793, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
+    - target: {fileID: 6674547057385216109, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975851432017158208, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219106374357145526, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262090187780156123, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: tool
+      value: 
+      objectReference: {fileID: 1527285813}
     - target: {fileID: 7456049497853543150, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
@@ -588,6 +656,14 @@ PrefabInstance:
     - target: {fileID: 7852011518463342239, guid: 656f04817b3c51041920795163bef153, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572611507277297323, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837184009549835600, guid: 656f04817b3c51041920795163bef153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 656f04817b3c51041920795163bef153, type: 3}

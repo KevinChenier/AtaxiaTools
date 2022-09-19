@@ -43,7 +43,7 @@ public class ControllerInputEvent : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) || OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
         {
             if(TriggerEvent != null)
-                TriggerEvent(this, null);
+                TriggerEvent(this, new EventArgs());
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {

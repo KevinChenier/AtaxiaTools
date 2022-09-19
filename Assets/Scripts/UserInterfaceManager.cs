@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UserInterfaceManager : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class UserInterfaceManager : MonoBehaviour
     void Start()
     {
         GoButton.gameObject.SetActive(false);
+    }
+
+    public void OnClickButtonGo()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void ResetScene()

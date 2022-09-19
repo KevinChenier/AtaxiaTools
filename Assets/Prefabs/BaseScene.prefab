@@ -3523,6 +3523,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fbebc0f48a4e01341ba2ca1f01b6b433, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3dad61ceed78d49a6b2e06d05063fd, type: 3}
+--- !u!65 &7300238761188774440 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4340642019477594213, guid: ef3dad61ceed78d49a6b2e06d05063fd, type: 3}
+  m_PrefabInstance: {fileID: 6445397166409740877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7708238724891506893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3714217164643240576, guid: ef3dad61ceed78d49a6b2e06d05063fd, type: 3}
@@ -3548,13 +3553,8 @@ MonoBehaviour:
   thickness: 0
   material: {fileID: 0}
   filter: -65535
-  m_SourceCollider: {fileID: 7708238724891506898}
+  m_SourceCollider: {fileID: 7300238761188774440}
   m_DistanceField: {fileID: 0}
---- !u!64 &7708238724891506898 stripped
-MeshCollider:
-  m_CorrespondingSourceObject: {fileID: 3714217164643240607, guid: ef3dad61ceed78d49a6b2e06d05063fd, type: 3}
-  m_PrefabInstance: {fileID: 6445397166409740877}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6464748561747513606
 PrefabInstance:
   m_ObjectHideFlags: 0

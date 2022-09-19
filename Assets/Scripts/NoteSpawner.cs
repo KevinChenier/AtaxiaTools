@@ -37,9 +37,10 @@ public class NoteSpawner : MonoBehaviour
             case Assets.Scripts.Model.Types.RhythmMode.Clinical:
                 HandleClinicalRhythm();
                 break;
+            case Assets.Scripts.Model.Types.RhythmMode.InvisibleConstant:
+                HandleInvisibleConstantRhythm();
+                break;
         }
-
-           
     }
 
     void FillRandomBpms()
@@ -62,6 +63,24 @@ public class NoteSpawner : MonoBehaviour
             if (timer >= (60.0f / rhythmTool.configs.bpm))
             {
                 Instantiate(note, transform.position, rhythmTool.transform.rotation, this.transform);
+                noteCount++;
+                timer = 0;
+            }
+            timer += Time.deltaTime;
+        }
+    }
+
+    void HandleInvisibleConstantRhythm()
+    {
+        if (noteCount < rhythmTool.configs.nbNotes)
+        {
+            if (timer >= (60.0f / rhythmTool.configs.bpm))
+            {
+                GameObject noteGameObject = (GameObject)Instantiate(note, transform.position, rhythmTool.transform.rotation, this.transform);
+
+                if ((noteCount >= rhythmTool.configs.nbNotes / 5))
+                    noteGameObject.GetComponent<MeshRenderer>().enabled = false;
+
                 noteCount++;
                 timer = 0;
             }

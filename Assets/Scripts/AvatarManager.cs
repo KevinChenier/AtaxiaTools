@@ -1,5 +1,6 @@
 using OculusSampleFramework;
 using RootMotion.FinalIK;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ public class AvatarManager : MonoBehaviour
             indicator.GetComponent<MeshRenderer>().enabled = false;
     }
 
-    void CalibrateArm ()
+    public void CalibrateArm()
     {
         if (fingerPlane != null)
         {
@@ -75,11 +76,6 @@ public class AvatarManager : MonoBehaviour
     private void OnEnable()
     {
         Invoke("StartFingerInteraction", 0.5f);
-    }
-
-    private void OnDestroy()
-    {
-        
     }
 
     public bool showAvatar

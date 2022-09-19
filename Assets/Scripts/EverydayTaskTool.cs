@@ -7,7 +7,7 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
     public GameObject container;
     public GameObject recipient;
     public GameObject PourLine;
-    public ObiSolver solver;
+    public ObiEmitter emitter;
     public double accuracy { get; set; }
 
     private float timer;
@@ -60,49 +60,56 @@ public class EverydayTaskTool : Tool<EverydayTaskConfig>
         base.EndTool(timer);
     }
 
+    private void CheckFluidInContainer()
+    {
+        if (!container.GetComponent<ContainerCollider>().initialized || toolEnded)
+            return;
+
+        for (int i = 0; i < emitter.particleCount; i++)
+        {
+            Vector3 particlePosition = emitter.GetParticlePosition(i);
+
+            if (container.GetComponent<CapsuleCollider>().bounds.Contains(particlePosition))
+            {
+                CancelInvoke("HandleEndTool");
+                return;
+            }
+        }
+        if (!IsInvoking("HandleEndTool"))
+            Invoke("HandleEndTool", 5.0f);
+    }
+
+    private void CalculateAccuracy()
+    {
+        if (!container.GetComponent<ContainerCollider>().initialized || toolEnded)
+            return;
+
+        int accuracy = 0;
+
+        for (int i = 0; i < emitter.particleCount; i++)
+        {
+            Vector3 particlePosition = emitter.GetParticlePosition(i);
+
+            if (recipient.GetComponent<CapsuleCollider>().bounds.Contains(particlePosition))
+                accuracy++;
+        }
+        this.accuracy = (double)accuracy / emitter.particleCount;
+    }
+
     private void FixedUpdate()
     {
+        CalculateAccuracy();
+        CheckFluidInContainer();
+
         if (container.GetComponent<ContainerCollider>().initialized && !toolEnded)
         {
             timer += Time.deltaTime;
         }
     }
 
-    void OnEnable()
+    void HandleEndTool()
     {
-        solver.OnCollision += Solver_OnCollision;
-    }
-
-    void OnDisable()
-    {
-        solver.OnCollision -= Solver_OnCollision;
-    }
-
-    void Solver_OnCollision(object sender, ObiSolver.ObiCollisionEventArgs e)
-    {
-        var world = ObiColliderWorld.GetInstance();
-        int accuracy = 0;
-
-        // just iterate over all contacts in the current frame:
-        foreach (Oni.Contact contact in e.contacts)
-        {
-            // if this one is an actual collision:
-            if (contact.distance < 0.1)
-            {
-                ObiColliderBase col = world.colliderHandles[contact.bodyB].owner;
-
-                if (col != null && col.name == recipient.name)
-                    accuracy++;
-
-                if (col != null && col.name == container.name)
-                    // Still fluid in Container
-                    return;
-            }
-        }
-        if (container.GetComponent<ContainerCollider>().initialized && !toolEnded)
-        {
-            this.accuracy = (double) accuracy / e.contacts.Count;
-            EndTool(5);
-        }
+        Debug.Log(this.accuracy);
+        EndTool(5);
     }
 }

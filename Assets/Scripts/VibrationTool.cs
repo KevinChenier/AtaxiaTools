@@ -24,7 +24,7 @@ public class VibrationTool : Tool<VibrationConfig>
         {
             if (timer >= 0.25f && !toolEnded)
             {
-                strength += 0.001f;
+                strength += 0.0005f;
                 OVRInput.SetControllerVibration(1, strength, OVRInput.Controller.LTouch);
                 OVRInput.SetControllerVibration(1, strength, OVRInput.Controller.RTouch);
                 timer = 0;

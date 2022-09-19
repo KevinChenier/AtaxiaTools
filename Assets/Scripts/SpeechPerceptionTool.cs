@@ -9,7 +9,9 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
     public SpeechPerceptionTool() : base("speechPerception") { }
 
     public List<AudioClip> letters = new List<AudioClip>();
+    public Tips tips;
     private AudioClip chosenLetter;
+    private bool tipActivated;
 
     private int volumeIncrease;
     private int repetition;
@@ -20,14 +22,14 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (toolBegan)
+        if (toolBegan && !tipActivated)
         {
             if (IsInvoking("resetLetter"))
                 return;
 
             if (timer >= 4.0f && !toolEnded)
             {
-                HandleResetLetter(false);
+                activateTip();
             }
             timer += Time.deltaTime;
         }
@@ -67,6 +69,19 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
         });
     }
 
+    private void activateTip()
+    {
+        tips.gameObject.SetActive(true);
+        tips.giveTip("pickChoice");
+        tipActivated = true;
+    }
+
+    private void deactivateTip()
+    {
+        tips.gameObject.SetActive(false);
+        tipActivated = false;
+    }
+
     private AudioClip getRandomLetter()
     {
         System.Random r = new System.Random();
@@ -86,6 +101,8 @@ public class SpeechPerceptionTool : Tool<SpeechPerceptionConfig>
             return;
 
         HandleResetLetter(EventSystem.current.currentSelectedGameObject.name == chosenLetter.name);
+        deactivateTip();
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void HandleResetLetter(bool success)

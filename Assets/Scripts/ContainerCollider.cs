@@ -7,6 +7,8 @@ public class ContainerCollider : MonoBehaviour
     
     public GameObject PourLine;
     public GameObject Cap;
+    public OVRGrabber OVRGrabLeft;
+    public OVRGrabber OVRGrabRight;
     public bool initialized { get; set; }
 
     void Start()
@@ -30,9 +32,9 @@ public class ContainerCollider : MonoBehaviour
 
     void activateContainer()
     {
-        GetComponent<OVRGrabbable>().enabled = true;
-        GetComponent<Grabbable>().enabled = true;
         closeCap();
+        OVRGrabLeft.enabled = true;
+        OVRGrabRight.enabled = true;
         initialized = true;
 
         Debug.Log("Container initialized!");
@@ -40,8 +42,8 @@ public class ContainerCollider : MonoBehaviour
 
     void deactivateContainer()
     {
-        GetComponent<OVRGrabbable>().enabled = false;
-        GetComponent<Grabbable>().enabled = false;
+        OVRGrabLeft.enabled = false;
+        OVRGrabRight.enabled = false;
         openCap();
     }
 

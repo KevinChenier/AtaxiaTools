@@ -19,30 +19,35 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 482033303552
-    m_Localized: "Prenez les petits objets bleus dans la bo\xEEte et placez-les un
-      par un dans les trous du panneau perfor\xE9. \xC0 la fin, remettez-les dans
-      la bo\xEEte."
+    m_Localized: "Saisissez les petits objets bleus dans la bo\xEEte avec votre main
+      dominante et placez-les un par un dans les trous du panneau perfor\xE9. \xC0
+      la fin, remettez-les dans la bo\xEEte."
     m_Metadata:
       m_Items: []
   - m_Id: 4174031650816
-    m_Localized: Suivez le doigt de l'avatar avec l'un de vos index.
+    m_Localized: "Si vous souhaitez calibrer l'avatar, \xE9tendez votre bras et appuyez
+      sur l'un des boutons d'index. Suivez le doigt de l'avatar avec votre index
+      de votre main dominante. "
     m_Metadata:
       m_Items: []
   - m_Id: 5069507166208
     m_Localized: "Attendez que le liquide soit vers\xE9 dans le verre. Lorsqu'il
-      est pr\xEAt, saisissez le verre et versez-le dans l'autre r\xE9cipient. Vous
-      devez \xEAtre au-dessus de la ligne rouge pour le verser."
+      est pr\xEAt, attrapez le verre avec votre main dominante et versez-le dans
+      l'autre r\xE9cipient. Vous devez \xEAtre au-dessus de la ligne rouge pour le
+      verser."
     m_Metadata:
       m_Items: []
   - m_Id: 5601571405824
     m_Localized: "Lorsque la note atteint la destination, appuyez sur le bouton d'index
-      sur l'un des contr\xF4leurs."
+      sur l'un des contr\xF4leurs. Les notes commenceront \xE0 dispara\xEEtre, continuez
+      \xE0 reproduire le rythme jusqu'\xE0 ce que l'outil soit termin\xE9."
     m_Metadata:
       m_Items: []
   - m_Id: 5735977877504
-    m_Localized: "Touchez le doigt de l'avatar avec l'un de vos index. Lorsque vous
-      le touchez, amenez votre index vers la sph\xE8re rouge, qui repr\xE9sente le
-      nez."
+    m_Localized: "Si vous souhaitez calibrer l'avatar, \xE9tendez votre bras et appuyez
+      sur l'un des boutons d'index. Touchez le doigt de l'avatar avec votre index
+      de votre main dominante. Lorsque vous le touchez, amenez votre index vers la
+      sph\xE8re rouge, qui repr\xE9sente le nez."
     m_Metadata:
       m_Items: []
   - m_Id: 5873341333504
@@ -75,13 +80,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 29064863584911360
     m_Localized: "Une lettre sp\xE9cifique appara\xEEtra devant vous, lorsque vous
-      commencez \xE0 la voir, s\xE9lectionnez la lettre correcte dans le menu sous
-      la lettre."
+      commencez \xE0 la voir, appuyez sur le bouton d'index, puis s\xE9lectionnez
+      la lettre correcte dans le menu sous la lettre."
     m_Metadata:
       m_Items: []
   - m_Id: 30572984119623680
     m_Localized: "Lorsque vous entendez une lettre, s\xE9lectionnez la bonne lettre
-      que vous venez d'entendre avec votre pointeur dans le menu devant vous."
+      que vous venez d'entendre avec votre pointeur dans le menu devant vous. Vous
+      devrez faire un choix apr\xE8s un certain temps."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63055218197954560
+    m_Localized: Veuillez faire un choix.
     m_Metadata:
       m_Items: []
   references:

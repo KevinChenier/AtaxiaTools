@@ -19,28 +19,34 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 482033303552
-    m_Localized: Grab the little blue objects in the box, and put them in the pegboard
-      holes one by one. At the end, put them back in the box.
+    m_Localized: Grab the little blue objects in the box with your dominant hand,
+      and put them in the pegboard holes one by one. At the end, put them back in
+      the box.
     m_Metadata:
       m_Items: []
   - m_Id: 4174031650816
-    m_Localized: Follow the avatar finger with one of your index fingers.
+    m_Localized: If you want to calibrate the avatar, extend your arm and press one
+      of the index button. Follow the avatar finger with your index finger of your
+      dominant hand.
     m_Metadata:
       m_Items: []
   - m_Id: 5069507166208
     m_Localized: Wait for the liquid to be poured in the glass. When it is ready,
-      grab the glass and pour it in the other container. You have to be above the
-      red line to pour it.
+      grab the glass with your dominant hand and pour it in the other container.
+      You have to be above the red line to pour it.
     m_Metadata:
       m_Items: []
   - m_Id: 5601571405824
     m_Localized: When the note hits the destination, press the index button on any
-      of the controllers.
+      of the controllers. The notes will begin to disappear, continue to replicate
+      the rhythm until the tool is finished.
     m_Metadata:
       m_Items: []
   - m_Id: 5735977877504
-    m_Localized: Touch the avatar finger with one of your index finger. When you
-      touch it, bring your index to the red sphere, that represents the nose.
+    m_Localized: If you want to calibrate the avatar, extend your arm and press one
+      of the index button. Touch the avatar finger with your index finger of your
+      dominant hand. When you touch it, bring your index to the red sphere, that
+      represents the nose.
     m_Metadata:
       m_Items: []
   - m_Id: 5873341333504
@@ -71,12 +77,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 29064863584911360
     m_Localized: A specific letter will appear in front of you, when you start to
-      see it, select the correct letter in the menu below the letter.
+      see it, press the index button and then select the correct letter in the menu
+      below the letter.
     m_Metadata:
       m_Items: []
   - m_Id: 30572984119623680
     m_Localized: When you hear a letter, select the correct letter that you just
-      heard with your pointer in the menu in front of you.
+      heard with your pointer in the menu in front of you. You will have to make
+      a choice after some time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63055218197954560
+    m_Localized: Please make a choice.
     m_Metadata:
       m_Items: []
   references:

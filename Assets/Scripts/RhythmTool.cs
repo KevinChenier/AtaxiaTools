@@ -75,6 +75,10 @@ public class RhythmTool : Tool<RhythmConfig>
                 if (noteCount >= base.configs.nbNotes)
                     EndTool(5);
                 break;
+            case Assets.Scripts.Model.Types.RhythmMode.InvisibleConstant:
+                if (noteCount >= base.configs.nbNotes)
+                    EndTool(5);
+                break;
             case Assets.Scripts.Model.Types.RhythmMode.Clinical:
                 if (noteCount >= base.configs.repetitions * base.configs.nbNotesPerRepetitions)
                     EndTool(5);

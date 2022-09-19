@@ -10,7 +10,8 @@ namespace Assets.Scripts.Model.Types
     public enum RhythmMode
     {
         Normal,
-        Clinical
+        Clinical,
+        InvisibleConstant
     }
 
     public enum RhythmNote

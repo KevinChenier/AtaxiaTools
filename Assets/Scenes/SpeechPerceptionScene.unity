@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -131,9 +131,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1061687467}
+    - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: checkChosenLetterValidity
@@ -142,20 +162,52 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SpeechPerceptionTool, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 749134166019588450, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SpeechPerceptionTool, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1772681450968532042, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 306356804}
+    - target: {fileID: 1772681450968532043, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1061687467}
+    - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: checkChosenLetterValidity
       objectReference: {fileID: 0}
     - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpeechPerceptionTool, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772681450988633258, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: SpeechPerceptionTool, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2887789717996407606, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
@@ -202,14 +254,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4812043884217768148, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103215756792532621, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6403545906413363733, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_Name
       value: ChoicesButtons
       objectReference: {fileID: 0}
     - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1061687467}
+    - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: checkChosenLetterValidity
@@ -218,10 +298,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SpeechPerceptionTool, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6609147896804069172, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SpeechPerceptionTool, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1061687467}
+    - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: checkChosenLetterValidity
@@ -230,16 +334,44 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SpeechPerceptionTool, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7151002666117468941, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SpeechPerceptionTool, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1061687467}
+    - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: checkChosenLetterValidity
       objectReference: {fileID: 0}
     - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpeechPerceptionTool, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411047665647183097, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: SpeechPerceptionTool, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -406,7 +538,7 @@ PrefabInstance:
     - target: {fileID: 7228619770428932574, guid: 41ac2e2a37456cc4f9b101f4d0dbc44b, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: a2d6fbcf1394c8d4ebc8228064c8b192, type: 3}
+      objectReference: {fileID: 32900000, guid: 8110b19e00a9bc54590b225eeb049b89, type: 3}
     - target: {fileID: 8162596098758780083, guid: 41ac2e2a37456cc4f9b101f4d0dbc44b, type: 3}
       propertyPath: m_Camera
       value: 
@@ -470,6 +602,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06ba4dd1368621746b0403d897c9cdbb, type: 3}
+--- !u!114 &1045251284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6705752061148118631, guid: 9552fc4dd70e5ec419289a4edc2beea8, type: 3}
+  m_PrefabInstance: {fileID: 294876341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a629c181117c145459d3025795389f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1061687466
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +652,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afc52d55041ef7246819204288831582, type: 3}
   - {fileID: 8300000, guid: 2f7fab5938e2cfb4caed8180e9da9395, type: 3}
   - {fileID: 8300000, guid: f6fb87e641f95764f97ce7cac63171e3, type: 3}
+  tips: {fileID: 1045251284}
 --- !u!4 &1061687468
 Transform:
   m_ObjectHideFlags: 0

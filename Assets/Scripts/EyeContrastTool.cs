@@ -1,10 +1,13 @@
 using Assets.Scripts.Model;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class EyeContrastTool : Tool<EyeContrastConfig>
 {
     public GameObject Letters;
+    public GameObject Options;
+    private bool optionsActivated;
 
     public EyeContrastTool() : base("eyeContrast") { }
 
@@ -20,7 +23,7 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (toolBegan)
+        if (toolBegan && !optionsActivated)
         {
             if (timer >= 0.06f && !toolEnded)
             {
@@ -41,6 +44,7 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
         success =  EventSystem.current.currentSelectedGameObject.name == chosenLetter.name;
         Debug.Log(success);
         score();
+        DeactivateOptions(this, null);
         resetLetter();
 
         if(success)
@@ -50,6 +54,7 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
         {
             EndTool(5);
         }
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private Transform getRandomLetter()
@@ -111,6 +116,22 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
         });
     }
 
+    public void ActivateOptions(object source, EventArgs args)
+    {
+        pointer.SetActive(true);
+        Options.SetActive(true);
+        optionsActivated = true;
+        ControllerInputEvent.Instance.TriggerEvent -= ActivateOptions;
+    }
+
+    public void DeactivateOptions(object source, EventArgs args)
+    {
+        pointer.SetActive(false);
+        Options.SetActive(false);
+        optionsActivated = false;
+        ControllerInputEvent.Instance.TriggerEvent += ActivateOptions;
+    }
+
     public override void EndTool(int timer)
     {
         base.EndTool(timer);
@@ -119,7 +140,7 @@ public class EyeContrastTool : Tool<EyeContrastConfig>
     public override void InitTool()
     {
         base.InitTool();
-        pointer.SetActive(true);
+        DeactivateOptions(null, null);
         contrast = 1.0f;
         chosenLetter = getRandomLetter();
         foreach (Transform child in chosenLetter)

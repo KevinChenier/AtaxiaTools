@@ -1,4 +1,5 @@
 using Assets.Scripts.Model;
+using System;
 using UnityEngine;
 
 public class FingerNoseTool : Tool<FingerNoseConfig>
@@ -35,9 +36,16 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
         }
     }
 
+    public void CalibrateArm(object source, EventArgs args)
+    {
+        AvatarManager.Instance.CalibrateArm();
+        Recalculate();
+    }
+
     public override void InitTool()
     {
         base.InitTool();
+        ControllerInputEvent.Instance.TriggerEvent += CalibrateArm;
         nose.GetComponent<MeshRenderer>().enabled = false;
         GeneralDataExtractor.Instance.StartSaveOculusControllersData(Assets.Scripts.Model.Types.EventType.FingerNoseData.ToString());
     }
@@ -45,6 +53,7 @@ public class FingerNoseTool : Tool<FingerNoseConfig>
     public override void EndTool(int timer)
     {
         GeneralDataExtractor.Instance.CancelSaveOculusControllersData();
+        ControllerInputEvent.Instance.TriggerEvent -= CalibrateArm;
         base.EndTool(timer);
     }
 

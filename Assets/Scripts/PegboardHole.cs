@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class PegboardHole : MonoBehaviour
 {
-    public Light lightHole; 
+    public Light lightHole;
+    public PegboardTool tool;
 
-    // Start is called before the first frame update
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if(other.gameObject.tag == "CylinderPeg")
+        foreach(Collider peggle in tool.toolObjects)
         {
-            lightHole.enabled = true;
-            CancelInvoke("CloseLight");
+            if (BoundsIsEncapsulated(GetComponent<MeshCollider>().bounds, peggle.bounds))
+            {
+                lightHole.enabled = true;
+                return;
+            }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "CylinderPeg")
-        {
-            Invoke("CloseLight", 0.4f);
-        }
-    }
-
-    void CloseLight()
-    {
         lightHole.enabled = false;
+    }
+
+    bool BoundsIsEncapsulated(Bounds Encapsulator, Bounds Encapsulating)
+    {
+        return Encapsulator.Contains(Encapsulating.center) && Encapsulator.Contains(Encapsulating.min) && Encapsulator.Contains(Encapsulating.max);
     }
 }
