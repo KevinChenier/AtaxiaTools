@@ -1,0 +1,7 @@
+Oculus Quest 2 Development Setup With Unity (XR Oculus Plugin): https://www.youtube.com/watch?v=Ic5vbysX68M 
+Unity VR: Oculus Quest Hand Tracking with Oculus Link (Unity 2019.3): https://www.youtube.com/watch?v=a8YJmPx6HcQ
+Unity3d Oculus Quest Hand Tracking Setup With Physics: https://www.youtube.com/watch?v=0RW9BdVXZio
+How to GRAB with HAND TRACKING - Oculus Quest Unity Tutorial: https://www.youtube.com/watch?v=UoSzhoZ18bE
+Hand Tracking Gesture Detection - Unity Oculus Quest Tutorial: https://www.youtube.com/watch?v=lBzwUKQ3tbw
+
+Oculus Quest Hand Tracking With Universal Render Pipeline & Shader Graph ( Unity Tutorial ): https://www.youtube.com/watch?v=3uX6jJglTNw

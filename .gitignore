@@ -52,6 +52,12 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
+# Generated videos from analysis
+*.avi
+
+# Patient data
+*.csv
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 

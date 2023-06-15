@@ -38,8 +38,8 @@ public class GeneralDataExtractor : MonoBehaviour
     public void StartSaveOculusControllersData(string toolType)
     {
         this.toolType = toolType;
-        // 12 HZ (83 ms) pour quantifier le tremblement
-        InvokeRepeating("SaveOculusControllersData", 0.0f, 0.083f);
+        // 90 HZ (11.11 ms) because of Oculus Quest 2 controllers refresh rate
+        InvokeRepeating("SaveOculusControllersData", 0.0f, 0.0111f);
         sw = new Stopwatch();
         sw.Start();
         
