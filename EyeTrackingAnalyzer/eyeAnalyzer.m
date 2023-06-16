@@ -187,6 +187,7 @@ for i=1:(height(T) - 1)
         Velocity = (CombinedEyeDirectionDegrees_x2 - CombinedEyeDirectionDegrees_x1) / VelocityTime;
     end
 
+    % TODO: Should be /1000 instead of *1000 for seconds
     T{i + 1, "Value_CombinedEyesVelocityDegrees_x"} = Velocity * 1000;
 end 
 % Combined Gaze Velocity Degrees x
@@ -333,6 +334,7 @@ for i=1:(height(T) - 1)
 end 
 % Right Eye Velocity Degrees
 
+% TODO: We should filter the timestamp or gaze direction instead of Velocity?
 %% Filter data. Filter source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
 dataToFilter = ["Value_LeftEyeVelocityDegrees_x", "Value_LeftEyeVelocityDegrees_y", "Value_RightEyeVelocityDegrees_x",...
     "Value_RightEyeVelocityDegrees_y", "Value_RightEyeVelocityDegrees", "Value_LeftEyeVelocityDegrees",...
@@ -447,6 +449,7 @@ for i=1:(height(T) - 1)
 end
 % Square Wave Jerks
 
+% Calculate the median for each participant
 columnData = abs(T.Value_CombinedEyesVelocityDegrees);
 columnDataWithoutNaN = columnData(~isnan(columnData));
 combinedEyesSaccade_median = 10 * median(columnDataWithoutNaN);
@@ -946,7 +949,7 @@ subplot(6, 5, 27);
 % Saccade
 
 %% Animation
-video = VideoWriter(strcat(s,'.avi'), 'Uncompressed AVI');
+video = VideoWriter(strcat(s,'.avi'), 'MPEG-4');
 open(video)
 
 a = tic; % start timer
@@ -1049,6 +1052,7 @@ function newTableWithSaccades = saccadeCoordinateCalculation(T, velocityThreshol
                 currentVelocity = abs(T{k, Value_EyeVelocityDegrees});
                 peakVelocity = max(currentVelocity, peakVelocity);
                 peakAmplitude = max(norm(initialPosition - currentPosition), peakAmplitude);
+                % TODO: Calculate the duration of saccade
                 if((T{k, "Value_ElapsedTime"} - initialTime) < saccadeDurationThreshold && abs(T{k, Value_EyeVelocityDegrees}) < velocityThreshold)
                     %regarder pour fixation pendant 100ms
                     for j=k+1:(height(T) - 1)

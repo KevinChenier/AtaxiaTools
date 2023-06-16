@@ -53,7 +53,10 @@ ExportedObj/
 *.mdb.meta
 
 # Generated videos from analysis
-*.avi
+/EyeTrackingAnalyzer/*.avi
+/EyeTrackingAnalyzer/*.mp4
+/UpperBodyAnalyzer/*.avi
+/UpperBodyAnalyzer/*.mp4
 
 # Patient data
 *.csv
