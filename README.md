@@ -91,29 +91,29 @@
 
 3.  When the headset is turned on, follow the steps exactly as shown below.
     
-    -  Confirm the floor location.
+    1.  Confirm the floor location.
     
     ![Graphical user interface Description automatically generated](media/d64bc126c04e195928245a411884f0fb.png)
     
-    -  Press "Switch to stationary boundary."
+    2.  Press "Switch to stationary boundary."
     
     ![Graphical user interface Description automatically generated](media/b109c4c77266fa4d15a593935c6a27ee.png)
     
-    -  Confirm the previous choice.
+    3.  Confirm the previous choice.
     
     ![Graphical user interface, website, Teams Description automatically generated](media/7cd2d8fee542d6499c7d9ecc5ad5689c.png)
 
 4.  Open Quest Link to connect the headset to the computer.
     
-    -  Press the Oculus button on the right-hand controller.
+    1.  Press the Oculus button on the right-hand controller.
     
     ![A white video game controller Description automatically generated with medium confidence](media/d17893ecc6d1db737e01b2c483c84723.png)
     
-    -  Open the Quick Settings by pressing the menu button on the left.
+    2.  Open the Quick Settings by pressing the menu button on the left.
     
     ![Graphical user interface Description automatically generated](media/961a09cc9afe9e3eb6073a76bb2ee4f8.png)
     
-    -  Press the Quest Link option.
+    3.  Press the Quest Link option.
     
     ![How to Play Steam Games on the Oculus Quest 2 (2022) \| Beebom](media/85a3d60e93a50de374f8d2318f5fef81.jpeg)
 
@@ -140,10 +140,10 @@
 ![Graphical user interface, application Description automatically generated](media/fbe129e62ec17ff9e2aeea7144283edf.png)
 
 10. Perform the headset calibration using "Room Setup" in SteamVR.
-    -  Press the hamburger menu icon located at the top left.
-    -  Press "Room Setup" in the menu.
-    -  Press "Standing Only".
-    -  Then follow the room setup instructions provided.
+    1.  Press the hamburger menu icon located at the top left.
+    2.  Press "Room Setup" in the menu.
+    3.  Press "Standing Only".
+    4.  Then follow the room setup instructions provided.
 
 ## Experiment progression
 
