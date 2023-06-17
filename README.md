@@ -88,18 +88,18 @@
 2.  Put the headset on your head and press the button located on the right side of the headset for 5 seconds.
 ![How to Shut Down or Power Off Oculus Quest 2 Properly? - All Virtual Reality](media/f0bac4c2d4529cc5bf8b15bef3933fae.jpeg)
 3.  When the headset is turned on, follow the steps exactly as shown below.
-    a)  Confirm the floor location.
+    -  Confirm the floor location.
     ![Graphical user interface Description automatically generated](media/d64bc126c04e195928245a411884f0fb.png)
-    b)  Press "Switch to stationary boundary."
+    -  Press "Switch to stationary boundary."
     ![Graphical user interface Description automatically generated](media/b109c4c77266fa4d15a593935c6a27ee.png)
-    c)  Confirm the previous choice.
+    -  Confirm the previous choice.
     ![Graphical user interface, website, Teams Description automatically generated](media/7cd2d8fee542d6499c7d9ecc5ad5689c.png)
 4.  Open Quest Link to connect the headset to the computer.
-    a)  Press the Oculus button on the right-hand controller.
+    -  Press the Oculus button on the right-hand controller.
     ![A white video game controller Description automatically generated with medium confidence](media/d17893ecc6d1db737e01b2c483c84723.png)
-    b)  Open the Quick Settings by pressing the menu button on the left.
+    -  Open the Quick Settings by pressing the menu button on the left.
     ![Graphical user interface Description automatically generated](media/961a09cc9afe9e3eb6073a76bb2ee4f8.png)
-    c)  Press the Quest Link option.
+    -  Press the Quest Link option.
     ![How to Play Steam Games on the Oculus Quest 2 (2022) \| Beebom](media/85a3d60e93a50de374f8d2318f5fef81.jpeg)
 5.  Turn up the volume of the Oculus Quest to the maximum.
 ![Where is the Volume Button on Oculus Quest 2? - YouTube](media/a4ed20ba4ab2a6c6194fa7dab9e09d35.jpeg)
@@ -119,10 +119,10 @@
 9.  Open SteamVR.
 ![Graphical user interface, application Description automatically generated](media/fbe129e62ec17ff9e2aeea7144283edf.png)
 10. Perform the headset calibration using "Room Setup" in SteamVR.
-    a)  Press the hamburger menu icon located at the top left.
-    b)  Press "Room Setup" in the menu.
-    c)  Press "Standing Only".
-    d)  Then follow the room setup instructions provided.
+    -  Press the hamburger menu icon located at the top left.
+    -  Press "Room Setup" in the menu.
+    -  Press "Standing Only".
+    -  Then follow the room setup instructions provided.
 
 ## Experiment progression
 
@@ -153,6 +153,7 @@ Before starting the HTC Vive tools, it is important **to press the** [**button**
 First, place the HTC Vive Pro Eye headset on the patient and adjust it to their liking by turning the dial at the back of the headset. Then, double-click on the **AtaxieHTC** icon located in the folder **./Builds/HTC**
 
 A pop-up will appear to activate the Eye-Tracking. Press "Yes" to enable Eye-Tracking.
+
 ![](media/6ebb633f23ff140f86a42a9f7b4cca04.png)
 
 The patient will perform eye calibration in the headset. You will be able to see what they see using the Display VR View on SteamVR.
@@ -199,6 +200,7 @@ This test is a replication of the "Finger-Nose-Finger Test" performed in clinica
 
 ### Rhythm
 ![A picture containing text, indoor, floor, computer Description automatically generated](media/3dba62179441046f84563c43c2e8503f.png)
+
 The rhythm tool replicates the clinically used rhythm task. The clinical task requires the patient to replicate a given rhythm with their finger or foot. In the virtual reality environment, the patient will see notes appearing, and they must press the index button on one of the controllers to replicate the rhythm, even after the notes have disappeared. The number of repetitions will be **15 per trial with a bpm of 100**. The task will be performed **4 times** in the proposed scenario (**1 practice and 3 acquisitions**).
 
 ### Vibration
@@ -206,13 +208,13 @@ The rhythm tool replicates the clinically used rhythm task. The clinical task re
 Patients with Friedreich's ataxia experience a loss of sensitivity to vibrations. This loss is significant as the disease progresses. This task is designed to test this loss of sensitivity. At the beginning of the task, the controllers will not produce any vibrations. The vibrations will be activated and increase in intensity over time. The patient will need to press the index button on one of the controllers. No visual feedback will be provided to the user, only the controllers will be visible. The number of vibrations to be tested will be **5 per trial**. The task will be performed **3 times** in the proposed scenario (**1 practice and 2 acquisitions**).
 
 ### Eye Contrast
-
 ![Graphical user interface Description automatically generated with medium confidence](media/6696e2ef1d3d2b0ff56931ae0b93789e.png)
+
 Some patients with Friedreich's ataxia experience a loss of contrast sensitivity due to a reduction in the thickness of the retinal nerve fiber layer. This task is designed to test this reduction in sensitivity. The patient will see 5 letters displayed in front of them on a white screen. A letter will appear on the white screen, but the contrast of the letter will change over time. When the patient starts to see the letter, they need to point and press one of the 5 letters in front of them to indicate what they see. The number of contrast repetitions to be tested will be **4 per trial**. The scenario will have **1 practice trial and 2 acquisition trials**.
 
 ### Speech Perception
-
 ![](media/bbc0b1d50dc35e2b61a7654b01ac7fc4.png)
+
 Many patients with Friedreich's ataxia report having difficulty hearing, as if they were experiencing deafness. However, their ability to hear is not due to deafness but rather a difficulty in speech comprehension with background noise. This task aims to test this difficulty in speech comprehension. The patient will see 5 letters displayed in front of them. They will hear a person pronouncing letters, and a background noise will also be activated, gradually increasing over time. When the user hears the letter, they need to point and press one of the 5 letters in front of them to indicate what they hear. The **number of background noise volume increases will be 6**, and the **number of letter pronunciation repetitions will be 2 per volume repetition, resulting in a total of 12 repetitions per trial. The scenario will have 1 practice trial and 2 acquisition trials**.
 
 ### Pegboard
@@ -221,19 +223,16 @@ Many patients with Friedreich's ataxia report having difficulty hearing, as if t
 The virtual reality pegboard task replicates the "Nine Hole Peg Test" used in clinical settings. The virtual reality task is in a vertical mode, and the pegboard is larger to make it easier to perform. The scenario will consist of **1 practice trial and 2 acquisition trials**.
 
 ### Eye-Tracking Fixation
-
 ![A red box on a wooden floor Description automatically generated with low confidence](media/f5710106469b94c1633def98d010dc53.png)
 
 The user will be presented with a target and they will have to fixate on it for a specified duration. A progress indicator will show the remaining fixation time. This task is designed to test for possible Square Wave Jerks during fixation. The fixation time for the scenario will be **7 seconds**. The scenario will consist of **1 practice trial and 3 acquisition trials**.
 
 ### Eye-Tracking Follow
-
 ![A picture containing brick, building material Description automatically generated](media/b7f65e6a1cf86684e9f8086723e39b67.png)
 
 The user will be presented with a moving target and they will have to track its movement for a certain number of repetitions. This task is a replication of the commonly used neurological test to assess eye movement. The number of repetitions in the scenario will be **10 per trial**. The scenario will consist of **1 practice trial and 2 acquisition trials**.
 
 ### Eye-Tracking Multiple
-
 ![A picture containing text, brick Description automatically generated](media/3ca5503413a0e0bbc9bab42426773189.png)
 
 The user will see 5 targets arranged in front of them. A tracking pattern will be activated, and they will have to focus on the active target. A fixation time will be displayed. This task is a replication of the neurological test, but the trajectories will be vertical and horizontal. The scenario will consist of **1 practice trial and 2 acquisition trials**.
