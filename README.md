@@ -132,9 +132,13 @@
 6.  Connect the [diplay port adapter –\> mini display port](#adaptateur) to the display port cable. Next, connect the mini display port end of the adapter to the laptop.
 7.  Connect the [peripheral center cable –\> mural](#filCentreMural) to the power bar.
 8.  Connect the [HTC Vive Pro Eye](#htcViveProEye) to the [peripheral center](#centrePériphérique). Press the button located on the peripheral center. A green light should appear on the peripheral center, and a red light should appear on the headset.
+
 ![Link Box for VIVE Pro \| VIVE United States](media/7e7da0e1f6aabdb165d3e2e9dd595a73.png)
+
 9.  Open SteamVR.
+
 ![Graphical user interface, application Description automatically generated](media/fbe129e62ec17ff9e2aeea7144283edf.png)
+
 10. Perform the headset calibration using "Room Setup" in SteamVR.
     -  Press the hamburger menu icon located at the top left.
     -  Press "Room Setup" in the menu.
