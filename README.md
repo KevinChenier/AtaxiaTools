@@ -86,22 +86,39 @@
 
 1.  Take the [charging cable](#filRechargeOculus) and connect it to the [Oculus Quest 2](#oculusQuest2) and to the computer.
 2.  Put the headset on your head and press the button located on the right side of the headset for 5 seconds.
+
 ![How to Shut Down or Power Off Oculus Quest 2 Properly? - All Virtual Reality](media/f0bac4c2d4529cc5bf8b15bef3933fae.jpeg)
+
 3.  When the headset is turned on, follow the steps exactly as shown below.
+    
     -  Confirm the floor location.
+    
     ![Graphical user interface Description automatically generated](media/d64bc126c04e195928245a411884f0fb.png)
+    
     -  Press "Switch to stationary boundary."
+    
     ![Graphical user interface Description automatically generated](media/b109c4c77266fa4d15a593935c6a27ee.png)
+    
     -  Confirm the previous choice.
+    
     ![Graphical user interface, website, Teams Description automatically generated](media/7cd2d8fee542d6499c7d9ecc5ad5689c.png)
+
 4.  Open Quest Link to connect the headset to the computer.
+    
     -  Press the Oculus button on the right-hand controller.
+    
     ![A white video game controller Description automatically generated with medium confidence](media/d17893ecc6d1db737e01b2c483c84723.png)
+    
     -  Open the Quick Settings by pressing the menu button on the left.
+    
     ![Graphical user interface Description automatically generated](media/961a09cc9afe9e3eb6073a76bb2ee4f8.png)
+    
     -  Press the Quest Link option.
+    
     ![How to Play Steam Games on the Oculus Quest 2 (2022) \| Beebom](media/85a3d60e93a50de374f8d2318f5fef81.jpeg)
+
 5.  Turn up the volume of the Oculus Quest to the maximum.
+
 ![Where is the Volume Button on Oculus Quest 2? - YouTube](media/a4ed20ba4ab2a6c6194fa7dab9e09d35.jpeg)
 
 ### Connect the HTC Vive Pro Eye
