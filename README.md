@@ -1,3 +1,18 @@
+## Purpose
+
+Friedreich's ataxia is an incurable neurodegenerative disease that manifests itself through several symptoms. Patients present with difficulty walking, increased cerebellar tremor, speech impairment, increased eye abnormalities, loss of coordination and cardiomyopathy which is the main cause of death in AF patients. 
+
+Several assessment instruments exist to quantify disease progression, such as the FARS, however, this scale is limited when patients are no longer ambulant and is limited by its subjective nature of clinical assessment. It is therefore crucial to develop more objective tools for the upper extremities to measure FA progression.
+
+With this in mind, we use virtual reality to design precise tools. We created a virtual environment using the Oculus Quest 2 for upper extremity assessment, and the HTC Vive Pro Eye for ocular abnormalities. We have developed a series of tasks in virtual reality, including 8 for upper limbs and 3 for ocular anomalies.
+
+## Conception
+
+   ![Classes1](media/classDiagram1.jpg)
+
+   ![Classes2](media/classDiagram2.jpg)
+
+
 ## Hardware
 
 ### Oculus Quest 2
