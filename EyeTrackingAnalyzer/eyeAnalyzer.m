@@ -86,306 +86,95 @@ function analyze(arg1, arg2)
         'Value_SquareWaveJerk_peakVelocity', 'Value_SquareWaveJerk_time', 'Value_SquareWaveJerkBinocularity', 'Value_LeftSaccade', 'Value_RightSaccade', ...
         'Value_SaccadeBinocularity', 'Value_Saccade', 'Value_Saccade_initialVelocity', 'Value_Saccade_peakVelocity', 'Value_Saccade_amplitude', 'Value_Fixation'};
     
-    for i = 1:length(newVars)
-        T = addvars(T, zeros(height(T), 1), 'NewVariableNames', newVars{i});
+    % Preallocate a cell array for storing new variables
+    newVarData = cell(1, numel(newVars));
+    
+    % Loop through each new variable
+    for i = 1:numel(newVars)
+        newVarData{i} = zeros(height(T), 1);
     end
 
+    % Add all new variables to the table at once
+    T = addvars(T, newVarData{:}, 'NewVariableNames', newVars);
     disp("Variables initiated");
     % New variables init
 
     % Lost Focus
-    for i=1:(height(T))
-        T{i, "Value_LostFocus"} = (T{i, "Value_CombinedEyesGazeDirectionNormalized_x"} == -1);
-    end
+    % Vectorized assignment
+    T.Value_LostFocus = (T.Value_CombinedEyesGazeDirectionNormalized_x == -1);
     
-    % Find rows where Value_LostFocus is equal to 1
-    rows_to_remove = T.Value_LostFocus == 1;
-    
-    % Remove those rows from the table
-    T(rows_to_remove, :) = [];
-
+    % Remove rows using logical indexing
+    T(T.Value_LostFocus == 1, :) = [];
+    T.Value_LostFocus = [];
     disp("Lost focus done");
     % Lost Focus
     
     % Left Gaze Direction Degrees x
-    for i=1:(height(T))
-        if (T{i, "Value_LostFocus"})
-            if (i - 1 > 0)
-                T{i, "Value_LeftEyeDirectionDegrees_x"} = T{i - 1, "Value_LeftEyeDirectionDegrees_x"};
-            else
-                T{i, "Value_LeftEyeDirectionDegrees_x"} = 0;
-            end
-        else
-            % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-            T{i, "Value_LeftEyeDirectionDegrees_x"} = (atan(T{i, "Value_LeftEyeGazeDirectionNormalized_x"} / T{i, "Value_LeftEyeGazeDirectionNormalized_z"}) / pi) * 180;
-        end
-    end
+    % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
+    T.Value_LeftEyeDirectionDegrees_x = atan(T.Value_LeftEyeGazeDirectionNormalized_x ./ T.Value_LeftEyeGazeDirectionNormalized_z) * 180 / pi;
     disp("Left Gaze Direction Degrees x done");
     % Left Gaze Direction Degrees x
     
     % Left Gaze Direction Degrees y
-    for i=1:(height(T))
-        if (T{i, "Value_LostFocus"})
-            if (i - 1 > 0)
-                T{i, "Value_LeftEyeDirectionDegrees_y"} = T{i - 1, "Value_LeftEyeDirectionDegrees_y"};
-            else
-                T{i, "Value_LeftEyeDirectionDegrees_y"} = 0;
-            end
-        else
-            % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-            T{i, "Value_LeftEyeDirectionDegrees_y"} = (atan(T{i, "Value_LeftEyeGazeDirectionNormalized_y"} / T{i, "Value_LeftEyeGazeDirectionNormalized_z"}) / pi) * 180;
-        end
-    end
+    T.Value_LeftEyeDirectionDegrees_y = atan(T.Value_LeftEyeGazeDirectionNormalized_y ./ T.Value_LeftEyeGazeDirectionNormalized_z) * 180 / pi;
     disp("Left Gaze Direction Degrees y done");
     % Left Gaze Direction Degrees y
     
     % Right Gaze Direction Degrees x
-    for i=1:(height(T))
-        if (T{i, "Value_LostFocus"})
-            if (i - 1 > 0)
-                T{i, "Value_RightEyeDirectionDegrees_x"} = T{i - 1, "Value_RightEyeDirectionDegrees_x"};
-            else
-                T{i, "Value_RightEyeDirectionDegrees_x"} = 0;
-            end
-        else
-            % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-            T{i, "Value_RightEyeDirectionDegrees_x"} = (atan(T{i, "Value_RightEyeGazeDirectionNormalized_x"} / T{i, "Value_RightEyeGazeDirectionNormalized_z"}) / pi) * 180;
-        end 
-    end
+    T.Value_RightEyeDirectionDegrees_x = atan(T.Value_RightEyeGazeDirectionNormalized_x ./ T.Value_RightEyeGazeDirectionNormalized_z) * 180 / pi;
     disp("Right Gaze Direction Degrees x done");
     % Right Gaze Direction Degrees x
     
     % Right Gaze Direction Degrees y
-    for i=1:(height(T))
-        if (T{i, "Value_LostFocus"})
-            if (i - 1 > 0)
-                T{i, "Value_RightEyeDirectionDegrees_y"} = T{i - 1, "Value_RightEyeDirectionDegrees_y"};
-            else
-                T{i, "Value_RightEyeDirectionDegrees_y"} = 0;
-            end
-        else
-            % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-            T{i, "Value_RightEyeDirectionDegrees_y"} = (atan(T{i, "Value_RightEyeGazeDirectionNormalized_y"} / T{i, "Value_RightEyeGazeDirectionNormalized_z"}) / pi) * 180;
-        end
-    end
+    T.Value_RightEyeDirectionDegrees_y = atan(T.Value_RightEyeGazeDirectionNormalized_y ./ T.Value_RightEyeGazeDirectionNormalized_z) * 180 / pi;
     disp("Right Gaze Direction Degrees y done");
     % Right Gaze Direction Degrees y
     
     % Combined Gaze Direction Degrees x
-    for i=1:(height(T))
-        if (T{i, "Value_LostFocus"})
-            if (i - 1 > 0)
-                T{i, "Value_CombinedEyesDirectionDegrees_x"} = T{i - 1, "Value_CombinedEyesDirectionDegrees_x"};
-            else
-                T{i, "Value_CombinedEyesDirectionDegrees_x"} = 0;
-            end
-        else
-            % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-            T{i, "Value_CombinedEyesDirectionDegrees_x"} = (atan(T{i, "Value_CombinedEyesGazeDirectionNormalized_x"} / T{i, "Value_CombinedEyesGazeDirectionNormalized_z"}) / pi) * 180;
-        end
-    end
+    T.Value_CombinedEyesDirectionDegrees_x = atan(T.Value_CombinedEyesGazeDirectionNormalized_x ./ T.Value_CombinedEyesGazeDirectionNormalized_z) * 180 / pi;
     disp("Combined Gaze Direction Degrees x done");
     % Combined Gaze Direction Degrees x
     
     % Combined Gaze Direction Degrees y
-    for i=1:(height(T))
-        if (T{i, "Value_LostFocus"})
-            if (i - 1 > 0)
-                T{i, "Value_CombinedEyesDirectionDegrees_y"} = T{i - 1, "Value_CombinedEyesDirectionDegrees_y"};
-            else
-                T{i, "Value_CombinedEyesDirectionDegrees_y"} = 0;
-            end
-        else
-            % Formula source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-            T{i, "Value_CombinedEyesDirectionDegrees_y"} = (atan(T{i, "Value_CombinedEyesGazeDirectionNormalized_y"} / T{i, "Value_CombinedEyesGazeDirectionNormalized_z"}) / pi) * 180;
-        end
-    end
+    T.Value_CombinedEyesDirectionDegrees_y = atan(T.Value_CombinedEyesGazeDirectionNormalized_y ./ T.Value_CombinedEyesGazeDirectionNormalized_z) * 180 / pi;
     disp("Combined Gaze Direction Degrees y done");
     % Combined Gaze Direction Degrees y
     
     % We filter the gaze direction
     % Filter data. Filter source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-    dataToFilter = ["Value_LeftEyeDirectionDegrees_x", "Value_LeftEyeDirectionDegrees_y", "Value_RightEyeDirectionDegrees_x",...
-        "Value_RightEyeDirectionDegrees_y", "Value_CombinedEyesDirectionDegrees_x", "Value_CombinedEyesDirectionDegrees_y"];
+    dataToFilter = {T.Value_LeftEyeDirectionDegrees_x, T.Value_LeftEyeDirectionDegrees_y, T.Value_RightEyeDirectionDegrees_x,...
+        T.Value_RightEyeDirectionDegrees_y, T.Value_CombinedEyesDirectionDegrees_x, T.Value_CombinedEyesDirectionDegrees_y};
     
     for i = 1:length(dataToFilter)
-        oldData = T{:, dataToFilter{i}};
+        oldData = dataToFilter{i};
         filteredData = movmean(oldData, 10); % Validated moving average filter with a window of 10 with https://goodcalculators.com/simple-moving-average-calculator/
-        T{:, dataToFilter{i}} = filteredData;
+        dataToFilter{i} = filteredData;
     end
+
+    % Update the filtered data back into the original variables
+    T.Value_LeftEyeDirectionDegrees_x = dataToFilter{1};
+    T.Value_LeftEyeDirectionDegrees_y = dataToFilter{2};
+    T.Value_RightEyeDirectionDegrees_x = dataToFilter{3};
+    T.Value_RightEyeDirectionDegrees_y = dataToFilter{4};
+    T.Value_CombinedEyesDirectionDegrees_x = dataToFilter{5};
+    T.Value_CombinedEyesDirectionDegrees_y = dataToFilter{6};
+
     disp("Filter done");
     % We filter the gaze direction
+
+    % Velocities
+    T = calculateVelocities(T, T.Value_CombinedEyesDirectionDegrees_x, T.Value_ElapsedTime, "Value_CombinedEyesVelocityDegrees_x", "Combined Eyes Velocity Degrees x done");
+    T = calculateVelocities(T, T.Value_CombinedEyesDirectionDegrees_y, T.Value_ElapsedTime, "Value_CombinedEyesVelocityDegrees_y", "Combined Eyes Velocity Degrees y done");
+    T = calculateVelocities(T, T.Value_LeftEyeDirectionDegrees_x, T.Value_ElapsedTime, "Value_LeftEyeVelocityDegrees_x", "Left Eye Velocity Degrees x done");
+    T = calculateVelocities(T, T.Value_LeftEyeDirectionDegrees_y, T.Value_ElapsedTime, "Value_LeftEyeVelocityDegrees_y", "Left Eye Velocity Degrees y done");
+    T = calculateVelocities(T, T.Value_RightEyeDirectionDegrees_x, T.Value_ElapsedTime, "Value_LeftEyeVelocityDegrees_x", "Left Eye Velocity Degrees x done");
+    T = calculateVelocities(T, T.Value_RightEyeDirectionDegrees_y, T.Value_ElapsedTime, "Value_RightEyeVelocityDegrees_y", "Right Eye Velocity Degrees y done");
     
-    % Combined Gaze Velocity Degrees x
-    for i=1:(height(T) - 1)
-        CombinedEyeDirectionDegrees_x1 = T{i, "Value_CombinedEyesDirectionDegrees_x"};
-        CombinedEyeDirectionDegrees_x2 = T{i + 1, "Value_CombinedEyesDirectionDegrees_x"};
-    
-        Time1 = T{i, "Value_ElapsedTime"};
-        Time2 = T{i + 1, "Value_ElapsedTime"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            VelocityTime = max(Time2 - Time1, 1);
-            Velocity = (CombinedEyeDirectionDegrees_x2 - CombinedEyeDirectionDegrees_x1) / VelocityTime;
-        end
-    
-        T{i + 1, "Value_CombinedEyesVelocityDegrees_x"} = Velocity * 1000;
-    end 
-    disp("Combined Eyes Velocity Degrees x done");
-    % Combined Gaze Velocity Degrees x
-    
-    % Combined Gaze Velocity Degrees y
-    for i=1:(height(T) - 1)
-        CombinedEyeDirectionDegrees_y1 = T{i, "Value_CombinedEyesDirectionDegrees_y"};
-        CombinedEyeDirectionDegrees_y2 = T{i + 1, "Value_CombinedEyesDirectionDegrees_y"};
-    
-        Time1 = T{i, "Value_ElapsedTime"};
-        Time2 = T{i + 1, "Value_ElapsedTime"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            VelocityTime = max(Time2 - Time1, 1);
-            Velocity = (CombinedEyeDirectionDegrees_y2 - CombinedEyeDirectionDegrees_y1) / VelocityTime;
-        end
-    
-        T{i + 1, "Value_CombinedEyesVelocityDegrees_y"} = Velocity * 1000;
-    end 
-    disp("Combined Eyes Velocity Degrees y done");
-    % Combined Gaze Velocity Degrees y
-    
-    % Combined Eyes Velocity Degrees
-    for i=1:(height(T) - 1)
-        CombinedEyesVelocityDegrees_x = T{i, "Value_CombinedEyesVelocityDegrees_x"};
-        CombinedEyesVelocityDegrees_y = T{i, "Value_CombinedEyesVelocityDegrees_y"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            Velocity = sqrt((CombinedEyesVelocityDegrees_x)^2 + (CombinedEyesVelocityDegrees_y)^2);
-        end
-    
-        T{i, "Value_CombinedEyesVelocityDegrees"} = Velocity;
-    
-    end 
-    disp("Combined Eyes Velocity Degrees done");
-    % Combined Eyes Velocity Degrees
-    
-    % Left Eye Velocity Degrees x
-    for i=1:(height(T) - 1)
-        LeftGazeDirectionDegrees_x1 = T{i, "Value_LeftEyeDirectionDegrees_x"};
-        LeftGazeDirectionDegrees_x2 = T{i + 1, "Value_LeftEyeDirectionDegrees_x"};
-    
-        Time1 = T{i, "Value_ElapsedTime"};
-        Time2 = T{i + 1, "Value_ElapsedTime"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            VelocityTime = max(Time2 - Time1, 1);
-            Velocity = (LeftGazeDirectionDegrees_x2 - LeftGazeDirectionDegrees_x1) / VelocityTime;
-        end
-    
-        T{i + 1, "Value_LeftEyeVelocityDegrees_x"} = Velocity * 1000;
-    end 
-    disp("Left Eye Velocity Degrees x done");
-    % Left Eye Velocity Degrees x
-    
-    % Left Eye Velocity Degrees y
-    for i=1:(height(T) - 1)
-        LeftGazeDirectionDegrees_y1 = T{i, "Value_LeftEyeDirectionDegrees_y"};
-        LeftGazeDirectionDegrees_y2 = T{i + 1, "Value_LeftEyeDirectionDegrees_y"};
-    
-        Time1 = T{i, "Value_ElapsedTime"};
-        Time2 = T{i + 1, "Value_ElapsedTime"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            VelocityTime = max(Time2 - Time1, 1);
-            Velocity = (LeftGazeDirectionDegrees_y2 - LeftGazeDirectionDegrees_y1) / VelocityTime;
-        end
-    
-        T{i + 1, "Value_LeftEyeVelocityDegrees_y"} = Velocity * 1000;
-    end 
-    disp("Left Eye Velocity Degrees y done");
-    % Left Eye Velocity Degrees y
-    
-    % Left Eye Velocity Degrees
-    for i=1:(height(T) - 1)
-        LeftEyeVelocityDegrees_x = T{i, "Value_LeftEyeVelocityDegrees_x"};
-        LeftEyeVelocityDegrees_y = T{i, "Value_LeftEyeVelocityDegrees_y"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            Velocity = sqrt((LeftEyeVelocityDegrees_x)^2 + (LeftEyeVelocityDegrees_y)^2);
-        end
-    
-        T{i, "Value_LeftEyeVelocityDegrees"} = Velocity;
-    
-    end 
-    disp("Left Eye Velocity Degrees done");
-    % Left Eye Velocity Degrees
-    
-    % Right Eye Velocity Degrees x
-    for i=1:(height(T) - 1)
-        RightGazeDirectionDegrees_x1 = T{i, "Value_RightEyeDirectionDegrees_x"};
-        RightGazeDirectionDegrees_x2 = T{i + 1, "Value_RightEyeDirectionDegrees_x"};
-    
-        Time1 = T{i, "Value_ElapsedTime"};
-        Time2 = T{i + 1, "Value_ElapsedTime"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            VelocityTime = max(Time2 - Time1, 1);
-            Velocity = (RightGazeDirectionDegrees_x2 - RightGazeDirectionDegrees_x1) / VelocityTime;
-        end
-    
-        T{i + 1, "Value_RightEyeVelocityDegrees_x"} = Velocity * 1000;
-    end 
-    disp("Right Eye Velocity Degrees x done");
-    % Right Eye Velocity Degrees x
-    
-    % Right Eye Velocity Degrees y
-    for i=1:(height(T) - 1)
-        RightGazeDirectionDegrees_y1 = T{i, "Value_RightEyeDirectionDegrees_y"};
-        RightGazeDirectionDegrees_y2 = T{i + 1, "Value_RightEyeDirectionDegrees_y"};
-    
-        Time1 = T{i, "Value_ElapsedTime"};
-        Time2 = T{i + 1, "Value_ElapsedTime"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            VelocityTime = max(Time2 - Time1, 1);
-            Velocity = (RightGazeDirectionDegrees_y2 - RightGazeDirectionDegrees_y1) / VelocityTime;
-        end
-    
-        T{i + 1, "Value_RightEyeVelocityDegrees_y"} = Velocity * 1000;
-    end 
-    disp("Right Eye Velocity Degrees y done");
-    % Right Eye Velocity Degrees y
-    
-    % Right Eye Velocity Degrees
-    for i=1:(height(T) - 1)
-        RightEyeVelocityDegrees_x = T{i, "Value_RightEyeVelocityDegrees_x"};
-        RightEyeVelocityDegrees_y = T{i, "Value_RightEyeVelocityDegrees_y"};
-    
-        if (T{i + 1, "Value_LostFocus"} || T{i, "Value_LostFocus"})
-            Velocity = 0;
-        else
-            Velocity = sqrt((RightEyeVelocityDegrees_x)^2 + (RightEyeVelocityDegrees_y)^2);
-        end
-    
-        T{i, "Value_RightEyeVelocityDegrees"} = Velocity;
-    end 
-    disp("Right Eye Velocity Degrees done");
-    % Right Eye Velocity Degrees
-    
+    T = calculateVelocities_united(T, T.Value_CombinedEyesVelocityDegrees_x, T.Value_CombinedEyesVelocityDegrees_y, "Value_CombinedEyesVelocityDegrees", "Combined Eyes Velocity Degrees done");
+    T = calculateVelocities_united(T, T.Value_LeftEyeVelocityDegrees_x, T.Value_LeftEyeVelocityDegrees_y, "Value_LeftEyeVelocityDegrees", "Left Eye Velocity Degrees done");
+    T = calculateVelocities_united(T, T.Value_RightEyeVelocityDegrees_x, T.Value_RightEyeVelocityDegrees_y, "Value_RightEyeVelocityDegrees", "Right Eye Velocity Degrees done");
+    % Velocities
+
     % "They are also typically accompanied by a brief period of visual
     % suppression, during which visual processing is inhibited, in order to
     % prevent motion blur. It is important to note that changes in pupil size may not 
@@ -669,9 +458,11 @@ function analyze(arg1, arg2)
     % % Right Fixation
     
     % Fixation
-    for i=1:(height(T))
-        T{i, "Value_Fixation"} = double(~(T{i, "Value_Saccade"} || T{i, "Value_SquareWaveJerk"}));
-    end 
+    saccadeValue = T.Value_Saccade;
+    squareWaveJerkValue = T.Value_SquareWaveJerk;
+    fixationValue = ~(saccadeValue | squareWaveJerkValue);
+    
+    T.Value_Fixation = double(fixationValue);
     disp("Fixation done");
     % Fixation
     
@@ -700,6 +491,7 @@ function analyze(arg1, arg2)
     SquareWaveJerksNonZeroIndices = T.Value_SquareWaveJerk ~= 0;
     SaccadesNonZeroIndices = T.Value_Saccade ~= 0;
     ToolEndedIndices = find(strcmp(T.Value_ToolEnded, 'true'));
+    nonNaNIndices = ~isnan(T.Value_CombinedEyesVelocityDegrees);
     
     indexesToRemove = toRemove(length(ToolEndedIndices));
     
@@ -757,7 +549,6 @@ function analyze(arg1, arg2)
                 writeInExcel(excelFile, sheet, sheetData, ['Saccade Rate', ' ', participant, ' ', 'Total time (s)', ' ', tool], sum(T.Value_ElapsedTime(ToolEndedIndices))/1000);
     
             case 'Velocities'
-                nonNaNIndices = ~isnan(T.Value_CombinedEyesVelocityDegrees);
                 writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
                 writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
                 writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Maximum', ' ', tool], max(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
@@ -1168,6 +959,33 @@ function analyze(arg1, arg2)
         end
     end
     close(video)
+
+    function newTableWithVelocities = calculateVelocities(T, CombinedEyeDirectionDegrees, ElapsedTime, VelocityDegrees, Message)
+        % Calculate the time differences
+        VelocityTime = max(diff(ElapsedTime), 1);
+        
+        % Calculate the velocities
+        Velocities = diff(CombinedEyeDirectionDegrees) ./ VelocityTime;
+        
+        % Convert velocities to degrees per second
+        Velocities = Velocities * 1000;
+        
+        % Assign velocities to the output column
+        T{:, VelocityDegrees}(2:end) = Velocities;
+        disp(Message);
+
+        newTableWithVelocities = T;
+    end
+
+    function newTableWithVelocities_united = calculateVelocities_united(T, EyeVelocityDegrees_x, EyeVelocityDegrees_y, EyeVelocityDegrees, Message)
+        Velocity = sqrt(EyeVelocityDegrees_x.^2 + EyeVelocityDegrees_y.^2);
+        
+        T{:, EyeVelocityDegrees} = Velocity;
+        
+        disp(Message);
+
+        newTableWithVelocities_united = T;
+     end
     
     function newTableWithSaccades = saccadeCoordinateCalculation(T, velocityThreshold, saccadeDurationThreshold, fixationDurationThreshold, Value_EyeVelocityDegrees, Value_EyeDirectionDegrees_x, Value_EyeDirectionDegrees_y, Value_Saccade, ...
         Value_Saccade_initialVelocity, Value_Saccade_peakVelocity, Value_Saccade_amplitude)
