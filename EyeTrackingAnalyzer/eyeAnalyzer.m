@@ -145,20 +145,15 @@ function analyze(arg1, arg2)
     dataToFilter = {T.Value_LeftEyeDirectionDegrees_x, T.Value_LeftEyeDirectionDegrees_y, T.Value_RightEyeDirectionDegrees_x,...
         T.Value_RightEyeDirectionDegrees_y, T.Value_CombinedEyesDirectionDegrees_x, T.Value_CombinedEyesDirectionDegrees_y};
     
+    % Filter data. Filter source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
+    dataToFilter = ["Value_LeftEyeDirectionDegrees_x", "Value_LeftEyeDirectionDegrees_y", "Value_RightEyeDirectionDegrees_x",...
+        "Value_RightEyeDirectionDegrees_y", "Value_CombinedEyesDirectionDegrees_x", "Value_CombinedEyesDirectionDegrees_y"];
+    
     for i = 1:length(dataToFilter)
-        oldData = dataToFilter{i};
+        oldData = T{:, dataToFilter{i}};
         filteredData = movmean(oldData, 10); % Validated moving average filter with a window of 10 with https://goodcalculators.com/simple-moving-average-calculator/
-        dataToFilter{i} = filteredData;
+        T{:, dataToFilter{i}} = filteredData;
     end
-
-    % Update the filtered data back into the original variables
-    T.Value_LeftEyeDirectionDegrees_x = dataToFilter{1};
-    T.Value_LeftEyeDirectionDegrees_y = dataToFilter{2};
-    T.Value_RightEyeDirectionDegrees_x = dataToFilter{3};
-    T.Value_RightEyeDirectionDegrees_y = dataToFilter{4};
-    T.Value_CombinedEyesDirectionDegrees_x = dataToFilter{5};
-    T.Value_CombinedEyesDirectionDegrees_y = dataToFilter{6};
-
     disp("Filter done");
     % We filter the gaze direction
 
@@ -167,7 +162,7 @@ function analyze(arg1, arg2)
     T = calculateVelocities(T, T.Value_CombinedEyesDirectionDegrees_y, T.Value_ElapsedTime, "Value_CombinedEyesVelocityDegrees_y", "Combined Eyes Velocity Degrees y done");
     T = calculateVelocities(T, T.Value_LeftEyeDirectionDegrees_x, T.Value_ElapsedTime, "Value_LeftEyeVelocityDegrees_x", "Left Eye Velocity Degrees x done");
     T = calculateVelocities(T, T.Value_LeftEyeDirectionDegrees_y, T.Value_ElapsedTime, "Value_LeftEyeVelocityDegrees_y", "Left Eye Velocity Degrees y done");
-    T = calculateVelocities(T, T.Value_RightEyeDirectionDegrees_x, T.Value_ElapsedTime, "Value_LeftEyeVelocityDegrees_x", "Left Eye Velocity Degrees x done");
+    T = calculateVelocities(T, T.Value_RightEyeDirectionDegrees_x, T.Value_ElapsedTime, "Value_RightEyeVelocityDegrees_x", "Left Eye Velocity Degrees x done");
     T = calculateVelocities(T, T.Value_RightEyeDirectionDegrees_y, T.Value_ElapsedTime, "Value_RightEyeVelocityDegrees_y", "Right Eye Velocity Degrees y done");
     
     T = calculateVelocities_united(T, T.Value_CombinedEyesVelocityDegrees_x, T.Value_CombinedEyesVelocityDegrees_y, "Value_CombinedEyesVelocityDegrees", "Combined Eyes Velocity Degrees done");
