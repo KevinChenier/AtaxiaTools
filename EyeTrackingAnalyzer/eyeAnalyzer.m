@@ -1,3 +1,6 @@
+% Start the timer
+tic
+
 dirContents = dir('Data');
 isDir = [dirContents.isdir];
 dirNames = {dirContents(isDir).name};
@@ -8,6 +11,19 @@ for i=1:length(participants)
     for j=1:length(tools)
         analyze(tools{j}, participants{i})
     end
+end
+
+% Stop the timer and calculate elapsed time
+elapsedTime = toc;
+formattedTime = formatTime(elapsedTime);
+disp("Elapsed Time: " + formattedTime);
+
+function formattedTime = formatTime(timeInSeconds)
+    hours = floor(timeInSeconds / 3600);
+    minutes = floor(mod(timeInSeconds, 3600) / 60);
+    seconds = mod(timeInSeconds, 60);
+    
+    formattedTime = sprintf('%02d:%02d:%02d', hours, minutes, seconds);
 end
 
 function analyze(arg1, arg2)
@@ -1141,10 +1157,14 @@ function analyze(arg1, arg2)
         [row, col] = find(strcmp(sheetData, stringToFind));
         
         columnLetter = xlscol(col);  % Convert column index to letter
-        cellReference = [columnLetter num2str(row)];  % Combine column letter and row number
         
         % Write the data to the specified sheet and cell range
+        cellReference = [columnLetter num2str(row)];  % Combine column letter and row number
         writematrix(data, excelFile, 'Sheet', sheet, 'Range', cellReference);
+
+        %cellReference = [col, row];
+        %command = sprintf('python write_excel.py "%s" "%s" "%s" "%s"', excelFile, sheet, mat2str(cellReference), num2str(data));
+        %system(command);
         
         disp(strcat(stringToFind, " ", num2str(data)));
     end
