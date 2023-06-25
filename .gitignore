@@ -60,6 +60,9 @@ ExportedObj/
 
 # Patient data
 *.csv
+RV_Data.xlsx
+~$RV_Data.xlsx
+
 
 # Unity3D generated file on crash reports
 sysinfo.txt
