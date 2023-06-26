@@ -2,13 +2,13 @@ import torch
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import math
 from collections import Counter
 import time
 from sklearn.metrics import silhouette_score
 
-def mostCommonCentroidIndex(centroids):
+
+def most_common_centroid_index(centroids):
     # Convert the list of centroids to a numpy array
     centroids_array = np.array(centroids)
     coordinates_sum = []
@@ -16,11 +16,12 @@ def mostCommonCentroidIndex(centroids):
     for centroid in centroids_array:
         coordinates_sum.append(round(sum(sum(centroid)), 4))
 
-    mostcommon = Counter(coordinates_sum).most_common(1)
+    most_common = Counter(coordinates_sum).most_common(1)
 
-    return coordinates_sum.index(mostcommon[0][0]), mostcommon[0][1]
+    return coordinates_sum.index(most_common[0][0]), most_common[0][1]
 
-def kmeansclustering(num_clusters, num_iterations, centroids_iterations):
+
+def k_means_clustering(num_clusters, num_iterations, centroids_iterations):
     start_time = time.time()
 
     # Set the number of clusters
@@ -74,8 +75,8 @@ def kmeansclustering(num_clusters, num_iterations, centroids_iterations):
         centroids = torch.empty(num_clusters, 2)
         centroids.fill_(math.nan)
 
-    most_common_centroid_index, accuracy = mostCommonCentroidIndex(possible_centroids)
-    most_common_centroid = possible_centroids[most_common_centroid_index]
+    _most_common_centroid_index, accuracy = most_common_centroid_index(possible_centroids)
+    most_common_centroid = possible_centroids[_most_common_centroid_index]
 
     print('Centroids found:' + str(most_common_centroid))
 
@@ -90,9 +91,18 @@ def kmeansclustering(num_clusters, num_iterations, centroids_iterations):
     # Calculate the elapsed time
     elapsed_time = end_time - start_time
     print("Elapsed time:", elapsed_time, "seconds")
+
     # Visualize the data and clusters
-    plt.scatter(coordinates[:, 0], coordinates[:, 1], c='blue', zorder=1)
-    plt.scatter(most_common_centroid[:, 0], most_common_centroid[:, 1], c='red', marker='x', zorder=2)
+    # Assign a color to each cluster
+    colors = ['red', 'blue', 'green', 'orange', 'purple']  # Add more colors if needed
+
+    # Visualize the data and clusters
+    for i in range(num_clusters):
+        cluster_points = coordinates[labels == i]
+        plt.scatter(cluster_points[:, 0], cluster_points[:, 1], c=colors[i], zorder=1)
+
+    # Plot the cluster centroids
+    plt.scatter(most_common_centroid[:, 0], most_common_centroid[:, 1], c='black', marker='x', zorder=2)
     plt.xlabel('x')
     plt.ylabel('y')
     plt.title('K-means Clustering')
@@ -100,4 +110,4 @@ def kmeansclustering(num_clusters, num_iterations, centroids_iterations):
 
 
 if __name__ == '__main__':
-    kmeansclustering(num_clusters=5, num_iterations=50, centroids_iterations=20)
+    k_means_clustering(num_clusters=5, num_iterations=50, centroids_iterations=20)
