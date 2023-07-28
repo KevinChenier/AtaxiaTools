@@ -63,6 +63,8 @@ ExportedObj/
 RV_Data.xlsx
 ~$RV_Data.xlsx
 
+#Ide
+.idea/
 
 # Unity3D generated file on crash reports
 sysinfo.txt
