@@ -5,7 +5,7 @@ dirContents = dir('Data');
 isDir = [dirContents.isdir];
 dirNames = {dirContents(isDir).name};
 participants = dirNames(~ismember(dirNames, {'.', '..'}));
-tools = ["EyeTrackingFix", "EyeTrackingMultiple"];
+tools = ["EyeTrackingFix", "EyeTrackingFollow", "EyeTrackingMultiple"];
 
 for i=1:length(participants)
     for j=1:length(tools)
@@ -82,7 +82,11 @@ function analyze(arg1, arg2)
     % by setting a threshold at 5 times the median speed and by setting a duration threshold: 
     % saccades (duration less than or equal to 50ms) and fixations (duration greater than 100ms)  
     % (Holmqvist & Andersson, 2017).
-    saccadeDurationThreshold = 100;
+
+    % Detection of Saccades and Postsaccadic Oscillations in the Presence of Smooth Pursuit
+    % (Linnea Larsson, Marcus Nystrom, and Martin Stridh, 2013)
+    saccadeMaximumDurationThreshold = 80;
+    saccadeMinimumDurationThreshold = 30;
     fixationDurationThreshold = 150;
     
     %% Table new variables %%
@@ -100,7 +104,7 @@ function analyze(arg1, arg2)
         'Value_RightEyeSaccade_x_initialVelocity', 'Value_RightEyeSaccade_x_peakVelocity', 'Value_RightEyeSaccade_x_amplitude', 'Value_RightEyeSaccade_y', 'Value_RightEyeSaccade_y_initialVelocity', ...
         'Value_RightEyeSaccade_y_peakVelocity', 'Value_RightEyeSaccade_y_amplitude', 'Value_SquareWaveJerk', 'Value_SquareWaveJerk_amplitude', 'Value_SquareWaveJerk_initialVelocity', ...
         'Value_SquareWaveJerk_peakVelocity', 'Value_SquareWaveJerk_time', 'Value_SquareWaveJerkBinocularity', 'Value_LeftSaccade', 'Value_RightSaccade', ...
-        'Value_SaccadeBinocularity', 'Value_Saccade', 'Value_Saccade_initialVelocity', 'Value_Saccade_peakVelocity', 'Value_Saccade_amplitude', 'Value_Fixation'};
+        'Value_SaccadeBinocularity', 'Value_Saccade', 'Value_Saccade_initialVelocity', 'Value_Saccade_peakVelocity', 'Value_Saccade_amplitude', 'Value_Saccade_duration', 'Value_Fixation'};
     
     % Preallocate a cell array for storing new variables
     newVarData = cell(1, numel(newVars));
@@ -157,10 +161,6 @@ function analyze(arg1, arg2)
     % Combined Gaze Direction Degrees y
     
     % We filter the gaze direction
-    % Filter data. Filter source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
-    dataToFilter = {T.Value_LeftEyeDirectionDegrees_x, T.Value_LeftEyeDirectionDegrees_y, T.Value_RightEyeDirectionDegrees_x,...
-        T.Value_RightEyeDirectionDegrees_y, T.Value_CombinedEyesDirectionDegrees_x, T.Value_CombinedEyesDirectionDegrees_y};
-    
     % Filter data. Filter source: Imaoka, Yu. (2020). Assessing Saccadic Eye Movements With Head-Mounted Display Virtual Reality Technology
     dataToFilter = ["Value_LeftEyeDirectionDegrees_x", "Value_LeftEyeDirectionDegrees_y", "Value_RightEyeDirectionDegrees_x",...
         "Value_RightEyeDirectionDegrees_y", "Value_CombinedEyesDirectionDegrees_x", "Value_CombinedEyesDirectionDegrees_y"];
@@ -324,8 +324,8 @@ function analyze(arg1, arg2)
     % % Saccades coordinates
     
     % Saccades coordinates
-    T = saccadeCoordinateCalculation(T, combinedEyesSaccade_median, saccadeDurationThreshold, fixationDurationThreshold, "Value_CombinedEyesVelocityDegrees", "Value_CombinedEyesDirectionDegrees_x", ...
-        "Value_CombinedEyesDirectionDegrees_y", "Value_Saccade", "Value_Saccade_initialVelocity", "Value_Saccade_peakVelocity", "Value_Saccade_amplitude");
+    T = saccadeCoordinateCalculation(T, combinedEyesSaccade_median, saccadeMaximumDurationThreshold, saccadeMinimumDurationThreshold, fixationDurationThreshold, "Value_CombinedEyesVelocityDegrees", "Value_CombinedEyesDirectionDegrees_x", ...
+        "Value_CombinedEyesDirectionDegrees_y", "Value_Saccade", "Value_Saccade_initialVelocity", "Value_Saccade_peakVelocity", "Value_Saccade_amplitude", "Value_Saccade_duration");
     disp("Saccades coordinates done");
     % Saccades coordinates
     
@@ -496,6 +496,7 @@ function analyze(arg1, arg2)
         'Saccade Peak Velocity', ...
         'Saccade Rate', ...
         'Saccade Amplitude', ...
+        'Saccade Duration', ...
         'Velocities'
         };
     
@@ -555,6 +556,11 @@ function analyze(arg1, arg2)
                 writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
                 writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
                 writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
+
+            case 'Saccade Duration'
+                writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
+                writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
+                writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
     
             case 'Saccade Rate'
                 writeInExcel(excelFile, sheet, sheetData, ['Saccade Rate', ' ', participant, ' ', 'Total time (s)', ' ', tool], sum(T.Value_ElapsedTime(ToolEndedIndices))/1000);
@@ -563,6 +569,7 @@ function analyze(arg1, arg2)
                 writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
                 writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
                 writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Maximum', ' ', tool], max(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
+                writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
     
             otherwise
                 % Code for handling unrecognized case
@@ -998,8 +1005,8 @@ function analyze(arg1, arg2)
         newTableWithVelocities_united = T;
      end
     
-    function newTableWithSaccades = saccadeCoordinateCalculation(T, velocityThreshold, saccadeDurationThreshold, fixationDurationThreshold, Value_EyeVelocityDegrees, Value_EyeDirectionDegrees_x, Value_EyeDirectionDegrees_y, Value_Saccade, ...
-        Value_Saccade_initialVelocity, Value_Saccade_peakVelocity, Value_Saccade_amplitude)
+    function newTableWithSaccades = saccadeCoordinateCalculation(T, velocityThreshold, saccadeMaximumDurationThreshold, saccadeMinimumDurationThreshold, fixationDurationThreshold, Value_EyeVelocityDegrees, Value_EyeDirectionDegrees_x, Value_EyeDirectionDegrees_y, Value_Saccade, ...
+        Value_Saccade_initialVelocity, Value_Saccade_peakVelocity, Value_Saccade_amplitude, Value_Saccade_duration)
     
         breakNestedLoopFlag = false;
         peakAmplitude = 0;
@@ -1022,28 +1029,16 @@ function analyze(arg1, arg2)
                     currentVelocity = abs(T{k, Value_EyeVelocityDegrees});
                     peakVelocity = max(currentVelocity, peakVelocity);
                     peakAmplitude = max(norm(initialPosition - currentPosition), peakAmplitude);
-                    % TODO: Calculate the duration of saccade
-                    if((T{k, "Value_ElapsedTime"} - initialTime) < saccadeDurationThreshold && abs(T{k, Value_EyeVelocityDegrees}) < velocityThreshold)
-                        %regarder pour fixation pendant 100ms
-                        for j=k+1:(height(T) - 1)
-                            if((T{j, "Value_ElapsedTime"} - initialTime) < fixationDurationThreshold && abs(T{j, Value_EyeVelocityDegrees}) < velocityThreshold)
-                                continue;
-                            elseif (abs(T{j, Value_EyeVelocityDegrees}) >= velocityThreshold)
-                                skipIndex=j;
-                                breakNestedLoopFlag = true;
-                            elseif((T{j, "Value_ElapsedTime"} - initialTime) >= fixationDurationThreshold)
-                                T{i, Value_Saccade} = 1;
-                                T{i, Value_Saccade_initialVelocity} = initialVelocity;
-                                T{i, Value_Saccade_peakVelocity} = peakVelocity;
-                                T{i, Value_Saccade_amplitude} = peakAmplitude;
-                                skipIndex=j;
-                                breakNestedLoopFlag = true;
-                            end
-                            if(breakNestedLoopFlag)
-                                break;
-                            end
-                        end
-                    elseif ((T{k, "Value_ElapsedTime"} - initialTime) >= saccadeDurationThreshold)
+                    duration = T{k, "Value_ElapsedTime"} - initialTime;
+                    if(duration < saccadeMaximumDurationThreshold && duration > saccadeMinimumDurationThreshold && abs(T{k, Value_EyeVelocityDegrees}) < velocityThreshold)
+                        T{i, Value_Saccade} = 1;
+                        T{i, Value_Saccade_initialVelocity} = initialVelocity;
+                        T{i, Value_Saccade_peakVelocity} = peakVelocity;
+                        T{i, Value_Saccade_amplitude} = peakAmplitude;
+                        T{i, Value_Saccade_duration} = duration;
+                        skipIndex=j;
+                        breakNestedLoopFlag = true;
+                    elseif ((T{k, "Value_ElapsedTime"} - initialTime) >= saccadeMaximumDurationThreshold)
                         skipIndex=k;
                         breakNestedLoopFlag = true;
                         break;
@@ -1104,9 +1099,6 @@ function analyze(arg1, arg2)
                                         breakNestedLoopFlag = true;
                                         break;
                                     else
-                                        % T{i, Value_EyeSaccade} = 1;
-                                        % T{i, Value_EyeSaccade_initialVelocity} = initialVelocity;
-                                        % T{i, Value_EyeSaccade_peakVelocity} = peakVelocity;
                                         skipIndex=j;
                                         breakNestedLoopFlag = true;
                                         break
@@ -1116,18 +1108,12 @@ function analyze(arg1, arg2)
                                     break;
                                 end
                             elseif ((T{j, "Value_ElapsedTime"} - initialTime) > timeThreshold)
-                                % T{i, Value_EyeSaccade} = 1;
-                                % T{i, Value_EyeSaccade_initialVelocity} = initialVelocity;
-                                % T{i, Value_EyeSaccade_peakVelocity} = peakVelocity;
                                 skipIndex=j;
                                 breakNestedLoopFlag = true;
                                 break;
                             end
                         end
                     elseif ((T{k, "Value_ElapsedTime"} - initialTime) > timeThreshold)
-                        % T{i, Value_EyeSaccade} = 1;
-                        % T{i, Value_EyeSaccade_initialVelocity} = initialVelocity;
-                        % T{i, Value_EyeSaccade_peakVelocity} = peakVelocity;
                         skipIndex=k;
                         break;
                     end
