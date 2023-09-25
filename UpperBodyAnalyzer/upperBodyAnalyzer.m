@@ -73,7 +73,7 @@ function analyze(arg1, arg2)
             Distance = sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2- z1)^2);
             Speed = Distance / (Time2 - Time1);
     
-            T{i + 2, "Value_LeftControllerSpeed"} = Speed;
+            T{i + 2, "Value_LeftControllerSpeed"} = abs(Speed);
         end
     end
     % Left Controller Speed
@@ -106,7 +106,7 @@ function analyze(arg1, arg2)
             Distance = sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2- z1)^2);
             Speed = Distance / (Time2 - Time1);
     
-            T{i + 2, "Value_RightControllerSpeed"} = Speed;
+            T{i + 2, "Value_RightControllerSpeed"} = abs(Speed);
         end
     end
     % Right Controller Speed
@@ -132,7 +132,7 @@ function analyze(arg1, arg2)
     
             Acceleration = (speed2 - speed1) / (Time2 - Time1);
     
-            T{i + 2, "Value_LeftControllerAcceleration"} = Acceleration;
+            T{i + 2, "Value_LeftControllerAcceleration"} = abs(Acceleration);
         end
     end
     % Left Controller Acceleration
@@ -158,7 +158,7 @@ function analyze(arg1, arg2)
     
             Acceleration = (speed2 - speed1) / (Time2 - Time1);
     
-            T{i + 2, "Value_RightControllerAcceleration"} = Acceleration;
+            T{i + 2, "Value_RightControllerAcceleration"} = abs(Acceleration);
         end
     end
     % Right Controller Acceleration
