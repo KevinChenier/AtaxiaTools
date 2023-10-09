@@ -298,6 +298,8 @@ function analyze(arg1, arg2)
         end
         %RMSE Estimation
     end
+
+    disp("RMSE done");
     
     %% Write in Excel
         
@@ -315,12 +317,13 @@ function analyze(arg1, arg2)
         for i = 1:length(dataToInsert)
             switch dataToInsert{i}    
                 case 'Speed'
-                    LeftControllerSpeedNonZeroIndices = T.Value_LeftControllerSpeed ~= 0;
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
-    
+                    if ismember("Value_LeftControllerSpeed", T.Properties.VariableNames)
+                        LeftControllerSpeedNonZeroIndices = T.Value_LeftControllerSpeed ~= 0;
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Speed', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_LeftControllerSpeed(LeftControllerSpeedNonZeroIndices)));
+                    end
     
                     RightControllerSpeedNonZeroIndices = T.Value_RightControllerSpeed ~= 0;
                     writeInExcel(excelFile, sheet, sheetData, ['Right Controller Speed', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_RightControllerSpeed(RightControllerSpeedNonZeroIndices)));
@@ -329,12 +332,13 @@ function analyze(arg1, arg2)
                     writeInExcel(excelFile, sheet, sheetData, ['Right Controller Speed', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_RightControllerSpeed(RightControllerSpeedNonZeroIndices)));
     
                 case 'Acceleration'
-                    LeftControllerAccelerationNonZeroIndices = T.Value_LeftControllerAcceleration ~= 0;
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
-    
+                    if ismember("Value_LeftControllerAcceleration", T.Properties.VariableNames)
+                        LeftControllerAccelerationNonZeroIndices = T.Value_LeftControllerAcceleration ~= 0;
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Acceleration', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_LeftControllerAcceleration(LeftControllerAccelerationNonZeroIndices)));
+                    end
     
                     RightControllerAccelerationNonZeroIndices = T.Value_RightControllerAcceleration ~= 0;
                     writeInExcel(excelFile, sheet, sheetData, ['Right Controller Acceleration', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_RightControllerAcceleration(RightControllerAccelerationNonZeroIndices)));
@@ -343,15 +347,17 @@ function analyze(arg1, arg2)
                     writeInExcel(excelFile, sheet, sheetData, ['Right Controller Acceleration', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_RightControllerAcceleration(RightControllerAccelerationNonZeroIndices)));
         
                 case 'Jerk'
-                    LeftControllerJerkNonZeroIndices = T.Value_LeftControllerJerk ~= 0;
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'High jerks', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) > 1000));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Moderate jerks', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) >= 500 & T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) <= 1000));
-                    writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Low jerks', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) < 500));
-                    
+                    if ismember("Value_LeftControllerJerk", T.Properties.VariableNames)
+                        LeftControllerJerkNonZeroIndices = T.Value_LeftControllerJerk ~= 0;
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices)));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'High jerks', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) > 1000));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Moderate jerks', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) >= 500 & T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) <= 1000));
+                        writeInExcel(excelFile, sheet, sheetData, ['Left Controller Jerk', ' ', participant, ' ', 'Low jerks', ' ', tool], sum(T.Value_LeftControllerJerk(LeftControllerJerkNonZeroIndices) < 500));
+                    end
+
                     RightControllerJerkNonZeroIndices = T.Value_RightControllerJerk ~= 0;
                     writeInExcel(excelFile, sheet, sheetData, ['Right Controller Jerk', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_RightControllerJerk(RightControllerJerkNonZeroIndices)));
                     writeInExcel(excelFile, sheet, sheetData, ['Right Controller Jerk', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_RightControllerJerk(RightControllerJerkNonZeroIndices)));
@@ -430,6 +436,7 @@ function analyze(arg1, arg2)
         % Controller Positions
     
     subplot(2,2,3);
+    if ismember("Value_LeftControllerSpeed", T.Properties.VariableNames)
         title('Left Controller Speed');
         x3 = T{:, "Value_ElapsedTime"};
         y3 = T{:, "Value_LeftControllerSpeed"};
@@ -437,6 +444,7 @@ function analyze(arg1, arg2)
         xlabel('Time (ms)');
         ylabel('Speed (m/s)');
         h5 = animatedline('Color', 'r');
+    end
     
     subplot(2,2,4);
         title('Right Controller Speed');
@@ -602,8 +610,10 @@ function analyze(arg1, arg2)
             hold off
         end
     
-        if(strcmp(type(i), 'LeftControllerPosition') && y3(i) ~= 0)
-            addpoints(h5, x3(i), y3(i));
+        if ismember("Value_LeftControllerSpeed", T.Properties.VariableNames)
+            if(strcmp(type(i), 'LeftControllerPosition') && y3(i) ~= 0)
+                addpoints(h5, x3(i), y3(i));
+            end
         end
     
         if(strcmp(type(i), 'RightControllerPosition') && y4(i) ~= 0)
@@ -619,16 +629,18 @@ function analyze(arg1, arg2)
                 delete(right_patch);
             end
     
-            [x,y,z] = getpoints(h1);
-            clearpoints(h1);
-            subplot(2,2,1);
-            hold on
-            h1 = plot3(x, y, z, 'r', 'LineWidth', 2);
-            % modified jet-colormap
-            cd = [uint8(jet(length(x))*255) uint8(ones(length(x),1))].';
-            drawnow;
-            set(h1.Edge, 'ColorBinding','interpolated', 'ColorData',cd)
-            hold off
+            if ismember("Value_LeftControllerSpeed", T.Properties.VariableNames)
+                [x,y,z] = getpoints(h1);
+                clearpoints(h1);
+                subplot(2,2,1);
+                hold on
+                h1 = plot3(x, y, z, 'r', 'LineWidth', 2);
+                % modified jet-colormap
+                cd = [uint8(jet(length(x))*255) uint8(ones(length(x),1))].';
+                drawnow;
+                set(h1.Edge, 'ColorBinding','interpolated', 'ColorData',cd)
+                hold off
+            end
     
             [x,y,z] = getpoints(h2);
             clearpoints(h2);
@@ -665,16 +677,18 @@ function analyze(arg1, arg2)
                 hold off
             end
     
-            [x,z] = getpoints(h3);
-            clearpoints(h3);
-            subplot(2,2,2);
-            hold on
-            h3 = plot(x, z, 'r', 'LineWidth', 2);
-            % modified jet-colormap
-            cd = [uint8(jet(length(x))*255) uint8(ones(length(x),1))].';
-            drawnow;
-            set(h3.Edge, 'ColorBinding','interpolated', 'ColorData',cd)
-            hold off
+            if ismember("Value_LeftControllerSpeed", T.Properties.VariableNames)
+                [x,z] = getpoints(h3);
+                clearpoints(h3);
+                subplot(2,2,2);
+                hold on
+                h3 = plot(x, z, 'r', 'LineWidth', 2);
+                % modified jet-colormap
+                cd = [uint8(jet(length(x))*255) uint8(ones(length(x),1))].';
+                drawnow;
+                set(h3.Edge, 'ColorBinding','interpolated', 'ColorData',cd)
+                hold off
+            end
     
             [x,z] = getpoints(h4);
             clearpoints(h4);
@@ -702,7 +716,9 @@ function analyze(arg1, arg2)
                     subplot(2,2,2);
                     h3 = animatedline('Color', 'r', 'LineWidth', 1, 'LineStyle','--');
                     h4 = animatedline('Color', 'g', 'LineWidth', 1, 'LineStyle','--');
-                    clearpoints(h5);
+                    if ismember("Value_LeftControllerSpeed", T.Properties.VariableNames)
+                        clearpoints(h5);
+                    end
                     clearpoints(h6);
                     delete(hPlots);
                     set(gcf, 'CurrentCharacter', 'a');

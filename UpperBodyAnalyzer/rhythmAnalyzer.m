@@ -5,7 +5,7 @@ T = readtable(strcat(s,'.csv'));
 %% Table new variables %%
 % Rhythm BPM
 
-BeatPerSecond = 60000 / T{2, "Value_BPM"};
+BeatPerSecond = 60000 / T{1, "Value_BPM"};
 
 for i=1:(height(T))
     if (T{i, "Value_NoteType"} == "hit" || T{i, "Value_NoteType"} == "spam")

@@ -1022,7 +1022,7 @@ function analyze(arg1, arg2)
             end
             if (abs(T{i, Value_EyeVelocityDegrees}) >= velocityThreshold)
                 peakAmplitude = 0;
-                initialTime = T{i-1, "Value_ElapsedTime"};
+                initialTime = T{i, "Value_ElapsedTime"};
                 initialPosition = [T{i-1, Value_EyeDirectionDegrees_x}, T{i-1, Value_EyeDirectionDegrees_y}];
                 initialVelocity = abs(T{i, Value_EyeVelocityDegrees});
                 peakVelocity = initialVelocity;
@@ -1070,7 +1070,7 @@ function analyze(arg1, arg2)
             end
             if (abs(T{i, Value_EyeVelocityDegrees}) >= velocityThreshold)
                 peakAmplitude = 0;
-                initialTime = T{i-1, "Value_ElapsedTime"};
+                initialTime = T{i, "Value_ElapsedTime"};
                 initialPosition = T{i-1, Value_EyeDirectionDegrees};
                 initialVelocity = abs(T{i, Value_EyeVelocityDegrees});
                 peakVelocity = initialVelocity;
