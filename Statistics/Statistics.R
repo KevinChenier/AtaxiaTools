@@ -11,6 +11,14 @@ timing_result <- system.time({
   # Create an empty list to store scatter plots
   scatter_plots <- list()
   
+  # Create an empty data frame to store correlation results
+  data_analysis <- data.frame(
+    Title = character(),
+    Correlation = numeric(),
+    P_Value = numeric(),
+    Normality = numeric()
+  )
+  
   # Iterate through each column
   for (col in 1:ncol(StatisticsAnalysis)) {
     # Perform Shapiro-Wilk test
@@ -43,6 +51,15 @@ timing_result <- system.time({
                             ylab="", col=c("red", "green"))
         dev.off()
         
+        data_analysis <- rbind(data_analysis, 
+           data.frame(
+             Title = colnames(StatisticsAnalysis)[col],
+             Correlation = -100,
+             P_Value = p_value,
+             Normality = 1
+           )
+        )
+        
         plots[[col]] <- plot_obj
         
       }, error = function(e) {
@@ -64,6 +81,15 @@ timing_result <- system.time({
                             xlab=paste("p", ifelse(p_value < 0.001, "< 0.001", paste("= ", round(p_value, 4)))),
                             ylab="", col=c("red", "green"))
         dev.off()
+        
+        data_analysis <- rbind(data_analysis, 
+           data.frame(
+             Title = colnames(StatisticsAnalysis)[col],
+             Correlation = -100,
+             P_Value = p_value,
+             Normality = 0
+           )
+        )
         
         plots[[col]] <- plot_obj
         
@@ -125,11 +151,22 @@ timing_result <- system.time({
       ggsave(paste(column1Name, "vs", column2Name, "Pearson=", correlation, paste("p=", round(p_value, 4)), ".png"),
              plot = scatter_plot, width = 8, height = 6)
       
+      data_analysis <- rbind(data_analysis, 
+         data.frame(
+           Title = paste(column1Name, "vs", column2Name),
+           Correlation = correlation,
+           P_Value = p_value,
+           Normality = 0
+         )
+      )
+      
       scatter_plots[[paste(col1, col2)]] <- scatter_plot
     }
   }
   
   write.csv(StatisticsAnalysis, file = "StatisticsAnalysisResults.csv")
+  
+  write.csv(data_analysis, file = "DataAnalysis.csv")
   
   
   # Save the plots to separate files or display them as needed

@@ -66,6 +66,12 @@ RV_Data.xlsx
 #Ide
 .idea/
 
+#Statistics images
+/Statistics/*.png
+
+#Eye-Tracking autosave matlab file
+/EyeTrackingAnalyzer/eyeAnalyzer.asv
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 

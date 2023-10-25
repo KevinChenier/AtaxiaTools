@@ -1,35 +1,34 @@
 % Start the timer
 tic
 
-dirContents = dir('Data');
-isDir = [dirContents.isdir];
-dirNames = {dirContents(isDir).name};
-participants = dirNames(~ismember(dirNames, {'.', '..'}));
-tools = ["EyeTrackingFix", "EyeTrackingFollow", "EyeTrackingMultiple"];
+% dirContents = dir('Data');
+% isDir = [dirContents.isdir];
+% dirNames = {dirContents(isDir).name};
+% %participants = dirNames(~ismember(dirNames, {'.', '..'}));
+% %tools = ["EyeTrackingFix", "EyeTrackingFollow", "EyeTrackingMultiple"];
+% 
+% for i=1:length(participants)
+%     for j=1:length(tools)
+%         analyze(tools{j}, participants{i});
+%     end
+% end
+% 
+% % Stop the timer and calculate elapsed time
+% elapsedTime = toc;
+% formattedTime = formatTime(elapsedTime);
+% disp("Elapsed Time: " + formattedTime);
+% 
+% function formattedTime = formatTime(timeInSeconds)
+%     hours = floor(timeInSeconds / 3600);
+%     minutes = floor(mod(timeInSeconds, 3600) / 60);
+%     seconds = mod(timeInSeconds, 60);
+% 
+%     formattedTime = sprintf('%02d:%02d:%02d', hours, minutes, seconds);
+% end
 
-
-for i=1:length(participants)
-    for j=1:length(tools)
-        analyze(tools{j}, participants{i})
-    end
-end
-
-% Stop the timer and calculate elapsed time
-elapsedTime = toc;
-formattedTime = formatTime(elapsedTime);
-disp("Elapsed Time: " + formattedTime);
-
-function formattedTime = formatTime(timeInSeconds)
-    hours = floor(timeInSeconds / 3600);
-    minutes = floor(mod(timeInSeconds, 3600) / 60);
-    seconds = mod(timeInSeconds, 60);
-    
-    formattedTime = sprintf('%02d:%02d:%02d', hours, minutes, seconds);
-end
-
-function analyze(arg1, arg2)
-    tool = arg1;
-    participant = arg2;
+% function analyze(arg1, arg2)
+    tool = "EyeTrackingMultiple";
+    participant = "CHUM-RV-004";
     
     disp(tool)
     disp(participant)
@@ -37,7 +36,7 @@ function analyze(arg1, arg2)
     fileToAnalyze = strcat("Data/",participant,"/",tool,'.csv');
     
     T = readtable(fileToAnalyze);
-    
+
     disp(strcat("File to analyze: ", fileToAnalyze));
 
     %  Salman, Michael. (2008) Square Wave Jerks in Children and Adolescents
@@ -72,6 +71,9 @@ function analyze(arg1, arg2)
     % a) the direction dissimilarity of first and second saccade,
     % b) the magnitude similarityof first and second saccade, and
     % c) the temporal proximity of first and second saccade.
+
+    % Maybe we have no way to know for sure if it was a saccade, because we
+    % cannot detect visual suppression with HTC Vive Pro Eye...
     
     timeThreshold = 500;
     velocityThreshold = 20;
@@ -187,43 +189,6 @@ function analyze(arg1, arg2)
     T = calculateVelocities_united(T, T.Value_LeftEyeVelocityDegrees_x, T.Value_LeftEyeVelocityDegrees_y, "Value_LeftEyeVelocityDegrees", "Left Eye Velocity Degrees done");
     T = calculateVelocities_united(T, T.Value_RightEyeVelocityDegrees_x, T.Value_RightEyeVelocityDegrees_y, "Value_RightEyeVelocityDegrees", "Right Eye Velocity Degrees done");
     % Velocities
-
-    % "They are also typically accompanied by a brief period of visual
-    % suppression, during which visual processing is inhibited, in order to
-    % prevent motion blur. It is important to note that changes in pupil size may not 
-    % directly reflect changes in visual processing during saccades, as they are 
-    % thought to be primarily mediated by changes in arousal and attention."
-    % -CHATGPT. 
-    % 
-    % Maybe we have no way to know for sure if it was a saccade, because we
-    % cannot detect visual suppression with HTC Vive Pro Eye. 
-    
-    %{ 
-    % Old way to quantify saccades, we now assume that if there wasn't a SWJ a 
-    % certain time, it was a saccade.-
-    for i=1:(height(T))
-        T{i, "Value_LeftSaccade"} = double((T{i, "Value_LeftEyeVelocityDegrees"} > saccadeVelocityThreshold));
-    end 
-    % Left Saccade
-    
-    % Right Saccade
-    for i=1:(height(T))
-        T{i, "Value_RightSaccade"} = double((T{i, "Value_RightEyeVelocityDegrees"} > saccadeVelocityThreshold));
-    end 
-    % Right Saccade
-    
-    % Left Fixation
-    for i=1:(height(T))
-        T{i, "Value_LeftFixation"} = double(~(T{i, "Value_LeftSaccade"}));
-    end 
-    % Left Fixation
-    
-    % Right Fixation
-    for i=1:(height(T))
-        T{i, "Value_RightFixation"} = double(~(T{i, "Value_RightSaccade"}));
-    end 
-    % Right Fixation
-    %}
     
     % Square Wave Jerks coordinates
     T = squareWaveJerkCoordinateCalculation(T, velocityThreshold, amplitudeThreshold, timeThreshold, initialPositionError, "Value_LeftEyeVelocityDegrees_x", "Value_LeftEyeDirectionDegrees_x", "Value_LeftEyeSquareWaveJerk_x", ...
@@ -298,177 +263,11 @@ function analyze(arg1, arg2)
     columnDataWithoutNaN = columnData(~isnan(columnData));
     combinedEyesSaccade_median = 10 * median(columnDataWithoutNaN);
     
-    % columnData = abs(T.Value_LeftEyeVelocityDegrees_x);
-    % columnDataWithoutNaN = columnData(~isnan(columnData));
-    % leftEyeSaccade_x_median = 5 * median(columnDataWithoutNaN);
-    % 
-    % columnData = abs(T.Value_LeftEyeVelocityDegrees_y);
-    % columnDataWithoutNaN = columnData(~isnan(columnData));
-    % leftEyeSaccade_y_median = 5 * median(columnDataWithoutNaN);
-    % 
-    % columnData = abs(T.Value_RightEyeVelocityDegrees_x);
-    % columnDataWithoutNaN = columnData(~isnan(columnData));
-    % rightEyeSaccade_x_median = 5 * median(columnDataWithoutNaN);
-    % 
-    % columnData = abs(T.Value_RightEyeVelocityDegrees_y);
-    % columnDataWithoutNaN = columnData(~isnan(columnData));
-    % rightEyeSaccade_y_median = 5 * median(columnDataWithoutNaN);
-    % 
-    % % Saccades coordinates
-    % T = saccadeCoordinateCalculation(T, leftEyeSaccade_x_median, saccadeDurationThreshold, fixationDurationThreshold, "Value_LeftEyeVelocityDegrees_x", "Value_LeftEyeDirectionDegrees_x", ...
-    %     "Value_LeftEyeSaccade_x", "Value_LeftEyeSaccade_x_initialVelocity", "Value_LeftEyeSaccade_x_peakVelocity", "Value_LeftEyeSaccade_x_amplitude");
-    % T = saccadeCoordinateCalculation(T, leftEyeSaccade_y_median, saccadeDurationThreshold, fixationDurationThreshold, "Value_LeftEyeVelocityDegrees_y", "Value_LeftEyeDirectionDegrees_y", ...
-    %     "Value_LeftEyeSaccade_y", "Value_LeftEyeSaccade_y_initialVelocity", "Value_LeftEyeSaccade_y_peakVelocity", "Value_LeftEyeSaccade_y_amplitude");
-    % T = saccadeCoordinateCalculation(T, rightEyeSaccade_x_median, saccadeDurationThreshold, fixationDurationThreshold, "Value_RightEyeVelocityDegrees_x", "Value_RightEyeDirectionDegrees_x", ...
-    %     "Value_RightEyeSaccade_x", "Value_RightEyeSaccade_x_initialVelocity", "Value_RightEyeSaccade_x_peakVelocity", "Value_RightEyeSaccade_x_amplitude");
-    % T = saccadeCoordinateCalculation(T, rightEyeSaccade_y_median, saccadeDurationThreshold, fixationDurationThreshold, "Value_RightEyeVelocityDegrees_y", "Value_RightEyeDirectionDegrees_y", ...
-    %     "Value_RightEyeSaccade_y", "Value_RightEyeSaccade_y_initialVelocity", "Value_RightEyeSaccade_y_peakVelocity", "Value_RightEyeSaccade_y_amplitude");
-    % % Saccades coordinates
-    
     % Saccades coordinates
     T = saccadeCoordinateCalculation(T, amplitudeSaccadeMinimum, combinedEyesSaccade_median, saccadeMaximumDurationThreshold, saccadeMinimumDurationThreshold, fixationDurationThreshold, "Value_CombinedEyesVelocityDegrees", "Value_CombinedEyesDirectionDegrees_x", ...
         "Value_CombinedEyesDirectionDegrees_y", "Value_Saccade", "Value_Saccade_initialVelocity", "Value_Saccade_peakVelocity", "Value_Saccade_amplitude", "Value_Saccade_duration");
     disp("Saccades coordinates done");
     % Saccades coordinates
-    
-    % 
-    % % Left Saccade
-    % for i=1:(height(T) - 1)
-    %     if(T{i, "Value_LeftEyeSaccade_x"})
-    %         for j=max(i-6,1):(height(T) - 1)
-    %             if(T{j, "Value_LeftEyeSaccade_y"})
-    %                 T{i, "Value_LeftSaccade"} = 1;
-    %                 T{i, "Value_LeftEyeSaccade_initialVelocity"} = sqrt(T{i, "Value_LeftEyeSaccade_x_initialVelocity"}^2 + T{j, "Value_LeftEyeSaccade_y_initialVelocity"}^2);
-    %                 T{i, "Value_LeftEyeSaccade_peakVelocity"} = sqrt(T{i, "Value_LeftEyeSaccade_x_peakVelocity"}^2 + T{j, "Value_LeftEyeSaccade_y_peakVelocity"}^2);
-    %                 break;
-    %             end
-    %             if(j >= i + 6)
-    %                 T{i, "Value_LeftSaccade"} = 1;
-    %                 T{i, "Value_LeftEyeSaccade_initialVelocity"} = T{i, "Value_LeftEyeSaccade_x_initialVelocity"};
-    %                 T{i, "Value_LeftEyeSaccade_peakVelocity"} = T{i, "Value_LeftEyeSaccade_x_peakVelocity"};
-    %                 break;
-    %             end
-    %         end
-    %     end
-    % end
-    % 
-    % for i=1:(height(T) - 1)
-    %     if(T{i, "Value_LeftEyeSaccade_y"})
-    %         for j=max(i-6,1):(height(T) - 1)
-    %             
-    %             % X and Y was already tested, so we only check for right
-    %             % solo saccade in y
-    %             if(T{j, "Value_LeftEyeSaccade_x"})
-    %                 break;
-    %             end
-    % 
-    %             if(j >= i + 6)
-    %                 T{i, "Value_LeftSaccade"} = 1;
-    %                 T{i, "Value_LeftEyeSaccade_initialVelocity"} = T{i, "Value_LeftEyeSaccade_y_initialVelocity"};
-    %                 T{i, "Value_LeftEyeSaccade_peakVelocity"} = T{i, "Value_LeftEyeSaccade_y_peakVelocity"};
-    %                 break;
-    %             end
-    %         end
-    %     end
-    % end
-    % % Left Saccade
-    % 
-    % % Right Saccade
-    % for i=1:(height(T) - 1)
-    %     if(T{i, "Value_RightEyeSaccade_x"})
-    %         for j=max(i-6,1):(height(T) - 1)
-    %             if(T{j, "Value_RightEyeSaccade_y"})
-    %                 T{i, "Value_RightSaccade"} = 1;
-    %                 T{i, "Value_RightEyeSaccade_initialVelocity"} = sqrt(T{i, "Value_RightEyeSaccade_x_initialVelocity"}^2 + T{j, "Value_RightEyeSaccade_y_initialVelocity"}^2);
-    %                 T{i, "Value_RightEyeSaccade_peakVelocity"} = sqrt(T{i, "Value_RightEyeSaccade_x_peakVelocity"}^2 + T{j, "Value_RightEyeSaccade_y_peakVelocity"}^2);
-    %                 break;
-    %             end
-    %             if(j >= i + 6)
-    %                 T{i, "Value_RightSaccade"} = 1;
-    %                 T{i, "Value_RightEyeSaccade_initialVelocity"} = T{i, "Value_RightEyeSaccade_x_initialVelocity"};
-    %                 T{i, "Value_RightEyeSaccade_peakVelocity"} = T{i, "Value_RightEyeSaccade_x_peakVelocity"};
-    %                 break;
-    %             end
-    %         end
-    %     end
-    % end
-    % 
-    % for i=1:(height(T) - 1)
-    %     if(T{i, "Value_RightEyeSaccade_y"})
-    %         for j=max(i-6,1):(height(T) - 1)
-    %             
-    %             % X and Y was already tested, so we only check for right
-    %             % solo saccade in y
-    %             if(T{j, "Value_RightEyeSaccade_x"})
-    %                 break;
-    %             end
-    % 
-    %             if(j >= i + 6)
-    %                 T{i, "Value_RightSaccade"} = 1;
-    %                 T{i, "Value_RightEyeSaccade_initialVelocity"} = T{i, "Value_RightEyeSaccade_y_initialVelocity"};
-    %                 T{i, "Value_RightEyeSaccade_peakVelocity"} = T{i, "Value_RightEyeSaccade_y_peakVelocity"};
-    %                 break;
-    %             end
-    %         end
-    %     end
-    % end
-    % % Right Saccade
-    
-    % % Saccades
-    % for i=1:(height(T) - 1)
-    %     if(T{i, "Value_LeftSaccade"})
-    %         for j=max(i-6,1):(height(T) - 1)
-    %             if(T{j, "Value_RightSaccade"})
-    %                 T{i, "Value_Saccade"} = 1;
-    %                 T{i, "Value_Saccade_initialVelocity"} = mean(nonzeros([T{i, "Value_LeftEyeSaccade_initialVelocity"}, T{j, "Value_RightEyeSaccade_initialVelocity"}]));
-    %                 T{i, "Value_Saccade_peakVelocity"} = mean(nonzeros([T{i, "Value_LeftEyeSaccade_peakVelocity"}, T{j, "Value_RightEyeSaccade_peakVelocity"}]));
-    %                 T{i, "Value_SaccadeBinocularity"} = 1;
-    %                 break;
-    %             end
-    %             if(j >= i + 6)
-    %                 T{i, "Value_Saccade"} = 1;
-    %                 T{i, "Value_Saccade_initialVelocity"} = T{i, "Value_LeftEyeSaccade_initialVelocity"};
-    %                 T{i, "Value_Saccade_peakVelocity"} = T{i, "Value_LeftEyeSaccade_peakVelocity"};
-    %                 T{i, "Value_SaccadeBinocularity"} = 0;
-    %                 break;
-    %             end
-    %         end
-    %     end
-    % end
-    % 
-    % for i=1:(height(T) - 1)
-    %     if(T{i, "Value_RightSaccade"})
-    %         for j=max(i-6,1):(height(T) - 1)
-    %             
-    %             % X and Y was already tested, so we only check for right
-    %             % solo saccade in y
-    %             if(T{j, "Value_LeftSaccade"})
-    %                 break;
-    %             end
-    % 
-    %             if(j >= i + 6)
-    %                 T{i, "Value_Saccade"} = 1;
-    %                 T{i, "Value_Saccade_initialVelocity"} = T{i, "Value_RightEyeSaccade_initialVelocity"};
-    %                 T{i, "Value_Saccade_peakVelocity"} = T{i, "Value_RightEyeSaccade_peakVelocity"};
-    %                 T{i, "Value_SaccadeBinocularity"} = 0;
-    %                 break;
-    %             end
-    %         end
-    %     end
-    % end
-    % % Saccades
-    
-    % % Left Fixation
-    % for i=1:(height(T))
-    %     T{i, "Value_LeftFixation"} = double(~(T{i, "Value_LeftSaccade"}));
-    % end 
-    % % Left Fixation
-    % 
-    % % Right Fixation
-    % for i=1:(height(T))
-    %     T{i, "Value_RightFixation"} = double(~(T{i, "Value_RightSaccade"}));
-    % end 
-    % % Right Fixation
     
     % Fixation
     saccadeValue = T.Value_Saccade;
@@ -510,78 +309,82 @@ function analyze(arg1, arg2)
     indexesToRemove = toRemove(length(ToolEndedIndices));
     
     ToolEndedIndices = ToolEndedIndices(setdiff(1:numel(ToolEndedIndices), indexesToRemove));
-    
-    for i = 1:length(dataToInsert)
-        switch dataToInsert{i}
-            case 'Square Wave Jerk Instances'
-                % Get the indices of the first occurrence of the specific string
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Instances', ' ', participant, ' ', tool], sum(T.Value_SquareWaveJerk(SquareWaveJerksNonZeroIndices)));
-    
-            case 'Square Wave Jerk Amplitude'
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Amplitude', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_amplitude(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Amplitude', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_amplitude(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Amplitude', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_amplitude(SquareWaveJerksNonZeroIndices)));
-    
-            case 'Square Wave Jerk Initial Velocity'
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Initial Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_initialVelocity(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Initial Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_initialVelocity(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Initial Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_initialVelocity(SquareWaveJerksNonZeroIndices)));
-    
-            case 'Square Wave Jerk Peak Velocity'
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Peak Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_peakVelocity(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Peak Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_peakVelocity(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Peak Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_peakVelocity(SquareWaveJerksNonZeroIndices)));
-    
-            case 'Square Wave Jerk Time'
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Time', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_time(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Time', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_time(SquareWaveJerksNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Time', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_time(SquareWaveJerksNonZeroIndices)));
-    
-            case 'Square Wave Jerk Rate'
-                writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Rate', ' ', participant, ' ', 'Total time (s)', ' ', tool], sum(T.Value_ElapsedTime(ToolEndedIndices))/1000);
-    
-            case 'Saccade Instances'
-                % Get the indices of the first occurrence of the specific string
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Instances', ' ', participant, ' ', tool], sum(T.Value_Saccade(SaccadesNonZeroIndices)));
-    
-            case 'Saccade Initial Velocity'
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Initial Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_initialVelocity(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Initial Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_initialVelocity(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Initial Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_initialVelocity(SaccadesNonZeroIndices)));
-    
-            case 'Saccade Peak Velocity'
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Peak Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_peakVelocity(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Peak Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_peakVelocity(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Peak Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_peakVelocity(SaccadesNonZeroIndices)));
-    
-            case 'Saccade Amplitude'
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
 
-            case 'Saccade Duration'
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
-    
-            case 'Saccade Rate'
-                writeInExcel(excelFile, sheet, sheetData, ['Saccade Rate', ' ', participant, ' ', 'Total time (s)', ' ', tool], sum(T.Value_ElapsedTime(ToolEndedIndices))/1000);
-    
-            case 'Velocities'
-                writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Maximum', ' ', tool], max(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
-                writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
-    
-            otherwise
-                % Code for handling unrecognized case
-                disp('Unrecognized case.');
+    isWriteExcel = false;
+
+    if(isWriteExcel)
+        for i = 1:length(dataToInsert)
+            switch dataToInsert{i}
+                case 'Square Wave Jerk Instances'
+                    % Get the indices of the first occurrence of the specific string
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Instances', ' ', participant, ' ', tool], sum(T.Value_SquareWaveJerk(SquareWaveJerksNonZeroIndices)));
+        
+                case 'Square Wave Jerk Amplitude'
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Amplitude', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_amplitude(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Amplitude', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_amplitude(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Amplitude', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_amplitude(SquareWaveJerksNonZeroIndices)));
+        
+                case 'Square Wave Jerk Initial Velocity'
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Initial Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_initialVelocity(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Initial Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_initialVelocity(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Initial Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_initialVelocity(SquareWaveJerksNonZeroIndices)));
+        
+                case 'Square Wave Jerk Peak Velocity'
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Peak Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_peakVelocity(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Peak Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_peakVelocity(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Peak Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_peakVelocity(SquareWaveJerksNonZeroIndices)));
+        
+                case 'Square Wave Jerk Time'
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Time', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_SquareWaveJerk_time(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Time', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_SquareWaveJerk_time(SquareWaveJerksNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Time', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_SquareWaveJerk_time(SquareWaveJerksNonZeroIndices)));
+        
+                case 'Square Wave Jerk Rate'
+                    writeInExcel(excelFile, sheet, sheetData, ['Square Wave Jerk Rate', ' ', participant, ' ', 'Total time (s)', ' ', tool], sum(T.Value_ElapsedTime(ToolEndedIndices))/1000);
+        
+                case 'Saccade Instances'
+                    % Get the indices of the first occurrence of the specific string
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Instances', ' ', participant, ' ', tool], sum(T.Value_Saccade(SaccadesNonZeroIndices)));
+        
+                case 'Saccade Initial Velocity'
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Initial Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_initialVelocity(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Initial Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_initialVelocity(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Initial Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_initialVelocity(SaccadesNonZeroIndices)));
+        
+                case 'Saccade Peak Velocity'
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Peak Velocity', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_peakVelocity(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Peak Velocity', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_peakVelocity(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Peak Velocity', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_peakVelocity(SaccadesNonZeroIndices)));
+        
+                case 'Saccade Amplitude'
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Amplitude', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_amplitude(SaccadesNonZeroIndices)));
+        
+                case 'Saccade Duration'
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Total', ' ', tool], sum(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Duration', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_Saccade_duration(SaccadesNonZeroIndices)));
+        
+                case 'Saccade Rate'
+                    writeInExcel(excelFile, sheet, sheetData, ['Saccade Rate', ' ', participant, ' ', 'Total time (s)', ' ', tool], sum(T.Value_ElapsedTime(ToolEndedIndices))/1000);
+        
+                case 'Velocities'
+                    writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Average', ' ', tool], mean(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Median', ' ', tool], median(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Maximum', ' ', tool], max(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
+                    writeInExcel(excelFile, sheet, sheetData, ['Velocities', ' ', participant, ' ', 'Standard Deviation', ' ', tool], std(T.Value_CombinedEyesVelocityDegrees(nonNaNIndices)));
+        
+                otherwise
+                    % Code for handling unrecognized case
+                    disp('Unrecognized case.');
+            end
         end
     end
     
     %% STOP THE SCRIPT
     %error('Stopping script execution.'); % Stop script execution
-    return;
+    %return;
     
     %% Graphs %%
     figure(1)
@@ -687,46 +490,6 @@ function analyze(arg1, arg2)
         ylabel('Fixation');
         h10 = animatedline('Color', 'b');
     % Fixation
-    
-    % % Left Saccade
-    % subplot(6, 5, 7);
-    %     x7 = T{:, "Value_ElapsedTime"};
-    %     y7 = T{:, "Value_LeftSaccade"};
-    %     title('Left Saccade');
-    %     xlabel('Time (ms)');
-    %     ylabel('Saccade');
-    %     h7 = animatedline('Color', 'r');
-    % % Left Saccade
-    % 
-    % % Right Saccade
-    % subplot(6, 5, 8);
-    %     x8 = T{:, "Value_ElapsedTime"};
-    %     y8 = T{:, "Value_RightSaccade"};
-    %     title('Right Saccade');
-    %     xlabel('Time (ms)');
-    %     ylabel('Saccade');
-    %     h8 = animatedline('Color', 'g');
-    % % Right Saccade
-    
-    % % Left Fixation
-    % subplot(6, 5, 9);
-    %     x9 = T{:, "Value_ElapsedTime"};
-    %     y9 = T{:, "Value_LeftFixation"};
-    %     title('Left Fixation');
-    %     xlabel('Time (ms)');
-    %     ylabel('Fixation');
-    %     h9 = animatedline('Color', 'r');
-    % % Left Fixation
-    % 
-    % % Right Fixation
-    % subplot(6, 5, 10);
-    %     x10 = T{:, "Value_ElapsedTime"};
-    %     y10 = T{:, "Value_RightFixation"};
-    %     title('Right Fixation');
-    %     xlabel('Time (ms)');
-    %     ylabel('Fixation');
-    %     h10 = animatedline('Color', 'g');
-    % % Right Fixation
     
     % Left Eye Pupil Position in Sensor Area
         x11 = T{:, "Value_LeftEyePupilPositionInSensorArea_x"};
@@ -1010,7 +773,6 @@ function analyze(arg1, arg2)
     function newTableWithSaccades = saccadeCoordinateCalculation(T, amplitudeSaccadeMinimum, velocityThreshold, saccadeMaximumDurationThreshold, saccadeMinimumDurationThreshold, fixationDurationThreshold, Value_EyeVelocityDegrees, Value_EyeDirectionDegrees_x, Value_EyeDirectionDegrees_y, Value_Saccade, ...
         Value_Saccade_initialVelocity, Value_Saccade_peakVelocity, Value_Saccade_amplitude, Value_Saccade_duration)
     
-        breakNestedLoopFlag = false;
         peakAmplitude = 0;
         peakVelocity = 0;
         
@@ -1032,21 +794,20 @@ function analyze(arg1, arg2)
                     peakVelocity = max(currentVelocity, peakVelocity);
                     peakAmplitude = max(norm(initialPosition - currentPosition), peakAmplitude);
                     duration = T{k, "Value_ElapsedTime"} - initialTime;
-                    if(duration < saccadeMaximumDurationThreshold && duration > saccadeMinimumDurationThreshold && currentVelocity < velocityThreshold )
+
+                    % Check if we are in range of duration which is valid
+                    % to check if we go below velocityThreshold
+                    inRange = (duration < saccadeMaximumDurationThreshold) && (duration > saccadeMinimumDurationThreshold);
+                    if(inRange && currentVelocity < velocityThreshold)
                         T{i, Value_Saccade} = 1;
                         T{i, Value_Saccade_initialVelocity} = initialVelocity;
                         T{i, Value_Saccade_peakVelocity} = peakVelocity;
                         T{i, Value_Saccade_amplitude} = peakAmplitude;
                         T{i, Value_Saccade_duration} = duration;
                         skipIndex=k;
-                        breakNestedLoopFlag = true;
-                    elseif ((T{k, "Value_ElapsedTime"} - initialTime) >= saccadeMaximumDurationThreshold)
-                        skipIndex=k;
-                        breakNestedLoopFlag = true;
                         break;
-                    end
-                    if(breakNestedLoopFlag)
-                        breakNestedLoopFlag = false;
+                    elseif (duration >= saccadeMaximumDurationThreshold || (~inRange && currentVelocity < velocityThreshold))
+                        skipIndex=k;
                         break;
                     end
                 end
@@ -1164,4 +925,5 @@ function analyze(arg1, arg2)
         end
         indexes = array;
     end
-end
+    
+% end
