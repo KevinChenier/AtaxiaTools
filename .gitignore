@@ -62,12 +62,21 @@ ExportedObj/
 *.csv
 RV_Data.xlsx
 ~$RV_Data.xlsx
+StatisticsAnalysis.xlsx
 
 #Ide
 .idea/
 
 #Statistics images
 /Statistics/*.png
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
 
 #Eye-Tracking autosave matlab file
 /EyeTrackingAnalyzer/eyeAnalyzer.asv
