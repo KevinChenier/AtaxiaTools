@@ -28,7 +28,7 @@ tic
 
 % function analyze(arg1, arg2)
     tool = "EyeTrackingMultiple";
-    participant = "CHUM-RV-004";
+    participant = "CHUM-RV-003";
     
     disp(tool)
     disp(participant)
@@ -78,6 +78,14 @@ tic
     timeThreshold = 500;
     velocityThreshold = 20;
     amplitudeThreshold = 0.5;
+
+    % In general, fixation
+    % durations are around 200–300 ms long, and longer fixations
+    % indicate deeper cognitive processing (Rayner, 1978; Salthouse
+    % and Ellis, 1980). Also, fixations could last for several seconds
+    % (Young and Sheena, 1975; Karsh and Breitenbach, 1983) or be as
+    % short as 30–40 ms (Rayner, 1978; Rayner, 1979).
+    fixationDurationThreshold = 30;
     
     initialPositionError = 0.35; % HTC Vive accuracy of 0.5 to 1.1 degrees as reported by the company. It has to be limited by amplitude, because the SJW algo would not work properly for initial position go back
     
@@ -90,7 +98,7 @@ tic
     % (Linnea Larsson, Marcus Nystrom, and Martin Stridh, 2013)
     saccadeMaximumDurationThreshold = 80;
     saccadeMinimumDurationThreshold = 30;
-    fixationDurationThreshold = 150;
+    
     amplitudeSaccadeMinimum = 2.5;
     
     %% Table new variables %%
@@ -270,11 +278,27 @@ tic
     % Saccades coordinates
     
     % Fixation
-    saccadeValue = T.Value_Saccade;
-    squareWaveJerkValue = T.Value_SquareWaveJerk;
-    fixationValue = ~(saccadeValue | squareWaveJerkValue);
-    
-    T.Value_Fixation = double(fixationValue);
+    for i=1:(height(T) - 1)
+        if(T{i, "Value_CombinedEyesVelocityDegrees"} < combinedEyesSaccade_median)
+            for k=i+1:-1:1
+                % We come from a previous fixation, so it is a fixation still
+                if(i > 1 && T{i - 1, "Value_Fixation"} == 1)
+                    T{i, "Value_Fixation"} = 1;
+                    break
+                else
+                    % We verify if for at least fixationDurationThreshold time, we are still below combinedEyesSaccade_median deg/s to quantify as a fixation
+                    if ~(T{k, "Value_CombinedEyesVelocityDegrees"} < combinedEyesSaccade_median)
+                        break;
+                    elseif abs(T{i, "Value_ElapsedTime"} - T{k, "Value_ElapsedTime"}) >= fixationDurationThreshold
+                        T{i, "Value_Fixation"} = 1;
+                        break
+                    else
+                        continue
+                    end
+                end
+            end
+        end
+    end
     disp("Fixation done");
     % Fixation
     
